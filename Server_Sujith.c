@@ -72,6 +72,7 @@ void GetAdminCredentials()
 			{
 				LoginMenu();
 				break;
+			}
 			else if(c==3)
 			{
 				break;
