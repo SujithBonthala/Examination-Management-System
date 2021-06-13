@@ -389,7 +389,7 @@ void DeleteStudentAcc()
 		while(choice!=1&&choice!=2&&choice!=3)
 		{
 			printf("\nEnter 1 to delete a student account based on his/her name\n");
-			printf("Enter 2 to search a student account based on his/her SRN\n");
+			printf("Enter 2 to delete a student account based on his/her SRN\n");
 			printf("Enter 3 to go back\n");
 			printf("Enter your choice : ");
 			scanf("%d",&choice);
