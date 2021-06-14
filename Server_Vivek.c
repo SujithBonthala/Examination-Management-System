@@ -46,6 +46,7 @@ void CreateStudentAcc()
 				s[i].Eligibility=0;
 				fwrite(&s[i],sizeof(student),1,fp);
 			}
+			printf("\nSuccessfully added %d student account(s)!\n",n);
 		}
 	}
 	fclose(fp);
@@ -58,59 +59,79 @@ void NumberStudentAcc()
 	fseek(fp,0,SEEK_END);
 	int n=ftell(fp)/sizeof(student);
 	int choice=0;
-	while(choice!=1&&choice!=2&&choice!=3&&choice!=4)
+	while(choice!=5)
 	{
 		printf("\nEnter 1 to display total number of student records\n");
 		printf("Enter 2 to display number of student records based on the semester\n");
 		printf("Enter 3 to display the number of student records based on the semester and section\n");
-		printf("Enter 4 to go back\n");
+		printf("Enter 4 to display the number of student records based on the semester and branch\n");
+		printf("Enter 5 to go back\n");
 		printf("Enter your choice : ");
 		scanf("%d",&choice);
-	
-	switch(choice)
-	{
-		case 1:
+		switch(choice)
 		{
-			printf("\nNumber of student records present is %d\n",n);
-			break;
-		}
-		case 2:
-		{
-			int sem,res=0;
-			printf("\nEnter the semester : ");
-			scanf("%d",&sem);
-			rewind(fp);
-			while(fread(&s1,sizeof(student),1,fp))
+			case 1:
 			{
-				if(s1.Semester==sem)
-				{
-					res++;
-				}
+				printf("\nNumber of student records present is %d\n",n);
+				break;
 			}
-			printf("Number of students in Semester %d is %d\n",sem,res);
-			break;
-		}
-		case 3:
-		{
-			int sem,res=0;
-			char section;
-			printf("\nEnter the semester : ");
-			scanf("%d",&sem);
-			fflush(stdin);
-			printf("Enter the section : ");
-			scanf("%c",&section);
-			rewind(fp);
-			while(fread(&s1,sizeof(student),1,fp))
+			case 2:
 			{
-				if(s1.Semester==sem&&s1.Section==section)
+				int sem,res=0;
+				printf("\nEnter the semester : ");
+				scanf("%d",&sem);
+				rewind(fp);
+				while(fread(&s1,sizeof(student),1,fp))
 				{
-					res++;
+					if(s1.Semester==sem)
+					{
+						res++;
+					}
 				}
+				printf("Number of students in Semester %d is %d\n",sem,res);
+				break;
 			}
-			printf("Number of students in Semester %d and Section %c is %d\n",sem,section,res);
-			break;
+			case 3:
+			{
+				int sem,res=0;
+				char section;
+				printf("\nEnter the semester : ");
+				scanf("%d",&sem);
+				fflush(stdin);
+				printf("Enter the section : ");
+				scanf("%c",&section);
+				rewind(fp);
+				while(fread(&s1,sizeof(student),1,fp))
+				{
+					if(s1.Semester==sem&&s1.Section==section)
+					{
+						res++;
+					}
+				}
+				printf("Number of students in Semester %d and Section %c is %d\n",sem,section,res);
+				break;
+			}
+			case 4:
+			{
+				int sem,res=0;
+				char branch[10];
+				printf("\nEnter the semester : ");
+				scanf("%d",&sem);
+				fflush(stdin);
+				printf("Enter the branch : ");
+				scanf("%s",&branch);
+				rewind(fp);
+				while(fread(&s1,sizeof(student),1,fp))
+				{
+					if(s1.Semester==sem&&s1.Branch==branch)
+					{
+						res++;
+					}
+				}
+				printf("Number of students in Semester %d and Branch %s is %d\n",sem,branch,res);
+				break;
+			}
 		}
-	}
 	}
 	fclose(fp);
 }
@@ -127,73 +148,85 @@ void SearchStudentAcc()
 	else
 	{
 		int choice=0;
-		while(choice!=1&&choice!=2&&choice!=3)
+		while(choice!=3)
 		{
-			printf("\nEnter 1 to search a student based on his/her name\n");
-			printf("Enter 2 to search a student based on his/her SRN\n");
+			printf("\nEnter 1 to search a student record based on his/her name\n");
+			printf("Enter 2 to search a student record based on his/her SRN\n");
 			printf("Enter 3 to go back\n");
 			printf("Enter your choice : ");
 			scanf("%d",&choice);
-		}
-		switch(choice)
-		{
-			case 1:
+			switch(choice)
 			{
-				char name[50];
-				printf("Enter the student's name : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&name);
-				while(fread(&s1,sizeof(student),1,fp))
+				case 1:
 				{
-					if(strcmp(s1.Name,name)==0)
+					char name[50];
+					int found=0;
+					printf("Enter the student's name : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&name);
+					while(fread(&s1,sizeof(student),1,fp))
 					{
-						printf("\nStudent record found!\n");
-						printf("Student Details:\n");
-						printf("Name : %s\n",s1.Name);
-						printf("SRN : %s\n",s1.SRN);
-						printf("Semester : %d\n",s1.Semester);
-						printf("Branch : %s\n",s1.Branch);
-						printf("Section : %c\n",s1.Section);
-						if(s1.No_Days_Total!=0)
+						if(strcmp(s1.Name,name)==0)
 						{
-							printf("Attendance(in Percentage) : %f\n",(s1.No_Days_Present/s1.No_Days_Total*100.0));
-						}
-						else
-						{
-							printf("Attendance(in Percentage) : 0\n");
+							found=1;
+							printf("\nStudent record found!\n");
+							printf("Student Details:\n");
+							printf("Name : %s\n",s1.Name);
+							printf("SRN : %s\n",s1.SRN);
+							printf("Semester : %d\n",s1.Semester);
+							printf("Branch : %s\n",s1.Branch);
+							printf("Section : %c\n",s1.Section);
+							if(s1.No_Days_Total!=0)
+							{
+								printf("Attendance(in Percentage) : %f\n",(s1.No_Days_Present/s1.No_Days_Total*100.0));
+							}
+							else
+							{
+								printf("Attendance(in Percentage) : 0\n");
+							}
 						}
 					}
-				}
-				break;
-			}
-			case 2:
-			{
-				char srn[50];
-				printf("Enter the student's SRN : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&srn);
-				while(fread(&s1,sizeof(student),1,fp))
-				{
-					if(strcmp(s1.SRN,srn)==0)
+					if(found==0)
 					{
-						printf("\nStudent record found!\n");
-						printf("Student Details:\n");
-						printf("Name : %s\n",s1.Name);
-						printf("SRN : %s\n",s1.SRN);
-						printf("Semester : %d\n",s1.Semester);
-						printf("Branch : %s\n",s1.Branch);
-						printf("Section : %c\n",s1.Section);
-						if(s1.No_Days_Total!=0)
+						printf("\nStudent record could not be found.\n");
+					}
+					break;
+				}
+				case 2:
+				{
+					char srn[50];
+					int found=0;
+					printf("Enter the student's SRN : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&srn);
+					while(fread(&s1,sizeof(student),1,fp))
+					{
+						if(strcmp(s1.SRN,srn)==0)
 						{
-							printf("Attendance(in Percentage) : %f\n",(s1.No_Days_Present/s1.No_Days_Total*100.0));
-						}
-						else
-						{
-							printf("Attendance(in Percentage) : 0\n");
+							found=1;
+							printf("\nStudent record found!\n");
+							printf("Student Details:\n");
+							printf("Name : %s\n",s1.Name);
+							printf("SRN : %s\n",s1.SRN);
+							printf("Semester : %d\n",s1.Semester);
+							printf("Branch : %s\n",s1.Branch);
+							printf("Section : %c\n",s1.Section);
+							if(s1.No_Days_Total!=0)
+							{
+								printf("Attendance(in Percentage) : %f\n",(s1.No_Days_Present/s1.No_Days_Total*100.0));
+							}
+							else
+							{
+								printf("Attendance(in Percentage) : 0\n");
+							}
 						}
 					}
+					if(found==0)
+					{
+						printf("\nStudent record could not be found.\n");
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}
@@ -218,7 +251,7 @@ void UpdateStudentAcc()
 		fflush(stdin);
 		scanf("%[^\n]s",&name);
 		int choice=0;
-		while(choice!=1&&choice!=2&&choice!=3&&choice!=4&&choice!=5)
+		while(choice!=5)
 		{
 			printf("\nEnter 1 to update student's SRN\n");
 			printf("Enter 2 to update student's Section\n");
@@ -227,146 +260,150 @@ void UpdateStudentAcc()
 			printf("Enter 5 to go back\n");
 			printf("Enter your choice : ");
 			scanf("%d",&choice);
-		}
-		switch(choice)
-		{
-			case 1:
+			switch(choice)
 			{
-				int found=0;
-				while(fread(&s1,sizeof(s1),1,fp))
+				case 1:
 				{
-					if(strcmp(s1.Name,name)==0)
+					int found=0;
+					while(fread(&s1,sizeof(s1),1,fp))
 					{
-						found=1;
-						char srn[20];
-						fflush(stdin);
-						printf("Enter new SRN of the student : ");
-						scanf("%[^\n]s",&srn);
-						strcpy(s1.SRN,srn);
-					}
-					fwrite(&s1,sizeof(student),1,fp1);
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Student_Record.txt","w");
-					fp1=fopen("Temp_Student_Record.txt","r");
-					while(fread(&s1,sizeof(student),1,fp1))
-					{
-						fwrite(&s1,sizeof(student),1,fp);
+						if(strcmp(s1.Name,name)==0)
+						{
+							found=1;
+							char srn[20];
+							fflush(stdin);
+							printf("Enter new SRN of the student : ");
+							scanf("%[^\n]s",&srn);
+							strcpy(s1.SRN,srn);
+						}
+						fwrite(&s1,sizeof(student),1,fp1);
 					}
 					fclose(fp);
 					fclose(fp1);
-				}
-				else
-				{
-					printf("Record not found\n");
-				}
-				break;
-			}
-			case 2:
-			{
-				int found=0;
-				while(fread(&s1,sizeof(s1),1,fp))
-				{
-					if(strcmp(s1.Name,name)==0)
+					if(found)
 					{
-						found=1;
-						char section;
-						printf("Enter new section of the student : ");
-						fflush(stdin);
-						scanf("%c",&section);
-						s1.Section=section;
+						fp=fopen("Student_Record.txt","w");
+						fp1=fopen("Temp_Student_Record.txt","r");
+						while(fread(&s1,sizeof(student),1,fp1))
+						{
+							fwrite(&s1,sizeof(student),1,fp);
+						}
+						printf("Student record is updated successfully!\n");
+						fclose(fp);
+						fclose(fp1);
 					}
-					fwrite(&s1,sizeof(student),1,fp1);
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Student_Record.txt","w");
-					fp1=fopen("Temp_Student_Record.txt","r");
-					while(fread(&s1,sizeof(student),1,fp1))
+					else
 					{
-						fwrite(&s1,sizeof(student),1,fp);
+						printf("Student record could not be found.\n");
 					}
-					fclose(fp);
-					fclose(fp1);
+					break;
 				}
-				else
+				case 2:
 				{
-					printf("Record not found\n");
-				}
-				break;
-			}
-			case 3:
-			{
-				int found=0;
-				while(fread(&s1,sizeof(s1),1,fp))
-				{
-					if(strcmp(s1.Name,name)==0)
+					int found=0;
+					while(fread(&s1,sizeof(s1),1,fp))
 					{
-						found=1;
-						char branch[10];
-						printf("Enter new branch of the student : ");
-						scanf("%s",&branch);
-						strcpy(s1.Branch,branch);
-					}
-					fwrite(&s1,sizeof(student),1,fp1);
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Student_Record.txt","w");
-					fp1=fopen("Temp_Student_Record.txt","r");
-					while(fread(&s1,sizeof(student),1,fp1))
-					{
-						fwrite(&s1,sizeof(student),1,fp);
+						if(strcmp(s1.Name,name)==0)
+						{
+							found=1;
+							char section;
+							printf("Enter new section of the student : ");
+							fflush(stdin);
+							scanf("%c",&section);
+							s1.Section=section;
+						}
+						fwrite(&s1,sizeof(student),1,fp1);
 					}
 					fclose(fp);
 					fclose(fp1);
-				}
-				else
-				{
-					printf("Record not found\n");
-				}
-				break;
-			}
-			case 4:
-			{
-				int found=0;
-				while(fread(&s1,sizeof(s1),1,fp))
-				{
-					if(strcmp(s1.Name,name)==0)
+					if(found)
 					{
-						found=1;
-						int semester;
-						printf("Enter new semester of the student : ");
-						scanf("%d",&semester);
-						s1.Semester=semester;
+						fp=fopen("Student_Record.txt","w");
+						fp1=fopen("Temp_Student_Record.txt","r");
+						while(fread(&s1,sizeof(student),1,fp1))
+						{
+							fwrite(&s1,sizeof(student),1,fp);
+						}
+						printf("Student record is updated successfully!\n");
+						fclose(fp);
+						fclose(fp1);
 					}
-					fwrite(&s1,sizeof(student),1,fp1);
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Student_Record.txt","w");
-					fp1=fopen("Temp_Student_Record.txt","r");
-					while(fread(&s1,sizeof(student),1,fp1))
+					else
 					{
-						fwrite(&s1,sizeof(student),1,fp);
+						printf("Student record could not be found.\n");
+					}
+					break;
+				}
+				case 3:
+				{
+					int found=0;
+					while(fread(&s1,sizeof(s1),1,fp))
+					{
+						if(strcmp(s1.Name,name)==0)
+						{
+							found=1;
+							char branch[10];
+							printf("Enter new branch of the student : ");
+							scanf("%s",&branch);
+							strcpy(s1.Branch,branch);
+						}
+						fwrite(&s1,sizeof(student),1,fp1);
 					}
 					fclose(fp);
 					fclose(fp1);
+					if(found)
+					{
+						fp=fopen("Student_Record.txt","w");
+						fp1=fopen("Temp_Student_Record.txt","r");
+						while(fread(&s1,sizeof(student),1,fp1))
+						{
+							fwrite(&s1,sizeof(student),1,fp);
+						}
+						printf("Student record is updated successfully!\n");
+						fclose(fp);
+						fclose(fp1);
+					}
+					else
+					{
+						printf("Student record could not be found.\n");
+					}
+					break;
 				}
-				else
+				case 4:
 				{
-					printf("Record not found\n");
+					int found=0;
+					while(fread(&s1,sizeof(s1),1,fp))
+					{
+						if(strcmp(s1.Name,name)==0)
+						{
+							found=1;
+							int semester;
+							printf("Enter new semester of the student : ");
+							scanf("%d",&semester);
+							s1.Semester=semester;
+						}
+						fwrite(&s1,sizeof(student),1,fp1);
+					}
+					fclose(fp);
+					fclose(fp1);
+					if(found)
+					{
+						fp=fopen("Student_Record.txt","w");
+						fp1=fopen("Temp_Student_Record.txt","r");
+						while(fread(&s1,sizeof(student),1,fp1))
+						{
+							fwrite(&s1,sizeof(student),1,fp);
+						}
+						printf("Student record is updated successfully!\n");
+						fclose(fp);
+						fclose(fp1);
+					}
+					else
+					{
+						printf("Student record could not be found.\n");
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}
@@ -386,93 +423,133 @@ void DeleteStudentAcc()
 	else
 	{
 		int choice=0;
-		while(choice!=1&&choice!=2&&choice!=3)
+		while(choice!=4)
 		{
 			printf("\nEnter 1 to delete a student account based on his/her name\n");
 			printf("Enter 2 to delete a student account based on his/her SRN\n");
-			printf("Enter 3 to go back\n");
+			printf("Enter 3 to delete all student accounts based on the semester of the students\n");
+			printf("Enter 4 to go back\n");
 			printf("Enter your choice : ");
 			scanf("%d",&choice);
-		}
-		switch(choice)
-		{
-			case 1:
+			switch(choice)
 			{
-				char name[50];
-				int found=0;
-				printf("Enter the student's name : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&name);
-				while(fread(&s1,sizeof(student),1,fp))
+				case 1:
 				{
-					if(strcmp(s1.Name,name)==0)
+					char name[50];
+					int found=0;
+					printf("Enter the student's name : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&name);
+					while(fread(&s1,sizeof(student),1,fp))
 					{
-						found=1;
-					}
-					else
-					{
-						fwrite(&s1,sizeof(student),1,fp1);
-					}
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Student_Record.txt","w");
-					fp1=fopen("Temp_Student_Record.txt","r");
-					while(fread(&s1,sizeof(student),1,fp1))
-					{
-						fwrite(&s1,sizeof(student),1,fp);
+						if(strcmp(s1.Name,name)==0)
+						{
+							found=1;
+						}
+						else
+						{
+							fwrite(&s1,sizeof(student),1,fp1);
+						}
 					}
 					fclose(fp);
 					fclose(fp1);
-				}
-				else
-				{
-					printf("Record not found\n");
-				}
-				break;
-			}
-			case 2:
-			{
-				char srn[50];
-				int found=0;
-				printf("Enter the student's SRN : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&srn);
-				while(fread(&s1,sizeof(student),1,fp))
-				{
-					if(strcmp(s1.SRN,srn)==0)
+					if(found)
 					{
-						found=1;
+						fp=fopen("Student_Record.txt","w");
+						fp1=fopen("Temp_Student_Record.txt","r");
+						while(fread(&s1,sizeof(student),1,fp1))
+						{
+							fwrite(&s1,sizeof(student),1,fp);
+						}
+						printf("Student record is deleted successfully.\n");
+						fclose(fp);
+						fclose(fp1);
 					}
 					else
 					{
-						fwrite(&s1,sizeof(student),1,fp1);
+						printf("Student record could not be found.\n");
 					}
+					break;
 				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
+				case 2:
 				{
-					fp=fopen("Student_Record.txt","w");
-					fp1=fopen("Temp_Student_Record.txt","r");
-					while(fread(&s1,sizeof(student),1,fp1))
+					char srn[50];
+					int found=0;
+					printf("Enter the student's SRN : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&srn);
+					while(fread(&s1,sizeof(student),1,fp))
 					{
-						fwrite(&s1,sizeof(student),1,fp);
+						if(strcmp(s1.SRN,srn)==0)
+						{
+							found=1;
+						}
+						else
+						{
+							fwrite(&s1,sizeof(student),1,fp1);
+						}
 					}
 					fclose(fp);
 					fclose(fp1);
+					if(found)
+					{
+						fp=fopen("Student_Record.txt","w");
+						fp1=fopen("Temp_Student_Record.txt","r");
+						while(fread(&s1,sizeof(student),1,fp1))
+						{
+							fwrite(&s1,sizeof(student),1,fp);
+						}
+						printf("Student record is deleted successfully.\n");
+						fclose(fp);
+						fclose(fp1);
+					}
+					else
+					{
+						printf("Student record could not be found.\n");
+					}
+					break;
 				}
-				else
+				case 3:
 				{
-					printf("Record not found\n");
+					int sem;
+					int found=0;
+					printf("Enter the semester of the students : ");
+					fflush(stdin);
+					scanf("%d",&sem);
+					while(fread(&s1,sizeof(student),1,fp))
+					{
+						if(s1.Semester==sem)
+						{
+							found=1;
+						}
+						else
+						{
+							fwrite(&s1,sizeof(student),1,fp1);
+						}
+					}
+					fclose(fp);
+					fclose(fp1);
+					if(found)
+					{
+						fp=fopen("Student_Record.txt","w");
+						fp1=fopen("Temp_Student_Record.txt","r");
+						while(fread(&s1,sizeof(student),1,fp1))
+						{
+							fwrite(&s1,sizeof(student),1,fp);
+						}
+						printf("Student records are deleted successfully.\n");
+						fclose(fp);
+						fclose(fp1);
+					}
+					else
+					{
+						printf("No student belonged to semester %d.\n",sem);
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}
-	fclose(fp);
 }
 void SetExamDetails()
 {
