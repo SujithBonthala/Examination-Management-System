@@ -38,6 +38,7 @@ void CreateTeacherAcc()
 				fflush(stdin);
 				fwrite(&t[i],sizeof(teacher),1,fp);
 			}
+			printf("\nSuccessfully added %d teacher account(s)!\n",n);
 		}
 	}
 	fclose(fp);
@@ -46,9 +47,44 @@ void NumberTeacherAcc()
 {
 	FILE *fp;
 	fp=fopen("Teacher_Record.txt","r");
+	teacher t;
 	fseek(fp,0,SEEK_END);
 	int n=ftell(fp)/sizeof(teacher);
-	printf("\nNumber of teacher records present is %d\n",n);
+	int choice=0;
+	while(choice!=3)
+	{
+		printf("\nEnter 1 to display total number of teacher records\n");
+		printf("Enter 2 to display number of teacher records based on the branch\n");
+		printf("Enter 3 to go back\n");
+		printf("Enter your choice : ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+			{
+				printf("\nNumber of teacher records present is %d\n",n);
+				break;
+			}
+			case 2:
+			{
+				int res=0;
+				char branch[10];
+				printf("\nEnter the Branch : ");
+				fflush(stdin);
+				scanf("%s",&branch);
+				rewind(fp);
+				while(fread(&t,sizeof(teacher),1,fp))
+				{
+					if(strcmp(t.Branch,branch)==0)
+					{
+						res++;
+					}
+				}
+				printf("Number of teachers in Branch %s is %d\n",branch,res);
+				break;
+			}
+		}
+	}
 	fclose(fp);
 }
 void SearchTeacherAcc()
@@ -64,53 +100,65 @@ void SearchTeacherAcc()
 	else
 	{
 		int choice=0;
-		while(choice!=1&&choice!=2&&choice!=3)
+		while(choice!=3)
 		{
-			printf("\nEnter 1 to search a teacher based on his/her name\n");
-			printf("Enter 2 to search a teacher based on his/her PRN\n");
+			printf("\nEnter 1 to search a teacher record based on his/her name\n");
+			printf("Enter 2 to search a teacher record based on his/her PRN\n");
 			printf("Enter 3 to go back\n");
 			printf("Enter your choice : ");
 			scanf("%d",&choice);
-		}
-		switch(choice)
-		{
-			case 1:
+			switch(choice)
 			{
-				char name[50];
-				printf("Enter the Teacher's name : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&name);
-				while(fread(&t,sizeof(teacher),1,fp))
+				case 1:
 				{
-					if(strcmp(t.Name,name)==0)
+					char name[50];
+					int found=0;
+					printf("Enter the Teacher's name : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&name);
+					while(fread(&t,sizeof(teacher),1,fp))
 					{
-						printf("\nTeacher record found!\n");
-						printf("Teacher Details:\n");
-						printf("Name : %s\n",t.Name);
-						printf("PRN : %s\n",t.PRN);
-						printf("Branch : %s\n",t.Branch);
+						if(strcmp(t.Name,name)==0)
+						{
+							found=1;
+							printf("\nTeacher record found!\n");
+							printf("Teacher Details:\n");
+							printf("Name : %s\n",t.Name);
+							printf("PRN : %s\n",t.PRN);
+							printf("Branch : %s\n",t.Branch);
+						}
 					}
-				}		
-				break;
-			}
-			case 2:
-			{
-				char prn[50];
-				printf("Enter the student's PRN : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&prn);
-				while(fread(&t,sizeof(teacher),1,fp))
-				{
-					if(strcmp(t.PRN,prn)==0)
+					if(found==0)
 					{
-						printf("\nTeacher record found!\n");
-						printf("Teacher Details:\n");
-						printf("Name : %s\n",t.Name);
-						printf("PRN : %s\n",t.PRN);
-						printf("Branch : %s\n",t.Branch);
-					}						
+						printf("\nTeacher record count not be found.\n");
+					}		
+					break;
 				}
-				break;
+				case 2:
+				{
+					char prn[50];
+					int found=0;
+					printf("Enter the student's PRN : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&prn);
+					while(fread(&t,sizeof(teacher),1,fp))
+					{
+						if(strcmp(t.PRN,prn)==0)
+						{
+							found=1;
+							printf("\nTeacher record found!\n");
+							printf("Teacher Details:\n");
+							printf("Name : %s\n",t.Name);
+							printf("PRN : %s\n",t.PRN);
+							printf("Branch : %s\n",t.Branch);
+						}						
+					}
+					if(found==0)
+					{
+						printf("\nTeacher record could not be found.\n");
+					}
+					break;
+				}
 			}
 		}
 	}
@@ -135,84 +183,86 @@ void UpdateTeacherAcc()
 		fflush(stdin);
 		scanf("%[^\n]s",&name);
 		int choice=0;
-		while(choice!=1&&choice!=2&&choice!=3)
+		while(choice!=3)
 		{
 			printf("\nEnter 1 to update Teacher's PRN\n");
 			printf("Enter 2 to update Teacher's Branch\n");
 			printf("Enter 3 to go back\n");
 			printf("Enter your choice : ");
 			scanf("%d",&choice);
-		}
-		switch(choice)
-		{
-			case 1:
+			switch(choice)
 			{
-				int found=0;
-				while(fread(&t,sizeof(t),1,fp))
+				case 1:
 				{
-					if(strcmp(t.Name,name)==0)
+					int found=0;
+					while(fread(&t,sizeof(t),1,fp))
 					{
-						found=1;
-						char prn[20];
-						fflush(stdin);
-						printf("Enter new PRN of the student : ");
-						scanf("%[^\n]s",&prn);
-						strcpy(t.PRN,prn);
-					}
-					fwrite(&t,sizeof(teacher),1,fp1);
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Teacher_Record.txt","w");
-                			fp1=fopen("Temp_Teacher_Record.txt","r");
-					while(fread(&t,sizeof(teacher),1,fp1))
-					{
-						fwrite(&t,sizeof(teacher),1,fp);
+						if(strcmp(t.Name,name)==0)
+						{
+							found=1;
+							char prn[20];
+							fflush(stdin);
+							printf("Enter new PRN of the student : ");
+							scanf("%[^\n]s",&prn);
+							strcpy(t.PRN,prn);
+						}
+						fwrite(&t,sizeof(teacher),1,fp1);
 					}
 					fclose(fp);
 					fclose(fp1);
-				}
-				else
-				{
-					printf("Record not found\n");
-				}
-				break;
-			}
-			case 2:
-			{
-				int found=0;
-				while(fread(&t,sizeof(t),1,fp))
-				{
-					if(strcmp(t.Name,name)==0)
+					if(found)
 					{
-						found=1;
-						char branch[10];
-						printf("Enter new branch of the Teacher : ");
-						scanf("%s",&branch);
-						strcpy(t.Branch,branch);
+						fp=fopen("Teacher_Record.txt","w");
+                				fp1=fopen("Temp_Teacher_Record.txt","r");
+						while(fread(&t,sizeof(teacher),1,fp1))
+						{
+							fwrite(&t,sizeof(teacher),1,fp);
+						}
+						printf("Teacher record is updated succesfully!\n");
+						fclose(fp);
+						fclose(fp1);
 					}
-					fwrite(&t,sizeof(teacher),1,fp1);
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Teacher_Record.txt","w");
-	                		fp1=fopen("Temp_Teacher_Record.txt","r");
-					while(fread(&t,sizeof(teacher),1,fp1))
+					else
 					{
-						fwrite(&t,sizeof(teacher),1,fp);
+						printf("Teacher record could not be found.\n");
+					}
+					break;
+				}
+				case 2:
+				{
+					int found=0;
+					while(fread(&t,sizeof(t),1,fp))
+					{
+						if(strcmp(t.Name,name)==0)
+						{
+							found=1;
+							char branch[10];
+							printf("Enter new branch of the Teacher : ");
+							scanf("%s",&branch);
+							strcpy(t.Branch,branch);
+						}
+						fwrite(&t,sizeof(teacher),1,fp1);
 					}
 					fclose(fp);
 					fclose(fp1);
+					if(found)
+					{
+						fp=fopen("Teacher_Record.txt","w");
+	                			fp1=fopen("Temp_Teacher_Record.txt","r");
+						while(fread(&t,sizeof(teacher),1,fp1))
+						{
+							fwrite(&t,sizeof(teacher),1,fp);
+						}
+						printf("Teacher record is updated successfully!\n");
+						fclose(fp);
+						fclose(fp1);
+					}
+					else
+					{
+						printf("Teacher record could not be found.\n");
+					}
+					break;
 				}
-				else
-				{
-					printf("Record not found\n");
-				}
-				break;
            		}
         	}        
     	}
@@ -232,91 +282,92 @@ void DeleteTeacherAcc()
 	else
 	{
 		int choice=0;
-		while(choice!=1&&choice!=2&&choice!=3)
+		while(choice!=3)
 		{
 			printf("\nEnter 1 to delete a teacher account based on his/her name\n");
 			printf("Enter 2 to delete a teacher account based on his/her PRN\n");
 			printf("Enter 3 to go back\n");
 			printf("Enter your choice : ");
 			scanf("%d",&choice);
-		}
-		switch(choice)
-		{
-			case 1:
+			switch(choice)
 			{
-				char name[50];
-				int found=0;
-				printf("Enter the teacher's name : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&name);
-				while(fread(&t,sizeof(teacher),1,fp))
+				case 1:
 				{
-					if(strcmp(t.Name,name)==0)
-					{
-						found=1;
-					}
-					else
-					{
-						fwrite(&t,sizeof(teacher),1,fp);
-					}
-				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
-				{
-					fp=fopen("Teacher_Record.txt","w");
-                			fp1=fopen("Temp_Teacher_Record.txt","r");
+					char name[50];
+					int found=0;
+					printf("Enter the teacher's name : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&name);
 					while(fread(&t,sizeof(teacher),1,fp))
 					{
-						fwrite(&t,sizeof(teacher),1,fp);
+						if(strcmp(t.Name,name)==0)
+						{
+							found=1;
+						}
+						else
+						{
+							fwrite(&t,sizeof(teacher),1,fp);
+						}
 					}
 					fclose(fp);
 					fclose(fp1);
-				}
-				else
-				{
-					printf("Record not found\n");
-				}
-				break;
-			}
-			case 2:
-			{
-				char prn[50];
-				int found=0;
-				printf("Enter the teacher's PRN : ");
-				fflush(stdin);
-				scanf("%[^\n]s",&prn);
-				while(fread(&t,sizeof(teacher),1,fp))
-				{
-					if(strcmp(t.PRN,prn)==0)
+					if(found)
 					{
-						found=1;
+						fp=fopen("Teacher_Record.txt","w");
+                				fp1=fopen("Temp_Teacher_Record.txt","r");
+						while(fread(&t,sizeof(teacher),1,fp))
+						{
+							fwrite(&t,sizeof(teacher),1,fp);
+						}
+						printf("Teacher record is deleted successfully.\n");
+						fclose(fp);
+						fclose(fp1);
 					}
 					else
 					{
-						fwrite(&t,sizeof(teacher),1,fp);
+						printf("Teacher record could not be found.\n");
 					}
+					break;
 				}
-				fclose(fp);
-				fclose(fp1);
-				if(found)
+				case 2:
 				{
-					fp=fopen("Teacher_Record.txt","w");
-                			fp1=fopen("Temp_Teacher_Record.txt","r");
+					char prn[50];
+					int found=0;
+					printf("Enter the teacher's PRN : ");
+					fflush(stdin);
+					scanf("%[^\n]s",&prn);
 					while(fread(&t,sizeof(teacher),1,fp))
 					{
-						fwrite(&t,sizeof(teacher),1,fp);
+						if(strcmp(t.PRN,prn)==0)
+						{
+							found=1;
+						}
+						else
+						{
+							fwrite(&t,sizeof(teacher),1,fp);
+						}
 					}
 					fclose(fp);
 					fclose(fp1);
+					if(found)
+					{
+						fp=fopen("Teacher_Record.txt","w");
+                				fp1=fopen("Temp_Teacher_Record.txt","r");
+						while(fread(&t,sizeof(teacher),1,fp))
+						{
+							fwrite(&t,sizeof(teacher),1,fp);
+						}
+						printf("Teacher record is deleted successfully.\n");
+						fclose(fp);
+						fclose(fp1);
+					}
+					else
+					{
+						printf("Teacher record could not be found.\n");
+					}
+					break;
 				}
-				else
-				{
-					printf("Record not found\n");
-				}
-				break;
 			}
 		}
 	}
-	fclose(fp);
 }
