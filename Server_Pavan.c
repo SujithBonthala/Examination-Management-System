@@ -62,12 +62,14 @@ void NumberTeacherAcc()
 		{
 			case 1:
 			{
+				rewind(fp);
 				printf("\nNumber of teacher records present is %d\n",n);
 				break;
 			}
 			case 2:
 			{
 				int res=0;
+				rewind(fp);
 				char branch[10];
 				printf("\nEnter the Branch : ");
 				fflush(stdin);
@@ -113,6 +115,7 @@ void SearchTeacherAcc()
 				{
 					char name[50];
 					int found=0;
+					rewind(fp);
 					printf("Enter the Teacher's name : ");
 					fflush(stdin);
 					scanf("%[^\n]s",&name);
@@ -138,6 +141,7 @@ void SearchTeacherAcc()
 				{
 					char prn[50];
 					int found=0;
+					rewind(fp);
 					printf("Enter the student's PRN : ");
 					fflush(stdin);
 					scanf("%[^\n]s",&prn);
@@ -166,33 +170,31 @@ void SearchTeacherAcc()
 }
 void UpdateTeacherAcc()
 {
-	FILE *fp,*fp1;
-	teacher t;
-	fp=fopen("Teacher_Record.txt","r");
-	fp1=fopen("Temp_Teacher_Record.txt","w");
-	rewind(fp);
-	rewind(fp1);
-	if(fp==NULL||fp1==NULL)
+	int choice=0;
+	while(choice!=3)
 	{
-		printf("Error...Try again\n");
-	}
-	else
-	{
-		char name[50];
-		printf("Enter Teacher's name : ");
-		fflush(stdin);
-		scanf("%[^\n]s",&name);
-		int choice=0;
-		while(choice!=3)
+		printf("\nEnter 1 to update Teacher's PRN\n");
+		printf("Enter 2 to update Teacher's Branch\n");
+		printf("Enter 3 to go back\n");
+		printf("Enter your choice : ");
+		scanf("%d",&choice);
+		switch(choice)
 		{
-			printf("\nEnter 1 to update Teacher's PRN\n");
-			printf("Enter 2 to update Teacher's Branch\n");
-			printf("Enter 3 to go back\n");
-			printf("Enter your choice : ");
-			scanf("%d",&choice);
-			switch(choice)
+			case 1:
 			{
-				case 1:
+				FILE *fp,*fp1;
+				teacher t;
+				fp=fopen("Teacher_Record.txt","r");
+				fp1=fopen("Temp_Teacher_Record.txt","w");
+				char name[50];
+				printf("Enter Teacher's name : ");
+				fflush(stdin);
+				scanf("%[^\n]s",&name);
+				if(fp==NULL||fp1==NULL)
+				{
+					printf("Error...Try again\n");
+				}
+				else
 				{
 					int found=0;
 					while(fread(&t,sizeof(t),1,fp))
@@ -228,7 +230,22 @@ void UpdateTeacherAcc()
 					}
 					break;
 				}
-				case 2:
+			}
+			case 2:
+			{
+				FILE *fp,*fp1;
+				teacher t;
+				fp=fopen("Teacher_Record.txt","r");
+				fp1=fopen("Temp_Teacher_Record.txt","w");
+				char name[50];
+				printf("Enter Teacher's name : ");
+				fflush(stdin);
+				scanf("%[^\n]s",&name);
+				if(fp==NULL||fp1==NULL)
+				{
+					printf("Error...Try again\n");
+				}
+				else
 				{
 					int found=0;
 					while(fread(&t,sizeof(t),1,fp))
@@ -269,29 +286,27 @@ void UpdateTeacherAcc()
 }
 void DeleteTeacherAcc()
 {
-	FILE *fp,*fp1;
-	teacher t;
-	fp=fopen("Teacher_Record.txt","r");
-	fp1=fopen("Temp_Teacher_Record.txt","w");
-	rewind(fp);
-	rewind(fp1);
-	if(fp==NULL||fp1==NULL)
+	int choice=0;
+	while(choice!=3)
 	{
-		printf("Error...Try again\n");
-	}
-	else
-	{
-		int choice=0;
-		while(choice!=3)
+		printf("\nEnter 1 to delete a teacher account based on his/her name\n");
+		printf("Enter 2 to delete a teacher account based on his/her PRN\n");
+		printf("Enter 3 to go back\n");
+		printf("Enter your choice : ");
+		scanf("%d",&choice);
+		switch(choice)
 		{
-			printf("\nEnter 1 to delete a teacher account based on his/her name\n");
-			printf("Enter 2 to delete a teacher account based on his/her PRN\n");
-			printf("Enter 3 to go back\n");
-			printf("Enter your choice : ");
-			scanf("%d",&choice);
-			switch(choice)
+			case 1:
 			{
-				case 1:
+				FILE *fp,*fp1;
+				teacher t;
+				fp=fopen("Teacher_Record.txt","r");
+				fp1=fopen("Temp_Teacher_Record.txt","w");
+				if(fp==NULL||fp1==NULL)
+				{
+					printf("Error...Try again\n");
+				}
+				else
 				{
 					char name[50];
 					int found=0;
@@ -329,7 +344,18 @@ void DeleteTeacherAcc()
 					}
 					break;
 				}
-				case 2:
+			}
+			case 2:
+			{
+				FILE *fp,*fp1;
+				teacher t;
+				fp=fopen("Teacher_Record.txt","r");
+				fp1=fopen("Temp_Teacher_Record.txt","w");
+				if(fp==NULL||fp1==NULL)
+				{
+					printf("Error...Try again\n");
+				}
+				else
 				{
 					char prn[50];
 					int found=0;
