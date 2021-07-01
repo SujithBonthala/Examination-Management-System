@@ -83,6 +83,82 @@ void GetAdminCredentials()
 void AdminMainMenu()
 {
 	printf("\nLogged in successfully\n");
+	int choice=0;
+	while(choice!=12)
+	{
+		printf("\nEnter 1 to create Student Account(s)");
+		printf("\nEnter 2 to create Teacher Account(s)");
+		printf("\nEnter 3 to display number of Student Account(s)");
+		printf("\nEnter 4 to display number of Teacher Account(s)");
+		printf("\nEnter 5 to search a Student Account");
+		printf("\nEnter 6 to search a Teacher Account");
+		printf("\nEnter 7 to update a Student Account");
+		printf("\nEnter 8 to update a Teacher Account");
+		printf("\nEnter 9 to delete a Student Account");
+		printf("\nEnter 10 to delete a Teacher Account");
+		printf("\nEnter 11 to Set Exam Details");
+		printf("\nEnter 12 to Logout\n");
+		printf("Enter your choice : ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+			{
+				CreateStudentAcc();
+				break;
+			}
+			case 2:
+			{
+				CreateTeacherAcc();
+				break;
+			}
+			case 3:
+			{
+				NumberStudentAcc();
+				break;
+			}
+			case 4:
+			{
+				NumberTeacherAcc();
+				break;
+			}
+			case 5:
+			{
+				SearchStudentAcc();
+				break;
+			}
+			case 6:
+			{
+				SearchTeacherAcc();
+				break;
+			}
+			case 7:
+			{
+				UpdateStudentAcc();
+				break;
+			}
+			case 8:
+			{
+				UpdateTeacherAcc();
+				break;
+			}
+			case 9:
+			{
+				DeleteStudentAcc();
+				break;
+			}
+			case 10:
+			{
+				DeleteTeacherAcc();
+				break;
+			}
+			case 11:
+			{
+				SetExamDetails();
+				break;
+			}
+		}
+	}
 }
 void GetStudentCredentials()
 {
