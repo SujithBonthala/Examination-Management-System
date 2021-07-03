@@ -1,6 +1,7 @@
 
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 #include "Header_File.h"
 void LoginMenu()
 {
@@ -24,6 +25,10 @@ void LoginMenu()
 	else if(choice==3)
 	{
 		GetTeacherCredentials();
+	}
+	else
+	{
+		exit(0);
 	}
 }
 void GetAdminCredentials()
