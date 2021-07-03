@@ -633,3 +633,147 @@ void DeleteStudentAcc()
 void SetExamDetails()
 {
 }
+void login()
+{
+ 
+ FILE *fp;
+	fp=fopen("Student_Record.txt","r");
+	student s1;
+	char srn[50],pass[50];
+int c=1;	
+do
+{
+	
+	printf("Enter Username:");
+	fflush(stdin);
+	scanf("%[^\n]s",srn);
+	printf("\nEnter the password:");
+	fflush(stdin);
+	scanf("%[^\n]s",pass);
+	
+	if(fp==NULL)
+	{
+		printf("Error...Try again\n");
+	}
+	else
+	{
+ 		switch(c)
+		{
+			case 1:
+					while(!feof(fp))
+					fread(&s1,sizeof(student),1,fp);
+				{
+					
+					if(strcmp(s1.SRN,srn)!=0)
+					{		
+						printf("username does not exist\n");
+						printf("Try again...\n");
+						break;
+					}
+				}
+				while(!feof(fp))
+				fread(&s1,sizeof(student),1,fp);
+			{
+				if(strcmp(s1.Password,pass)==0 && strcmp(s1.SRN,srn)==0)
+			{
+				StudentMainMenu(pass);
+				break;
+			}
+			else
+			{
+					printf("Invalid useraname or password\n");
+
+					printf("Enter 1 to try again\n");
+					printf("Enter 2 to go back to Login Menu\n");
+					printf("Enter 3 to Exit\n");
+					fflush(stdin);
+					scanf("%d",&c);
+					break;
+
+			}
+
+			case 2:	LoginMenu();
+				 break;
+			
+			case 3:
+				break;
+			}	
+			
+		}
+	
+	}
+	
+	
+}while(c!=3);
+	
+	
+		 
+}
+void changepassword(char *pass)
+{
+	
+	
+	FILE *fp,*fp1;
+    student s1;
+	char p[50];
+	char t[50];
+	printf("Enter New Password:");
+					fflush(stdin);
+					scanf("%[^\n]s",p);
+					printf("\nConfirm New password again:");
+					fflush(stdin);
+					scanf("%[^\n]s",t);
+					if(strcmp(p,t)==0)
+					{
+					fp=fopen("Student_Record.txt","r");
+					fp1=fopen("Temp_Student_Record.txt","w");
+					if(fp==NULL||fp1==NULL)
+					{
+						printf("Error...Try again\n");
+						fclose(fp);
+						fclose(fp1);
+					}
+					else
+					{
+						int found=0;
+						while(fread(&s1,sizeof(s1),1,fp))
+						{
+							if(strcmp(s1.Password,pass)==0)
+							{
+								found=1;
+				
+								fflush(stdin);
+							
+								strcpy(s1.Password,p);
+							}
+							fwrite(&s1,sizeof(student),1,fp1);
+						}
+						fclose(fp);
+						fclose(fp1);
+						if(found)
+						{
+							fp=fopen("Student_Record.txt","w");
+							fp1=fopen("Temp_Student_Record.txt","r");
+							while(fread(&s1,sizeof(student),1,fp1))
+							{
+								fwrite(&s1,sizeof(student),1,fp);
+							}
+							printf("Password is updated successfully!\n");
+							fclose(fp);
+							fclose(fp1);
+						}
+					
+						
+			        }
+				}
+				else
+				{
+					printf("try again...\n");
+					changepassword(pass);
+				}	
+	
+	
+
+
+}	
+
