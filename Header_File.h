@@ -26,6 +26,8 @@ void GetAdminCredentials();
 void AdminMainMenu();
 
 void GetStudentCredentials();
+ 
+void StudentMainMenu(char *name);
 
 void GetTeacherCredentials();
 
@@ -52,3 +54,8 @@ void DeleteStudentAcc();
 void DeleteTeacherAcc();
 
 void SetExamDetails();
+
+void login();
+
+void changepassword(char *pass);
+
