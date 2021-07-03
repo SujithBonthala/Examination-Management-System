@@ -1,34 +1,31 @@
-
 #include<stdio.h>
 #include<string.h>
-#include<stdlib.h>
+#include<conio.h>
 #include "Header_File.h"
 void LoginMenu()
 {
+	printf("Welcome to Examination Management System\n");
 	int choice=0;
-	while(choice!=1&&choice!=2&&choice!=3&&choice!=4)
+	while(choice!=4)
 	{
 		printf("\nEnter 1 to Login as Admin\n");
 		printf("Enter 2 to Login as Student\n");
 		printf("Enter 3 to Login as Teacher\n");
 		printf("Enter 4 to Exit\n");
+		printf("Enter your choice : ");
 		scanf("%d",&choice);
-	}
-	if(choice==1)
-	{
-		GetAdminCredentials();
-	}
-	else if(choice==2)
-	{
-		GetStudentCredentials();
-	}
-	else if(choice==3)
-	{
-		GetTeacherCredentials();
-	}
-	else
-	{
-		exit(0);
+		if(choice==1)
+		{
+			GetAdminCredentials();
+		}
+		else if(choice==2)
+		{
+			GetStudentCredentials();
+		}
+		else if(choice==3)
+		{
+			GetTeacherCredentials();
+		}
 	}
 }
 void GetAdminCredentials()
@@ -40,9 +37,35 @@ void GetAdminCredentials()
 		printf("\nEnter the username : ");
 		scanf("%[^\n]s",username_temp);
 		fflush(stdin);
+		char ch;
+		int charpos=0;
 		printf("Enter the password : ");
-		scanf("%[^\n]s",password_temp);
+		//scanf("%[^\n]s",password_temp);
+		while(1)
+		{
+			ch=getch();
+			if(ch==13)
+			{
+				break;
+			}
+			else if(ch==8)
+			{
+				if(charpos>0)
+				{
+					charpos--;
+					password_temp[charpos]='\0';
+					printf("\b \b");
+				}
+			}
+			else
+			{
+				password_temp[charpos]=ch;
+				charpos++;
+				printf("*");
+			}
+		}
 		fflush(stdin);
+		password_temp[charpos]='\0';
 		int un_len=strlen(username_temp);
 		int pw_len=strlen(password_temp);
 		char username[un_len],password[pw_len];
@@ -64,21 +87,16 @@ void GetAdminCredentials()
 		}
 		else
 		{
-			printf("Invalid useraname or password\n");
+			printf("Invalid username or password\n");
 			int c=0;
-			while(c!=1&&c!=2&&c!=3)
+			while(c!=1&&c!=2)
 			{
 				printf("Enter 1 to try again\n");
-				printf("Enter 2 to go back to Login Menu\n");
-				printf("Enter 3 to Exit\n");
+				printf("Enter 2 to Exit\n");
+				printf("Enter your choice : ");
 				scanf("%d",&c);
 			}
 			if(c==2)
-			{
-				LoginMenu();
-				break;
-			}
-			else if(c==3)
 			{
 				break;
 			}
@@ -167,13 +185,12 @@ void AdminMainMenu()
 }
 void GetStudentCredentials()
 {
-	login();
+	StudentLogin();
 }
-
-void StudentMainMenu(char *pass)
+void StudentMainMenu(char srn[])
 {
 	printf("Logged in Successfully\n");
-	printf("\nWELCOME SELECT PROVIDED OPTIONS TO CONTINUE\n");
+	printf("\nWELCOME, SELECT PROVIDED OPTIONS TO CONTINUE\n");
 	int choice;
 	do
 	{
@@ -186,27 +203,33 @@ void StudentMainMenu(char *pass)
 		scanf("%d",&choice);
 		switch(choice)
 		{
-			case 1:printf("yet to do");
-			 break;
-			
-			case 2:printf("yet to do");
+			case 1:
+			{
+				printf("yet to do");
 				break;
-			case 3:printf("yet to do");	
+			}
+			case 2:
+			{
+				printf("yet to do");
 				break;
-			
-			case 4: changepassword(pass);
+			}
+			case 3:
+			{
+				printf("yet to do");	
 				break;
-			case 5: LoginMenu();
-					 break;
-		
-
-
+			}
+			case 4:
+			{
+				ChangeStudentPassword(srn);
+				break;
+			}
+			case 5:
+			{
+				LoginMenu();
+				break;
+			}
 		}
- 
-
-	
 	}while(choice!=5);
-	
 }
 void GetTeacherCredentials()
 {
@@ -552,4 +575,145 @@ int Cipher(char usn[],char psw[])
 	{
 		return 0;
 	}
+}
+void InitCSE(student s)
+{
+	//Semester 3
+	strcpy(s.Courses.sem3[0].Course_Code,"CS201");
+	strcpy(s.Courses.sem3[0].Course_Name,"Digital Design and Computer Organization");
+	s.Courses.sem3[0].Credits=4;
+	s.Courses.sem3[0].No_Days_Present=0;
+	s.Courses.sem3[0].No_Days_Total=0;
+	s.Courses.sem3[0].Eligibility=0;
+	s.Courses.sem3[0].Grade='\0';
+	strcpy(s.Courses.sem3[1].Course_Code,"CS202");
+	strcpy(s.Courses.sem3[1].Course_Name,"Data Structures and its Applications");
+	s.Courses.sem3[1].Credits=4;
+	s.Courses.sem3[1].No_Days_Present=0;
+	s.Courses.sem3[1].No_Days_Total=0;
+	s.Courses.sem3[1].Eligibility=0;
+	s.Courses.sem3[1].Grade='\0';
+	strcpy(s.Courses.sem3[2].Course_Code,"CS203");
+	strcpy(s.Courses.sem3[2].Course_Name,"Statistics for Data Science");
+	s.Courses.sem3[2].Credits=4;
+	s.Courses.sem3[2].No_Days_Present=0;
+	s.Courses.sem3[2].No_Days_Total=0;
+	s.Courses.sem3[2].Eligibility=0;
+	s.Courses.sem3[2].Grade='\0';
+	strcpy(s.Courses.sem3[3].Course_Code,"CS204");
+	strcpy(s.Courses.sem3[3].Course_Name,"Web Technologies");
+	s.Courses.sem3[3].Credits=4;
+	s.Courses.sem3[3].No_Days_Present=0;
+	s.Courses.sem3[3].No_Days_Total=0;
+	s.Courses.sem3[3].Eligibility=0;
+	s.Courses.sem3[3].Grade='\0';
+	strcpy(s.Courses.sem3[4].Course_Code,"CS205");
+	strcpy(s.Courses.sem3[4].Course_Name,"Automata Formal Languages and Logic");
+	s.Courses.sem3[4].Credits=4;
+	s.Courses.sem3[4].No_Days_Present=0;
+	s.Courses.sem3[4].No_Days_Total=0;
+	s.Courses.sem3[4].Eligibility=0;
+	s.Courses.sem3[4].Grade='\0';
+	strcpy(s.Courses.sem3[5].Course_Code,"CS206");
+	strcpy(s.Courses.sem3[5].Course_Name,"Digital Design and Computer Organization Laboratory");
+	s.Courses.sem3[5].Credits=1;
+	s.Courses.sem3[5].No_Days_Present=0;
+	s.Courses.sem3[5].No_Days_Total=0;
+	s.Courses.sem3[5].Eligibility=0;
+	s.Courses.sem3[5].Grade='\0';
+	strcpy(s.Courses.sem3[6].Course_Code,"CS207");
+	strcpy(s.Courses.sem3[6].Course_Name,"Data Structures and its Applications Laboratory");
+	s.Courses.sem3[6].Credits=1;
+	s.Courses.sem3[6].No_Days_Present=0;
+	s.Courses.sem3[6].No_Days_Total=0;
+	s.Courses.sem3[6].Eligibility=0;
+	s.Courses.sem3[6].Grade='\0';
+	strcpy(s.Courses.sem3[7].Course_Code,"CS208");
+	strcpy(s.Courses.sem3[7].Course_Name,"Special Topic I");
+	s.Courses.sem3[7].Credits=2;
+	s.Courses.sem3[7].No_Days_Present=0;
+	s.Courses.sem3[7].No_Days_Total=0;
+	s.Courses.sem3[7].Eligibility=0;
+	s.Courses.sem3[7].Grade='\0';
+	//Semester 4
+	strcpy(s.Courses.sem4[0].Course_Code,"CS251");
+	strcpy(s.Courses.sem4[0].Course_Name,"Linear Algebra");
+	s.Courses.sem4[0].Credits=4;
+	s.Courses.sem4[0].No_Days_Present=0;
+	s.Courses.sem4[0].No_Days_Total=0;
+	s.Courses.sem4[0].Eligibility=0;
+	s.Courses.sem4[0].Grade='\0';
+	strcpy(s.Courses.sem4[1].Course_Code,"CS252");
+	strcpy(s.Courses.sem4[1].Course_Name,"Design and Analysis of Algorithms");
+	s.Courses.sem4[1].Credits=4;
+	s.Courses.sem4[1].No_Days_Present=0;
+	s.Courses.sem4[1].No_Days_Total=0;
+	s.Courses.sem4[1].Eligibility=0;
+	s.Courses.sem4[1].Grade='\0';
+	strcpy(s.Courses.sem4[2].Course_Code,"CS253");
+	strcpy(s.Courses.sem4[2].Course_Name,"Microprocessor and Computer Architecture");
+	s.Courses.sem4[2].Credits=4;
+	s.Courses.sem4[2].No_Days_Present=0;
+	s.Courses.sem4[2].No_Days_Total=0;
+	s.Courses.sem4[2].Eligibility=0;
+	s.Courses.sem4[2].Grade='\0';
+	strcpy(s.Courses.sem4[3].Course_Code,"CS254");
+	strcpy(s.Courses.sem4[3].Course_Name,"Computer Networks");
+	s.Courses.sem4[3].Credits=4;
+	s.Courses.sem4[3].No_Days_Present=0;
+	s.Courses.sem4[3].No_Days_Total=0;
+	s.Courses.sem4[3].Eligibility=0;
+	s.Courses.sem4[3].Grade='\0';
+	strcpy(s.Courses.sem4[4].Course_Code,"CS255");
+	strcpy(s.Courses.sem4[4].Course_Name,"Operating Systems");
+	s.Courses.sem4[4].Credits=4;
+	s.Courses.sem4[4].No_Days_Present=0;
+	s.Courses.sem4[4].No_Days_Total=0;
+	s.Courses.sem4[4].Eligibility=0;
+	s.Courses.sem4[4].Grade='\0';
+	strcpy(s.Courses.sem4[5].Course_Code,"CS256");
+	strcpy(s.Courses.sem4[5].Course_Name,"Computer Networks Laboratory");
+	s.Courses.sem4[5].Credits=1;
+	s.Courses.sem4[5].No_Days_Present=0;
+	s.Courses.sem4[5].No_Days_Total=0;
+	s.Courses.sem4[5].Eligibility=0;
+	s.Courses.sem4[5].Grade='\0';
+	strcpy(s.Courses.sem4[6].Course_Code,"CS257");
+	strcpy(s.Courses.sem4[6].Course_Name,"Microprocessor and Computer Architecture Laboratory");
+	s.Courses.sem4[6].Credits=1;
+	s.Courses.sem4[6].No_Days_Present=0;
+	s.Courses.sem4[6].No_Days_Total=0;
+	s.Courses.sem4[6].Eligibility=0;
+	s.Courses.sem4[6].Grade='\0';
+	strcpy(s.Courses.sem4[7].Course_Code,"CS258");
+	strcpy(s.Courses.sem4[7].Course_Name,"Special Topic II");
+	s.Courses.sem4[7].Credits=2;
+	s.Courses.sem4[7].No_Days_Present=0;
+	s.Courses.sem4[7].No_Days_Total=0;
+	s.Courses.sem4[7].Eligibility=0;
+	s.Courses.sem4[7].Grade='\0';
+}
+void InitECE(student s)
+{
+
+}
+void InitME(student s)
+{
+
+}
+void InitEEE(student s)
+{
+
+}
+void InitCV(student s)
+{
+
+}
+void InitBT(student s)
+{
+
+}
+void SetExamDetails()
+{
+
 }
