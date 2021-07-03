@@ -41,9 +41,144 @@ void CreateStudentAcc()
 				fflush(stdin);
 				printf("Enter student's semester : ");
 				scanf("%d",&s[i].Semester);
-				s[i].No_Days_Present=0;
-				s[i].No_Days_Total=0;
-				s[i].Eligibility=0;
+				s[i].Courses.no_courses_sem1=8;
+				s[i].Courses.no_courses_sem2=8;
+				strcpy(s[i].Courses.sem1[0].Course_Code,"MA101");
+				strcpy(s[i].Courses.sem1[0].Course_Name,"Engineering Mathematics - I");
+				s[i].Courses.sem1[0].Credits=4;
+				s[i].Courses.sem1[0].No_Days_Present=0;
+				s[i].Courses.sem1[0].No_Days_Total=0;
+				s[i].Courses.sem1[0].Eligibility=0;
+				s[i].Courses.sem1[0].Grade='\0';
+				strcpy(s[i].Courses.sem1[1].Course_Code,"CS101");
+				strcpy(s[i].Courses.sem1[1].Course_Name,"Python for Computational Problem Solving");
+				s[i].Courses.sem1[1].Credits=4;
+				s[i].Courses.sem1[1].No_Days_Present=0;
+				s[i].Courses.sem1[1].No_Days_Total=0;
+				s[i].Courses.sem1[1].Eligibility=0;
+				s[i].Courses.sem1[1].Grade='\0';
+				strcpy(s[i].Courses.sem1[2].Course_Code,"PH101");
+				strcpy(s[i].Courses.sem1[2].Course_Name,"Engineering Physics");
+				s[i].Courses.sem1[2].Credits=4;
+				s[i].Courses.sem1[2].No_Days_Present=0;
+				s[i].Courses.sem1[2].No_Days_Total=0;
+				s[i].Courses.sem1[2].Eligibility=0;
+				s[i].Courses.sem1[2].Grade='\0';
+				strcpy(s[i].Courses.sem1[3].Course_Code,"ME101");
+				strcpy(s[i].Courses.sem1[3].Course_Name,"Mechanical Engineering Sciences");
+				s[i].Courses.sem1[3].Credits=4;
+				s[i].Courses.sem1[3].No_Days_Present=0;
+				s[i].Courses.sem1[3].No_Days_Total=0;
+				s[i].Courses.sem1[3].Eligibility=0;
+				s[i].Courses.sem1[3].Grade='\0';
+				strcpy(s[i].Courses.sem1[4].Course_Code,"EE101");
+				strcpy(s[i].Courses.sem1[4].Course_Name,"Elements of Electrical Engineering");
+				s[i].Courses.sem1[4].Credits=4;
+				s[i].Courses.sem1[4].No_Days_Present=0;
+				s[i].Courses.sem1[4].No_Days_Total=0;
+				s[i].Courses.sem1[4].Eligibility=0;
+				s[i].Courses.sem1[4].Grade='\0';
+				strcpy(s[i].Courses.sem1[5].Course_Code,"EV101");
+				strcpy(s[i].Courses.sem1[5].Course_Name,"Environmental Studies and Life Sciences");
+				s[i].Courses.sem1[5].Credits=2;
+				s[i].Courses.sem1[5].No_Days_Present=0;
+				s[i].Courses.sem1[5].No_Days_Total=0;
+				s[i].Courses.sem1[5].Eligibility=0;
+				s[i].Courses.sem1[5].Grade='\0';
+				strcpy(s[i].Courses.sem1[6].Course_Code,"PH102");
+				strcpy(s[i].Courses.sem1[6].Course_Name,"Physics Laboratory");
+				s[i].Courses.sem1[6].Credits=1;
+				s[i].Courses.sem1[6].No_Days_Present=0;
+				s[i].Courses.sem1[6].No_Days_Total=0;
+				s[i].Courses.sem1[6].Eligibility=0;
+				s[i].Courses.sem1[6].Grade='\0';
+				strcpy(s[i].Courses.sem1[7].Course_Code,"CS102");
+				strcpy(s[i].Courses.sem1[7].Course_Name,"Python for Computational Problem Solving Laboratory");
+				s[i].Courses.sem1[7].Credits=1;
+				s[i].Courses.sem1[7].No_Days_Present=0;
+				s[i].Courses.sem1[7].No_Days_Total=0;
+				s[i].Courses.sem1[7].Eligibility=0;
+				s[i].Courses.sem1[7].Grade='\0';
+				strcpy(s[i].Courses.sem2[0].Course_Code,"MA151");
+				strcpy(s[i].Courses.sem2[0].Course_Name,"Engineering Mathematics - II");
+				s[i].Courses.sem2[0].Credits=4;
+				s[i].Courses.sem2[0].No_Days_Present=0;
+				s[i].Courses.sem2[0].No_Days_Total=0;
+				s[i].Courses.sem2[0].Eligibility=0;
+				s[i].Courses.sem2[0].Grade='\0';
+				strcpy(s[i].Courses.sem2[1].Course_Code,"CS151");
+				strcpy(s[i].Courses.sem2[1].Course_Name,"Problem Solving with C");
+				s[i].Courses.sem2[1].Credits=4;
+				s[i].Courses.sem2[1].No_Days_Present=0;
+				s[i].Courses.sem2[1].No_Days_Total=0;
+				s[i].Courses.sem2[1].Eligibility=0;
+				s[i].Courses.sem2[1].Grade='\0';
+				strcpy(s[i].Courses.sem2[2].Course_Code,"CY101");
+				strcpy(s[i].Courses.sem2[2].Course_Name,"Engineering Chemistry");
+				s[i].Courses.sem2[2].Credits=4;
+				s[i].Courses.sem2[2].No_Days_Present=0;
+				s[i].Courses.sem2[2].No_Days_Total=0;
+				s[i].Courses.sem2[2].Eligibility=0;
+				s[i].Courses.sem2[2].Grade='\0';
+				strcpy(s[i].Courses.sem2[3].Course_Code,"CV101");
+				strcpy(s[i].Courses.sem2[3].Course_Name,"Engineering Mechanics - Statics");
+				s[i].Courses.sem2[3].Credits=4;
+				s[i].Courses.sem2[3].No_Days_Present=0;
+				s[i].Courses.sem2[3].No_Days_Total=0;
+				s[i].Courses.sem2[3].Eligibility=0;
+				s[i].Courses.sem2[3].Grade='\0';
+				strcpy(s[i].Courses.sem2[4].Course_Code,"EC101");
+				strcpy(s[i].Courses.sem2[4].Course_Name,"Electronic Principles and Devices");
+				s[i].Courses.sem2[4].Credits=4;
+				s[i].Courses.sem2[4].No_Days_Present=0;
+				s[i].Courses.sem2[4].No_Days_Total=0;
+				s[i].Courses.sem2[4].Eligibility=0;
+				s[i].Courses.sem2[4].Grade='\0';
+				strcpy(s[i].Courses.sem2[5].Course_Code,"CE101");
+				strcpy(s[i].Courses.sem2[5].Course_Name,"Constitution of India, Cyber Law and Professional Ethics");
+				s[i].Courses.sem2[5].Credits=2;
+				s[i].Courses.sem2[5].No_Days_Present=0;
+				s[i].Courses.sem2[5].No_Days_Total=0;
+				s[i].Courses.sem2[5].Eligibility=0;
+				s[i].Courses.sem2[5].Grade='\0';
+				strcpy(s[i].Courses.sem2[6].Course_Code,"CY102");
+				strcpy(s[i].Courses.sem2[6].Course_Name,"Chemistry Laboratory");
+				s[i].Courses.sem2[6].Credits=1;
+				s[i].Courses.sem2[6].No_Days_Present=0;
+				s[i].Courses.sem2[6].No_Days_Total=0;
+				s[i].Courses.sem2[6].Eligibility=0;
+				s[i].Courses.sem2[6].Grade='\0';
+				strcpy(s[i].Courses.sem2[7].Course_Code,"CS152");
+				strcpy(s[i].Courses.sem2[7].Course_Name,"Problem Solving with C Laboratory");
+				s[i].Courses.sem2[7].Credits=1;
+				s[i].Courses.sem2[7].No_Days_Present=0;
+				s[i].Courses.sem2[7].No_Days_Total=0;
+				s[i].Courses.sem2[7].Eligibility=0;
+				s[i].Courses.sem2[7].Grade='\0';
+				if(strcmp(s[i].Branch,"CSE")==0)
+				{
+					InitCSE(s[i]);
+				}
+				else if(strcmp(s[i].Branch,"ECE")==0)
+				{
+					InitECE(s[i]);
+				}
+				else if(strcmp(s[i].Branch,"ME")==0)
+				{
+					InitME(s[i]);
+				}
+				else if(strcmp(s[i].Branch,"EEE")==0)
+				{
+					InitEEE(s[i]);
+				}
+				else if(strcmp(s[i].Branch,"CV")==0)
+				{
+					InitCV(s[i]);
+				}
+				else if(strcmp(s[i].Branch,"BT")==0)
+				{
+					InitBT(s[i]);
+				}
 				fwrite(&s[i],sizeof(student),1,fp);
 			}
 			printf("\nSuccessfully added %d student account(s)!\n",n);
@@ -177,14 +312,6 @@ void SearchStudentAcc()
 							printf("Semester : %d\n",s1.Semester);
 							printf("Branch : %s\n",s1.Branch);
 							printf("Section : %c\n",s1.Section);
-							if(s1.No_Days_Total!=0)
-							{
-								printf("Attendance(in Percentage) : %f\n",(s1.No_Days_Present/s1.No_Days_Total*100.0));
-							}
-							else
-							{
-								printf("Attendance(in Percentage) : 0\n");
-							}
 						}
 					}
 					if(found==0)
@@ -213,14 +340,6 @@ void SearchStudentAcc()
 							printf("Semester : %d\n",s1.Semester);
 							printf("Branch : %s\n",s1.Branch);
 							printf("Section : %c\n",s1.Section);
-							if(s1.No_Days_Total!=0)
-							{
-								printf("Attendance(in Percentage) : %f\n",(s1.No_Days_Present/s1.No_Days_Total*100.0));
-							}
-							else
-							{
-								printf("Attendance(in Percentage) : 0\n");
-							}
 						}
 					}
 					if(found==0)
@@ -630,150 +749,131 @@ void DeleteStudentAcc()
 		}
 	}
 }
-void SetExamDetails()
+void StudentLogin()
 {
-}
-void login()
-{
- 
- FILE *fp;
+	FILE *fp;
 	fp=fopen("Student_Record.txt","r");
 	student s1;
 	char srn[50],pass[50];
-int c=1;	
-do
-{
-	
 	printf("Enter Username:");
 	fflush(stdin);
 	scanf("%[^\n]s",srn);
 	printf("\nEnter the password:");
 	fflush(stdin);
 	scanf("%[^\n]s",pass);
-	
 	if(fp==NULL)
 	{
 		printf("Error...Try again\n");
 	}
 	else
 	{
- 		switch(c)
+		int flag=0;
+		rewind(fp);
+		while(!feof(fp))
 		{
-			case 1:
-					while(!feof(fp))
-					fread(&s1,sizeof(student),1,fp);
-				{
-					
-					if(strcmp(s1.SRN,srn)!=0)
-					{		
-						printf("username does not exist\n");
-						printf("Try again...\n");
-						break;
-					}
-				}
-				while(!feof(fp))
-				fread(&s1,sizeof(student),1,fp);
-			{
-				if(strcmp(s1.Password,pass)==0 && strcmp(s1.SRN,srn)==0)
-			{
-				StudentMainMenu(pass);
+			fread(&s1,sizeof(student),1,fp);
+			if(strcmp(s1.SRN,srn)==0&&strcmp(s1.Password,pass)!=0)
+			{		
+				flag=1;
 				break;
 			}
-			else
+			else if(strcmp(s1.SRN,srn)==0&&strcmp(s1.Password,pass)==0)
 			{
-					printf("Invalid useraname or password\n");
-
-					printf("Enter 1 to try again\n");
-					printf("Enter 2 to go back to Login Menu\n");
-					printf("Enter 3 to Exit\n");
-					fflush(stdin);
-					scanf("%d",&c);
-					break;
-
-			}
-
-			case 2:	LoginMenu();
-				 break;
-			
-			case 3:
+				flag=2;
 				break;
-			}	
-			
+			}
 		}
-	
+		if(flag==0)
+		{
+			printf("Username does not exist.\n");
+			int choice=0;
+			while(choice!=1&&choice!=2)
+			{
+				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu");
+				scanf("%d",&choice);
+			}
+			if(choice==1)
+			{
+				StudentLogin();
+			}
+			else if(choice==2)
+			{
+				LoginMenu();
+			}
+		}
+		else if(flag==1)
+		{
+			printf("Incorrect Password.\n");
+			int choice=0;
+			while(choice!=1&&choice!=2)
+			{
+				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu");
+				scanf("%d",&choice);
+			}
+			if(choice==1)
+			{
+				StudentLogin();
+			}
+			else if(choice==2)
+			{
+				LoginMenu();
+			}
+		}
+		else
+		{
+			StudentMainMenu(srn);
+		}
 	}
-	
-	
-}while(c!=3);
-	
-	
-		 
 }
-void changepassword(char *pass)
+void ChangeStudentPassword(char srn[])
 {
-	
-	
 	FILE *fp,*fp1;
     student s1;
 	char p[50];
 	char t[50];
-	printf("Enter New Password:");
-					fflush(stdin);
-					scanf("%[^\n]s",p);
-					printf("\nConfirm New password again:");
-					fflush(stdin);
-					scanf("%[^\n]s",t);
-					if(strcmp(p,t)==0)
-					{
-					fp=fopen("Student_Record.txt","r");
-					fp1=fopen("Temp_Student_Record.txt","w");
-					if(fp==NULL||fp1==NULL)
-					{
-						printf("Error...Try again\n");
-						fclose(fp);
-						fclose(fp1);
-					}
-					else
-					{
-						int found=0;
-						while(fread(&s1,sizeof(s1),1,fp))
-						{
-							if(strcmp(s1.Password,pass)==0)
-							{
-								found=1;
-				
-								fflush(stdin);
-							
-								strcpy(s1.Password,p);
-							}
-							fwrite(&s1,sizeof(student),1,fp1);
-						}
-						fclose(fp);
-						fclose(fp1);
-						if(found)
-						{
-							fp=fopen("Student_Record.txt","w");
-							fp1=fopen("Temp_Student_Record.txt","r");
-							while(fread(&s1,sizeof(student),1,fp1))
-							{
-								fwrite(&s1,sizeof(student),1,fp);
-							}
-							printf("Password is updated successfully!\n");
-							fclose(fp);
-							fclose(fp1);
-						}
-					
-						
-			        }
-				}
-				else
+	printf("Enter New Password: ");
+	fflush(stdin);
+	scanf("%[^\n]s",p);
+	printf("\nConfirm New password: ");
+	fflush(stdin);
+	scanf("%[^\n]s",t);
+	if(strcmp(p,t)==0)
+	{
+		fp=fopen("Student_Record.txt","r");
+		fp1=fopen("Temp_Student_Record.txt","w");
+		if(fp==NULL||fp1==NULL)
+		{
+			printf("Error...Try again\n");
+			fclose(fp);
+			fclose(fp1);
+		}
+		else
+		{
+			while(fread(&s1,sizeof(s1),1,fp))
+			{
+				if(strcmp(s1.SRN,srn)==0)
 				{
-					printf("try again...\n");
-					changepassword(pass);
-				}	
-	
-	
-
-
-}	
-
+					fflush(stdin);
+					strcpy(s1.Password,p);
+				}
+				fwrite(&s1,sizeof(student),1,fp1);
+			}
+			fclose(fp);
+			fclose(fp1);
+			fp=fopen("Student_Record.txt","w");
+			fp1=fopen("Temp_Student_Record.txt","r");
+			while(fread(&s1,sizeof(student),1,fp1))
+			{
+				fwrite(&s1,sizeof(student),1,fp);
+			}
+			printf("Password is updated successfully!\n");
+			fclose(fp);
+			fclose(fp1);
+	    }
+	}
+	else
+	{
+		printf("Password and confirmation password do not match. Try again...\n");
+		ChangeStudentPassword(srn);
+	}	
+}
