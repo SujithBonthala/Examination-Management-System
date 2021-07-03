@@ -1,3 +1,34 @@
+typedef struct Course
+{
+	char Course_Name[100];
+	char Course_Code[10];
+	int Credits;
+	int No_Days_Present;
+	int No_Days_Total;
+	int Eligibility;
+	char Grade;
+}course;
+
+typedef struct Course_Info
+{
+	int no_courses_sem1;
+	int no_courses_sem2;
+	int no_courses_sem3;
+	int no_courses_sem4;
+	int no_courses_sem5;
+	int no_courses_sem6;
+	int no_courses_sem7;
+	int no_courses_sem8;
+	course sem1[10];
+	course sem2[10];
+	course sem3[10];
+	course sem4[10];
+	course sem5[10];
+	course sem6[10];
+	course sem7[10];
+	course sem8[10];
+}c_info;
+
 typedef struct student_records
 {
 	char Name[50];
@@ -6,9 +37,7 @@ typedef struct student_records
 	int Semester;
 	char Branch[10];
 	char Section;
-	int No_Days_Present;
-	int No_Days_Total;
-	int Eligibility;
+	c_info Courses;
 }student;
 
 typedef struct teacher_records
@@ -26,8 +55,6 @@ void GetAdminCredentials();
 void AdminMainMenu();
 
 void GetStudentCredentials();
- 
-void StudentMainMenu(char *name);
 
 void GetTeacherCredentials();
 
@@ -55,7 +82,20 @@ void DeleteTeacherAcc();
 
 void SetExamDetails();
 
-void login();
+void InitCSE(student);
 
-void changepassword(char *pass);
+void InitECE(student);
 
+void InitME(student);
+
+void InitEEE(student);
+
+void InitCV(student);
+
+void InitBT(student);
+
+void ChangeStudentPassword(char srn[]);
+
+void StudentLogin();
+
+void StudentMainMenu(char srn[]);
