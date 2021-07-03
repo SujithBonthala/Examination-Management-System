@@ -162,7 +162,46 @@ void AdminMainMenu()
 }
 void GetStudentCredentials()
 {
-	printf("\nYet to do\n");
+	login();
+}
+
+void StudentMainMenu(char *pass)
+{
+	printf("Logged in Successfully\n");
+	printf("\nWELCOME SELECT PROVIDED OPTIONS TO CONTINUE\n");
+	int choice;
+	do
+	{
+		printf("\nEnter 1 to View Results\n");
+		printf("\nEnter 2 to the Details of the Course\n");
+        printf("\nEnter 3 to the Check Exam seat allotment\n");
+		printf("\nEnter 4 to change password\n");
+		printf("\nEnter 5 to logout\n");
+		printf("\nEnter your Choice\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:printf("yet to do");
+			 break;
+			
+			case 2:printf("yet to do");
+				break;
+			case 3:printf("yet to do");	
+				break;
+			
+			case 4: changepassword(pass);
+				break;
+			case 5: LoginMenu();
+					 break;
+		
+
+
+		}
+ 
+
+	
+	}while(choice!=5);
+	
 }
 void GetTeacherCredentials()
 {
