@@ -82,20 +82,22 @@ void DeleteTeacherAcc();
 
 void SetExamDetails();
 
-void InitCSE(student);
+void InitCSE(student*);
 
-void InitECE(student);
+void InitECE(student*);
 
-void InitME(student);
+void InitME(student*);
 
-void InitEEE(student);
+void InitEEE(student*);
 
-void InitCV(student);
+void InitCV(student*);
 
-void InitBT(student);
+void InitBT(student*);
 
 void ChangeStudentPassword(char srn[]);
 
 void StudentLogin();
 
 void StudentMainMenu(char srn[]);
+
+void InitBranch(student*);
