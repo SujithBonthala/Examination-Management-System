@@ -33,7 +33,7 @@ void CreateStudentAcc()
 				scanf("%[^\n]s",&s[i].SRN);
 				fflush(stdin);
 				strcpy(s[i].Password,s[i].SRN);
-				printf("Enter student's branch in short form using capital letters(Ex : CSE) : ");
+				printf("Enter student's branch in short form using capital letters(CSE, ECE, ME, EEE, CV, BT) : ");
 				scanf("%s",&s[i].Branch);
 				fflush(stdin);
 				printf("Enter student's section : ");
@@ -155,30 +155,7 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[7].No_Days_Total=0;
 				s[i].Courses.sem2[7].Eligibility=0;
 				s[i].Courses.sem2[7].Grade='\0';
-				if(strcmp(s[i].Branch,"CSE")==0)
-				{
-					InitCSE(s[i]);
-				}
-				else if(strcmp(s[i].Branch,"ECE")==0)
-				{
-					InitECE(s[i]);
-				}
-				else if(strcmp(s[i].Branch,"ME")==0)
-				{
-					InitME(s[i]);
-				}
-				else if(strcmp(s[i].Branch,"EEE")==0)
-				{
-					InitEEE(s[i]);
-				}
-				else if(strcmp(s[i].Branch,"CV")==0)
-				{
-					InitCV(s[i]);
-				}
-				else if(strcmp(s[i].Branch,"BT")==0)
-				{
-					InitBT(s[i]);
-				}
+				InitBranch(&s[i]);
 				fwrite(&s[i],sizeof(student),1,fp);
 			}
 			printf("\nSuccessfully added %d student account(s)!\n",n);
