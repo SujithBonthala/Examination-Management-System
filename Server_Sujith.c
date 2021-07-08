@@ -187,7 +187,7 @@ void GetStudentCredentials()
 {
 	StudentLogin();
 }
-void StudentMainMenu(char srn[])
+void StudentMainMenu(char srn[],char cc[])
 {
 	printf("Logged in Successfully\n");
 	printf("\nWELCOME, SELECT PROVIDED OPTIONS TO CONTINUE\n");
@@ -210,7 +210,7 @@ void StudentMainMenu(char srn[])
 			}
 			case 2:
 			{
-				printf("yet to do");
+				checkdetails(cc);
 				break;
 			}
 			case 3:
