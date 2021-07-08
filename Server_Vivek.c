@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<conio.h>
 #include "Header_File.h"
 void CreateStudentAcc()
 {
@@ -737,7 +738,35 @@ void StudentLogin()
 	scanf("%[^\n]s",srn);
 	printf("\nEnter the password:");
 	fflush(stdin);
-	scanf("%[^\n]s",pass);
+	// scanf("%[^\n]s",pass);
+	char ch;
+	char cc[10];
+		int charpos=0;
+	while(1)
+		{
+			ch=getch();
+			if(ch==13)
+			{
+				break;
+			}
+			else if(ch==8)
+			{
+				if(charpos>0)
+				{
+					charpos--;
+					pass[charpos]='\0';
+					printf("\b \b");
+				}
+			}
+			else
+			{
+				pass[charpos]=ch;
+				charpos++;
+				printf("*");
+			}
+		}
+		fflush(stdin);
+		pass[charpos]='\0';
 	if(fp==NULL)
 	{
 		printf("Error...Try again\n");
@@ -756,6 +785,8 @@ void StudentLogin()
 			}
 			else if(strcmp(s1.SRN,srn)==0&&strcmp(s1.Password,pass)==0)
 			{
+
+				strcpy(cc,s1.Branch);
 				flag=2;
 				break;
 			}
@@ -798,10 +829,11 @@ void StudentLogin()
 		}
 		else
 		{
-			StudentMainMenu(srn);
+			StudentMainMenu(srn,cc);
 		}
 	}
 }
+
 void ChangeStudentPassword(char srn[])
 {
 	FILE *fp,*fp1;
@@ -853,4 +885,113 @@ void ChangeStudentPassword(char srn[])
 		printf("Password and confirmation password do not match. Try again...\n");
 		ChangeStudentPassword(srn);
 	}	
+
 }
+void checkdetails(char cc[])
+{
+	printf("%s\n",cc);
+	FILE *fp,*fp1;
+	fp=fopen("Student_Record.txt","r");
+	student s1;
+	int c;
+	printf("Enter the Semester You Want to search for:");
+	scanf("%d",&c);
+	while(!feof(fp))
+	{
+		fread(&s1,sizeof(student),1,fp);
+		
+		if(c==1)
+		{
+			
+			printf("The Courses in semester %d :\n",c);
+			for(int i=0;i<s1.Courses.no_courses_sem1;i++)
+			{
+				
+				printf("Course Code :%s\t\tCourse Name :%s \t Course Credit:%d\n",s1.Courses.sem1[i].Course_Code,s1.Courses.sem1[i].Course_Name,s1.Courses.sem1[i].Credits);
+			}
+			break;
+		}	
+		
+	
+		else if(c==2)
+		{
+			printf("The Courses in semester %d :\n",c);
+			for(int i=0;i<s1.Courses.no_courses_sem2;i++)
+			{
+				printf("Course Code :%s\t\tCourse Name :%s \t Course Credit:%d \n",s1.Courses.sem2[i].Course_Code,s1.Courses.sem2[i].Course_Name,s1.Courses.sem2[i].Credits);
+			}
+			break;
+		}
+
+       
+		if(strcmp(cc,s1.Branch)==0)
+		{ 
+		  	
+				if(c==3)
+				{	
+					printf("The Courses in semester %d :\n",c);
+					for(int i=0;i<s1.Courses.no_courses_sem3;i++)
+					{
+						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem3[i].Course_Code,s1.Courses.sem3[i].Course_Name,s1.Courses.sem3[i].Credits);
+					}
+					break;
+				}
+
+				else if(c==4)
+				{
+					printf("The Courses in semester %d :\n",c);
+					for(int i=0;i<s1.Courses.no_courses_sem4;i++)
+					{
+						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem4[i].Course_Code,s1.Courses.sem4[i].Course_Name,s1.Courses.sem4[i].Credits);
+					}
+					break;
+				}
+
+				else if(c==5)
+				{
+					printf("The Courses in semester %d :\n",c);
+					for(int i=0;i<s1.Courses.no_courses_sem5;i++)
+					{
+						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem5[i].Course_Code,s1.Courses.sem5[i].Course_Name,s1.Courses.sem5[i].Credits);
+					}
+					break;
+				}	
+
+				else if(c==6)
+				{
+					printf("The Courses in semester %d :\n",c);
+					for(int i=0;i<s1.Courses.no_courses_sem6;i++)
+					{
+						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem6[i].Course_Code,s1.Courses.sem6[i].Course_Name,s1.Courses.sem6[i].Credits);
+					}
+					break;
+				}
+
+				else if(c==7)
+				{
+					printf("The Courses in semester %d :\n",c);
+					for(int i=0;i<s1.Courses.no_courses_sem7;i++)
+					{
+						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem7[i].Course_Code,s1.Courses.sem7[i].Course_Name,s1.Courses.sem7[i].Credits);
+					}
+					break;
+				}    
+				else if(c==8)
+				{
+					printf("The Courses in semester %d :\n",c);
+					for(int i=0;i<s1.Courses.no_courses_sem8+1;i++)
+					{
+						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d\n",s1.Courses.sem8[i].Course_Code,s1.Courses.sem8[i].Course_Name,s1.Courses.sem8[i].Credits);
+					}
+					break;
+				}   
+				 	
+		}
+		
+	}	
+
+}	
+
+
+
+
