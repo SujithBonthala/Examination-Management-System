@@ -889,7 +889,7 @@ void ChangeStudentPassword(char srn[])
 }
 void checkdetails(char cc[])
 {
-	printf("%s\n",cc);
+	printf("Your Branch:%s\n",cc);
 	FILE *fp,*fp1;
 	fp=fopen("Student_Record.txt","r");
 	student s1;
