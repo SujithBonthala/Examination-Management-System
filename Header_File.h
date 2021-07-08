@@ -98,6 +98,8 @@ void ChangeStudentPassword(char srn[]);
 
 void StudentLogin();
 
-void StudentMainMenu(char srn[]);
+void StudentMainMenu(char srn[],char cc[]);
 
 void InitBranch(student*);
+
+void checkdetails(char cc[]);
