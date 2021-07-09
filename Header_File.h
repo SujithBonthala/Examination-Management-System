@@ -7,6 +7,9 @@ typedef struct Course
 	int No_Days_Total;
 	int Eligibility;
 	char Grade;
+	char Examination_Date[20];
+	char Examination_Block;
+	char Examination_Section[5];
 }course;
 
 typedef struct Course_Info
@@ -98,7 +101,7 @@ void ChangeStudentPassword(student *);
 
 void StudentLogin();
 
-void StudentMainMenu(student *,int sem);
+void StudentMainMenu(student *);
 
 void InitBranch(student*);
 
