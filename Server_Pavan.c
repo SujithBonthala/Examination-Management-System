@@ -397,3 +397,294 @@ void DeleteTeacherAcc()
 		}
 	}
 }
+void GetTeacherCredentials()
+{
+	TeacherLogin();
+{
+void TeacherLogin()
+{
+	FILE *fp;
+	fp=fopen("Teacher_Record.txt","r");
+	teacher t1;
+	char prn[50],pass[50];
+	printf("Enter Username:");
+	fflush(stdin);
+	scanf("%[^\n]s",srn);
+	printf("\nEnter the password:");
+	fflush(stdin);
+	scanf("%[^\n]s",pass);
+	if(fp==NULL)
+	{
+		printf("Error...Try again\n");
+	}
+	else
+	{
+		int flag=0;
+		rewind(fp);
+		while(!feof(fp))
+		{
+			fread(&t1,sizeof(teacher),1,fp);
+			if(strcmp(t1.PRN,prn)==0&&strcmp(t1.Password,pass)!=0)
+			{		
+				flag=1;
+				break;
+			}
+			else if(strcmp(t1.PRN,prn)==0&&strcmp(t1.Password,pass)==0)
+			{
+				flag=2;
+				break;
+			}
+		}
+		if(flag==0)
+		{
+			printf("Username does not exist.\n");
+			int choice=0;
+			while(choice!=1&&choice!=2)
+			{
+				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu");
+				scanf("%d",&choice);
+			}
+			if(choice==1)
+			{
+				TeacherLogin();
+			}
+			else if(choice==2)
+			{
+				LoginMenu();
+			}
+		}
+		else if(flag==1)
+		{
+			printf("Incorrect Password.\n");
+			int choice=0;
+			while(choice!=1&&choice!=2)
+			{
+				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu");
+				scanf("%d",&choice);
+			}
+			if(choice==1)
+			{
+				TeacherLogin();
+			}
+			else if(choice==2)
+			{
+				LoginMenu();
+			}
+		}
+		else
+		{
+			TeacherMainMenu(prn);
+		}
+	}
+}
+void TeacherMainMenu(char prn)
+{
+	printf("\nLogged in successfully\n");
+	printf("\nWELCOME, SELECT PROVIDED OPTIONS TO CONTINUE\n");
+	int choice;
+	while(choice!=4)
+	{
+		printf("Enter 1 to change the password\n");
+		printf("Enter 2 to give attendance to students of a particular class\n");
+		printf("Enter 3 to give grades to students of a particular class\n");
+		printf("Enter 4 to logout\n");
+		printf("Enter your choice\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+			{
+				ChangeTeacherPassword(prn);
+				break;
+			}
+			case 2:
+			{
+				GiveAttendance();
+				break;
+			}
+			case 3:
+			{
+				GiveGrades();
+				break;
+			}
+			case 4:
+			{
+				LoginMenu();
+				break;
+			}
+		}
+	}
+}	
+void ChangeTeacherPassword(char prn[])
+{
+	FILE *fp,*fp1;
+  	teacher t1;
+	char p[50];
+	char t[50];
+	printf("Enter New Password: ");
+	fflush(stdin);
+	scanf("%[^\n]s",p);
+	printf("\nConfirm New password: ");
+	fflush(stdin);
+	scanf("%[^\n]s",t);
+	if(strcmp(p,t)==0)
+	{
+		fp=fopen("Teacher_Record.txt","r");
+		fp1=fopen("Temp_Teacher_Record.txt","w");
+		if(fp==NULL||fp1==NULL)
+		{
+			printf("Error...Try again\n");
+			fclose(fp);
+			fclose(fp1);
+		}
+		else
+		{
+			while(fread(&t1,sizeof(t1),1,fp))
+			{
+				if(strcmp(t1.PRN,prn)==0)
+				{
+					fflush(stdin);
+					strcpy(t1.Password,p);
+				}
+				fwrite(&t1,sizeof(teacher),1,fp1);
+			}
+			fclose(fp);
+			fclose(fp1);
+			fp=fopen("Teacher_Record.txt","w");
+			fp1=fopen("Temp_Teacher_Record.txt","r");
+			while(fread(&t1,sizeof(teacher),1,fp1))
+			{
+				fwrite(&t1,sizeof(teacher),1,fp);
+			}
+			printf("Password is updated successfully!\n");
+			fclose(fp);
+			fclose(fp1);
+	 	}
+	}
+	else
+	{
+		printf("Password and confirmation password do not match. Try again...\n");
+		ChangeTeacherPassword(prn);
+	}	
+}
+void Giveattendance()
+{
+	char section
+	printf("Enter the class to which attendance has to be given");
+	scanf("%c",&section);
+	int choice;
+	printf("Enter 1 to display students information\n");
+	printf("Enter 2 to give attendance to student of a particular section\n");
+	scanf("%d",&choice);
+	switch(choice)
+	{
+		case1:
+			displayAllInformation(section) ;
+			break;
+		case 2:
+			givestudentattendance(section);
+			break;		
+	}
+}
+void displayAllInformation(char section) 
+{		
+	FILE *fp;
+	fp=fopen("Student_Record.txt","r");
+	student s1;
+	if(fp==NULL)
+	{
+		printf("Error...Try again\n");
+	}
+	else
+	{
+		while(fread(&s1,sizeof(student),1,fp))
+		{
+			if(strcmp(s1.Section,section)==0)
+			{
+				printf("\nStudent records found!\n");
+				printf("Student Details:\n");
+				printf("Name : %s\n",s1.Name);
+				printf("SRN : %s\n",s1.SRN);
+				printf("Semester : %d\n",s1.Semester);
+				printf("Branch : %s\n",s1.Branch);
+			}
+			else
+			{
+				printf("INVALID SECTION NAME\n");
+			}
+		}
+	}
+	fclose(fp);
+}		
+	
+void givestudentattendance(char section) 
+{
+		FILE *fp;
+		fp=fopen("Student_Record.txt","r");
+		student t1;
+		int op, flag = -1;
+		char information[15];
+		printf("Enter 1 to give attendance based on SRN\n");
+		printf("Enter 2 to give attendance based on name\n");
+		scanf("%d", &op);
+		if (op == 1) 
+		{
+			printf("E
+			printf ("Please enter the student SRN:");
+			scanf("%s", information);
+			if (strcmp(information,[i].SRN) == 0)
+			{ 
+				int choice1;
+				printf("Enter 1 to mark present\n");
+				printf("Enter 2 to mark absent\n");
+				scanf("%d",&choice);
+				if(choice1==1)
+				{
+					s[i].No_Days_Present+=1;
+					s[i].No_Days_Total+=1;
+				}
+				else if(choice==2)
+				{
+					s[i].No_Days_Total+=1;
+				}
+				else
+				{
+					printf("Enter 1 or 2... invalid input\n);
+				}	
+				}
+ 			}
+		}
+		else if (op == 2) 
+		{
+			printf ("Please enter the student's name:");
+			scanf("%s", information);
+			if (strcmp(information,s1[i].Name) == 0)
+			{ 
+				int choice1;
+				printf("Enter 1 to mark present\n");
+				printf("Enter 2 to mark absent\n");
+				scanf("%d",&choice);
+				if(choice1==1)
+				{
+					s[i].No_Days_Present+=1;
+					No_Days_Total+=1;
+				}
+				else if(choice==2)
+				{
+					s[i].No_Days_Total+=1;
+				}
+				else
+				{
+					s[i].printf("Enter 1 or 2... invalid input\n);
+				}	
+				}
+ 			}
+		}
+		 printf ("Attendance is given\n");
+}
+void GiveGrades()
+{
+	prinf("Yet to do\n");
+}
+	
+
