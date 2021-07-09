@@ -94,17 +94,15 @@ void InitCV(student*);
 
 void InitBT(student*);
 
-void ChangeStudentPassword(char srn[]);
+void ChangeStudentPassword(student *);
 
 void StudentLogin();
 
-void TeacherLogin();
-
-void StudentMainMenu(char srn[],char cc[]);
+void StudentMainMenu(student *);
 
 void InitBranch(student*);
 
-void checkdetails(char cc[]);
+void CheckDetails(student *);
 
 void TeacherMainMenu(char prn);
 
@@ -117,4 +115,3 @@ void givestudentattendance(char section);
 void GiveAttendance();
 
 void GiveGrades();
-
