@@ -473,7 +473,7 @@ void TeacherLogin()
 		}
 	}
 }
-void TeacherMainMenu(char prn)
+void TeacherMainMenu(char prn[])
 {
 	printf("\nLogged in successfully\n");
 	printf("\nWELCOME, SELECT PROVIDED OPTIONS TO CONTINUE\n");
