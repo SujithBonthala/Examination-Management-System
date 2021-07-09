@@ -622,65 +622,71 @@ void givestudentattendance(char section)
 		FILE *fp;
 		fp=fopen("Student_Record.txt","r");
 		student t1;
-		int op, flag = -1;
+		int op, flag = -1,choice;
 		char information[15];
 		printf("Enter 1 to give attendance based on SRN\n");
 		printf("Enter 2 to give attendance based on name\n");
 		scanf("%d", &op);
 		if (op == 1) 
 		{
-			printf("E
 			printf ("Please enter the student SRN:");
 			scanf("%s", information);
-			if (strcmp(information,[i].SRN) == 0)
-			{ 
-				int choice1;
-				printf("Enter 1 to mark present\n");
-				printf("Enter 2 to mark absent\n");
-				scanf("%d",&choice);
-				if(choice1==1)
-				{
-					s[i].No_Days_Present+=1;
-					s[i].No_Days_Total+=1;
-				}
-				else if(choice==2)
-				{
-					s[i].No_Days_Total+=1;
-				}
-				else
-				{
-					printf("Enter 1 or 2... invalid input\n);
-				}	
-				}
- 			}
-		}
+			printf("Enter how many students attendance must be given"\n);
+			scanf("%d",&choice);
+			for(int i=0;i<choice;i++)
+			{	
+				if (strcmp(information,[i].SRN) == 0)
+				{ 
+					int choice1;
+					printf("Enter 1 to mark present\n");
+					printf("Enter 2 to mark absent\n");
+					scanf("%d",&choice);
+					if(choice1==1)
+					{
+						s[i].No_Days_Present+=1;
+						s[i].No_Days_Total+=1;
+					}
+					else if(choice==2)
+					{
+						s[i].No_Days_Total+=1;
+					}
+					else
+					{
+						printf("Enter 1 or 2... invalid input\n);
+					}	
+					}
+ 				}
+			}
 		else if (op == 2) 
 		{
 			printf ("Please enter the student's name:");
 			scanf("%s", information);
-			if (strcmp(information,s1[i].Name) == 0)
-			{ 
-				int choice1;
-				printf("Enter 1 to mark present\n");
-				printf("Enter 2 to mark absent\n");
-				scanf("%d",&choice);
-				if(choice1==1)
-				{
-					s[i].No_Days_Present+=1;
-					No_Days_Total+=1;
-				}
-				else if(choice==2)
-				{
-					s[i].No_Days_Total+=1;
-				}
-				else
-				{
-					s[i].printf("Enter 1 or 2... invalid input\n);
-				}	
-				}
- 			}
-		}
-		 printf ("Attendance is given\n");
+			printf("Enter how many students attendance must be given"\n);
+			scanf("%d",&choice);
+			for(int i=0;i<choice;i++)
+			{
+				if (strcmp(information,s1[i].Name) == 0)
+				{ 
+					printf("Enter 1 to mark present\n");
+					printf("Enter 2 to mark absent\n");
+					scanf("%d",&choice);
+					if(choice1==1)
+					{
+						s[i].No_Days_Present+=1;
+						s[i].No_Days_Total+=1;
+					}
+					else if(choice==2)
+					{
+						s[i].No_Days_Total+=1;
+					}
+					else
+					{
+						printf("Enter 1 or 2... invalid input\n);
+					}	
+					}
+ 				}
+			}
+		 	printf ("Attendance is given\n");
 }
 void GiveGrades()
 {
