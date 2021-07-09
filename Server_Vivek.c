@@ -267,6 +267,7 @@ void SearchStudentAcc()
 			printf("Enter 2 to search a student record based on his/her SRN\n");
 			printf("Enter 3 to go back\n");
 			printf("Enter your choice : ");
+			fflush(stdin);
 			scanf("%d",&choice);
 			switch(choice)
 			{
@@ -731,42 +732,40 @@ void StudentLogin()
 {
 	FILE *fp;
 	fp=fopen("Student_Record.txt","r");
-	student s1;
-	char srn[50],pass[50];
-	printf("Enter Username:");
+	student s1,*s2;
+	char srn[20],pass[50];
+	printf("\nEnter Username : ");
 	fflush(stdin);
 	scanf("%[^\n]s",srn);
-	printf("\nEnter the password:");
+	printf("Enter the Password : ");
 	fflush(stdin);
-	// scanf("%[^\n]s",pass);
 	char ch;
-	char cc[10];
-		int charpos=0;
+	int charpos=0;
 	while(1)
+	{
+		ch=getch();
+		if(ch==13)
 		{
-			ch=getch();
-			if(ch==13)
+			break;
+		}
+		else if(ch==8)
+		{
+			if(charpos>0)
 			{
-				break;
-			}
-			else if(ch==8)
-			{
-				if(charpos>0)
-				{
-					charpos--;
-					pass[charpos]='\0';
-					printf("\b \b");
-				}
-			}
-			else
-			{
-				pass[charpos]=ch;
-				charpos++;
-				printf("*");
+				charpos--;
+				pass[charpos]='\0';
+				printf("\b \b");
 			}
 		}
-		fflush(stdin);
-		pass[charpos]='\0';
+		else
+		{
+			pass[charpos]=ch;
+			charpos++;
+			printf("*");
+		}
+	}
+	fflush(stdin);
+	pass[charpos]='\0';
 	if(fp==NULL)
 	{
 		printf("Error...Try again\n");
@@ -775,9 +774,8 @@ void StudentLogin()
 	{
 		int flag=0;
 		rewind(fp);
-		while(!feof(fp))
+		while(fread(&s1,sizeof(student),1,fp))
 		{
-			fread(&s1,sizeof(student),1,fp);
 			if(strcmp(s1.SRN,srn)==0&&strcmp(s1.Password,pass)!=0)
 			{		
 				flag=1;
@@ -785,19 +783,18 @@ void StudentLogin()
 			}
 			else if(strcmp(s1.SRN,srn)==0&&strcmp(s1.Password,pass)==0)
 			{
-
-				strcpy(cc,s1.Branch);
 				flag=2;
+				s2=&s1;
 				break;
 			}
 		}
 		if(flag==0)
 		{
-			printf("Username does not exist.\n");
+			printf("\nUsername does not exist.\n");
 			int choice=0;
 			while(choice!=1&&choice!=2)
 			{
-				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu");
+				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu.\nEnter your choice : ");
 				scanf("%d",&choice);
 			}
 			if(choice==1)
@@ -811,11 +808,11 @@ void StudentLogin()
 		}
 		else if(flag==1)
 		{
-			printf("Incorrect Password.\n");
+			printf("\nIncorrect Password.\n");
 			int choice=0;
 			while(choice!=1&&choice!=2)
 			{
-				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu");
+				printf("Enter 1 to try again.\nEnter 2 to go back to Login Menu.\nEnter your choice : ");
 				scanf("%d",&choice);
 			}
 			if(choice==1)
@@ -829,169 +826,195 @@ void StudentLogin()
 		}
 		else
 		{
-			StudentMainMenu(srn,cc);
+			StudentMainMenu(s2);
 		}
 	}
+	fclose(fp);
 }
-
-void ChangeStudentPassword(char srn[])
+void ChangeStudentPassword(student *s)
 {
 	FILE *fp,*fp1;
     student s1;
 	char p[50];
 	char t[50];
-	printf("Enter New Password: ");
-	fflush(stdin);
-	scanf("%[^\n]s",p);
-	printf("\nConfirm New password: ");
-	fflush(stdin);
-	scanf("%[^\n]s",t);
-	if(strcmp(p,t)==0)
+	do
 	{
-		fp=fopen("Student_Record.txt","r");
-		fp1=fopen("Temp_Student_Record.txt","w");
-		if(fp==NULL||fp1==NULL)
+		printf("Enter New Password: ");
+		fflush(stdin);
+		//scanf("%[^\n]s",p);
+		char ch;
+		int charpos=0;
+		while(1)
 		{
-			printf("Error...Try again\n");
-			fclose(fp);
-			fclose(fp1);
+			ch=getch();
+			if(ch==13)
+			{
+				break;
+			}
+			else if(ch==8)
+			{
+				if(charpos>0)
+				{
+					charpos--;
+					p[charpos]='\0';
+					printf("\b \b");
+				}
+			}
+			else
+			{
+				p[charpos]=ch;
+				charpos++;
+				printf("*");
+			}
+		}
+		fflush(stdin);
+		p[charpos]='\0';
+		printf("\nConfirm New password: ");
+		fflush(stdin);
+		charpos=0;
+		while(1)
+		{
+			ch=getch();
+			if(ch==13)
+			{
+				break;
+			}
+			else if(ch==8)
+			{
+				if(charpos>0)
+				{
+					charpos--;
+					t[charpos]='\0';
+					printf("\b \b");
+				}
+			}
+			else
+			{
+				t[charpos]=ch;
+				charpos++;
+				printf("*");
+			}
+		}
+		fflush(stdin);
+		t[charpos]='\0';
+		//scanf("%[^\n]s",t);
+		if(strcmp(p,t)==0)
+		{
+			fp=fopen("Student_Record.txt","r");
+			fp1=fopen("Temp_Student_Record.txt","w");
+			if(fp==NULL||fp1==NULL)
+			{
+				printf("Error...Try again\n");
+				fclose(fp);
+				fclose(fp1);
+			}
+			else
+			{
+				while(fread(&s1,sizeof(s1),1,fp))
+				{
+					if(strcmp(s1.SRN,s->SRN)==0)
+					{
+						fflush(stdin);
+						strcpy(s1.Password,p);
+					}
+					fwrite(&s1,sizeof(student),1,fp1);
+				}
+				fclose(fp);
+				fclose(fp1);
+				fp=fopen("Student_Record.txt","w");
+				fp1=fopen("Temp_Student_Record.txt","r");
+				while(fread(&s1,sizeof(student),1,fp1))
+				{
+					fwrite(&s1,sizeof(student),1,fp);
+				}
+				printf("\nPassword is updated successfully!\n");
+				fclose(fp);
+				fclose(fp1);
+			}
 		}
 		else
 		{
-			while(fread(&s1,sizeof(s1),1,fp))
+			int choice;
+			printf("Password and confirmation password do not match. Try again...\n");
+			printf("Enter 1 to exit.\nEnter any number other than 1 to try again.\nEnter your choice : ");
+			fflush(stdin);
+			scanf("%d",&choice);
+			if(choice==1)
 			{
-				if(strcmp(s1.SRN,srn)==0)
-				{
-					fflush(stdin);
-					strcpy(s1.Password,p);
-				}
-				fwrite(&s1,sizeof(student),1,fp1);
+				break;
 			}
-			fclose(fp);
-			fclose(fp1);
-			fp=fopen("Student_Record.txt","w");
-			fp1=fopen("Temp_Student_Record.txt","r");
-			while(fread(&s1,sizeof(student),1,fp1))
-			{
-				fwrite(&s1,sizeof(student),1,fp);
-			}
-			printf("Password is updated successfully!\n");
-			fclose(fp);
-			fclose(fp1);
-	    }
-	}
-	else
-	{
-		printf("Password and confirmation password do not match. Try again...\n");
-		ChangeStudentPassword(srn);
-	}	
-
+		}
+	}while(strcmp(p,t)!=0);
 }
-void checkdetails(char cc[])
+void CheckDetails(student *s)
 {
-	printf("Your Branch:%s\n",cc);
-	FILE *fp,*fp1;
-	fp=fopen("Student_Record.txt","r");
-	student s1;
+	printf("Your Branch : %s\n",s->Branch);
 	int c;
 	printf("Enter the Semester You Want to search for:");
+	fflush(stdin);
 	scanf("%d",&c);
-	while(!feof(fp))
+	if(c==1)
 	{
-		fread(&s1,sizeof(student),1,fp);
-		
-		if(c==1)
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem1;i++)
 		{
-			
-			printf("The Courses in semester %d :\n",c);
-			for(int i=0;i<s1.Courses.no_courses_sem1;i++)
-			{
-				
-				printf("Course Code :%s\t\tCourse Name :%s \t Course Credit:%d\n",s1.Courses.sem1[i].Course_Code,s1.Courses.sem1[i].Course_Name,s1.Courses.sem1[i].Credits);
-			}
-			break;
-		}	
-		
-	
-		else if(c==2)
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits : %d\n",s->Courses.sem1[i].Course_Code,s->Courses.sem1[i].Course_Name,s->Courses.sem1[i].Credits);
+		}
+	}
+	else if(c==2)
+	{
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem2;i++)
 		{
-			printf("The Courses in semester %d :\n",c);
-			for(int i=0;i<s1.Courses.no_courses_sem2;i++)
-			{
-				printf("Course Code :%s\t\tCourse Name :%s \t Course Credit:%d \n",s1.Courses.sem2[i].Course_Code,s1.Courses.sem2[i].Course_Name,s1.Courses.sem2[i].Credits);
-			}
-			break;
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem2[i].Course_Code,s->Courses.sem2[i].Course_Name,s->Courses.sem2[i].Credits);
 		}
-
-       
-		if(strcmp(cc,s1.Branch)==0)
-		{ 
-		  	
-				if(c==3)
-				{	
-					printf("The Courses in semester %d :\n",c);
-					for(int i=0;i<s1.Courses.no_courses_sem3;i++)
-					{
-						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem3[i].Course_Code,s1.Courses.sem3[i].Course_Name,s1.Courses.sem3[i].Credits);
-					}
-					break;
-				}
-
-				else if(c==4)
-				{
-					printf("The Courses in semester %d :\n",c);
-					for(int i=0;i<s1.Courses.no_courses_sem4;i++)
-					{
-						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem4[i].Course_Code,s1.Courses.sem4[i].Course_Name,s1.Courses.sem4[i].Credits);
-					}
-					break;
-				}
-
-				else if(c==5)
-				{
-					printf("The Courses in semester %d :\n",c);
-					for(int i=0;i<s1.Courses.no_courses_sem5;i++)
-					{
-						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem5[i].Course_Code,s1.Courses.sem5[i].Course_Name,s1.Courses.sem5[i].Credits);
-					}
-					break;
-				}	
-
-				else if(c==6)
-				{
-					printf("The Courses in semester %d :\n",c);
-					for(int i=0;i<s1.Courses.no_courses_sem6;i++)
-					{
-						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem6[i].Course_Code,s1.Courses.sem6[i].Course_Name,s1.Courses.sem6[i].Credits);
-					}
-					break;
-				}
-
-				else if(c==7)
-				{
-					printf("The Courses in semester %d :\n",c);
-					for(int i=0;i<s1.Courses.no_courses_sem7;i++)
-					{
-						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d \n",s1.Courses.sem7[i].Course_Code,s1.Courses.sem7[i].Course_Name,s1.Courses.sem7[i].Credits);
-					}
-					break;
-				}    
-				else if(c==8)
-				{
-					printf("The Courses in semester %d :\n",c);
-					for(int i=0;i<s1.Courses.no_courses_sem8+1;i++)
-					{
-						printf("Course Code :%s Course Name :%s\t\t Course Credit:%d\n",s1.Courses.sem8[i].Course_Code,s1.Courses.sem8[i].Course_Name,s1.Courses.sem8[i].Credits);
-					}
-					break;
-				}   
-				 	
+	}
+	else if(c==3)
+	{
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem3;i++)
+		{
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem3[i].Course_Code,s->Courses.sem3[i].Course_Name,s->Courses.sem3[i].Credits);
 		}
-		
+	}
+	else if(c==4)
+	{
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem4;i++)
+		{
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem4[i].Course_Code,s->Courses.sem4[i].Course_Name,s->Courses.sem4[i].Credits);
+		}
+	}
+	else if(c==5)
+	{
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem5;i++)
+		{
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem5[i].Course_Code,s->Courses.sem5[i].Course_Name,s->Courses.sem5[i].Credits);
+		}
 	}	
-
-}	
-
-
-
-
+	else if(c==6)
+	{
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem6;i++)
+		{
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem6[i].Course_Code,s->Courses.sem6[i].Course_Name,s->Courses.sem6[i].Credits);
+		}
+	}
+	else if(c==7)
+	{
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem7;i++)
+		{
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem7[i].Course_Code,s->Courses.sem7[i].Course_Name,s->Courses.sem7[i].Credits);
+		}
+	}    
+	else if(c==8)
+	{
+		printf("The Courses in semester %d :\n",c);
+		for(int i=0;i<s->Courses.no_courses_sem8;i++)
+		{
+			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem8[i].Course_Code,s->Courses.sem8[i].Course_Name,s->Courses.sem8[i].Credits);
+		}
+	}
+}
