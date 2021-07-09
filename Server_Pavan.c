@@ -654,7 +654,7 @@ void givestudentattendance(char section)
 					}
 					else
 					{
-						printf("Enter 1 or 2... invalid input\n);
+						printf("Enter 1 or 2... invalid input\n");
 					}	
 					}
  				}
@@ -683,7 +683,7 @@ void givestudentattendance(char section)
 					}
 					else
 					{
-						printf("Enter 1 or 2... invalid input\n);
+						printf("Enter 1 or 2... invalid input\n");
 					}	
 					}
  				}
