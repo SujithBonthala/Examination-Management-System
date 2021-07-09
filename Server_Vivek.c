@@ -51,6 +51,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[0].No_Days_Total=0;
 				s[i].Courses.sem1[0].Eligibility=0;
 				s[i].Courses.sem1[0].Grade='\0';
+				s[i].Courses.sem1[0].Examination_Block='\0';
+				strcpy(s[i].Courses.sem1[0].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem1[0].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem1[1].Course_Code,"CS101");
 				strcpy(s[i].Courses.sem1[1].Course_Name,"Python for Computational Problem Solving");
 				s[i].Courses.sem1[1].Credits=4;
@@ -58,6 +61,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[1].No_Days_Total=0;
 				s[i].Courses.sem1[1].Eligibility=0;
 				s[i].Courses.sem1[1].Grade='\0';
+				s[i].Courses.sem1[1].Examination_Block='\0';
+				strcpy(s[i].Courses.sem1[1].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem1[1].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem1[2].Course_Code,"PH101");
 				strcpy(s[i].Courses.sem1[2].Course_Name,"Engineering Physics");
 				s[i].Courses.sem1[2].Credits=4;
@@ -65,6 +71,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[2].No_Days_Total=0;
 				s[i].Courses.sem1[2].Eligibility=0;
 				s[i].Courses.sem1[2].Grade='\0';
+				s[i].Courses.sem1[2].Examination_Block='\0';
+				strcpy(s[i].Courses.sem1[2].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem1[2].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem1[3].Course_Code,"ME101");
 				strcpy(s[i].Courses.sem1[3].Course_Name,"Mechanical Engineering Sciences");
 				s[i].Courses.sem1[3].Credits=4;
@@ -72,6 +81,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[3].No_Days_Total=0;
 				s[i].Courses.sem1[3].Eligibility=0;
 				s[i].Courses.sem1[3].Grade='\0';
+				s[i].Courses.sem1[3].Examination_Block='\0';
+				strcpy(s[i].Courses.sem1[3].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem1[3].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem1[4].Course_Code,"EE101");
 				strcpy(s[i].Courses.sem1[4].Course_Name,"Elements of Electrical Engineering");
 				s[i].Courses.sem1[4].Credits=4;
@@ -79,6 +91,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[4].No_Days_Total=0;
 				s[i].Courses.sem1[4].Eligibility=0;
 				s[i].Courses.sem1[4].Grade='\0';
+				s[i].Courses.sem1[4].Examination_Block='\0';
+				strcpy(s[i].Courses.sem1[4].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem1[4].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem1[5].Course_Code,"EV101");
 				strcpy(s[i].Courses.sem1[5].Course_Name,"Environmental Studies and Life Sciences");
 				s[i].Courses.sem1[5].Credits=2;
@@ -86,6 +101,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[5].No_Days_Total=0;
 				s[i].Courses.sem1[5].Eligibility=0;
 				s[i].Courses.sem1[5].Grade='\0';
+				s[i].Courses.sem1[5].Examination_Block='\0';
+				strcpy(s[i].Courses.sem1[5].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem1[5].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem1[6].Course_Code,"PH102");
 				strcpy(s[i].Courses.sem1[6].Course_Name,"Physics Laboratory");
 				s[i].Courses.sem1[6].Credits=1;
@@ -93,6 +111,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[6].No_Days_Total=0;
 				s[i].Courses.sem1[6].Eligibility=0;
 				s[i].Courses.sem1[6].Grade='\0';
+				s[i].Courses.sem1[6].Examination_Block='-';
+				strcpy(s[i].Courses.sem1[6].Examination_Date,"-");
+				strcpy(s[i].Courses.sem1[6].Examination_Section,"-");
 				strcpy(s[i].Courses.sem1[7].Course_Code,"CS102");
 				strcpy(s[i].Courses.sem1[7].Course_Name,"Python for Computational Problem Solving Laboratory");
 				s[i].Courses.sem1[7].Credits=1;
@@ -100,6 +121,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem1[7].No_Days_Total=0;
 				s[i].Courses.sem1[7].Eligibility=0;
 				s[i].Courses.sem1[7].Grade='\0';
+				s[i].Courses.sem1[7].Examination_Block='-';
+				strcpy(s[i].Courses.sem1[7].Examination_Date,"-");
+				strcpy(s[i].Courses.sem1[7].Examination_Section,"-");
 				strcpy(s[i].Courses.sem2[0].Course_Code,"MA151");
 				strcpy(s[i].Courses.sem2[0].Course_Name,"Engineering Mathematics - II");
 				s[i].Courses.sem2[0].Credits=4;
@@ -107,6 +131,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[0].No_Days_Total=0;
 				s[i].Courses.sem2[0].Eligibility=0;
 				s[i].Courses.sem2[0].Grade='\0';
+				s[i].Courses.sem2[0].Examination_Block='\0';
+				strcpy(s[i].Courses.sem2[0].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem2[0].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem2[1].Course_Code,"CS151");
 				strcpy(s[i].Courses.sem2[1].Course_Name,"Problem Solving with C");
 				s[i].Courses.sem2[1].Credits=4;
@@ -114,6 +141,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[1].No_Days_Total=0;
 				s[i].Courses.sem2[1].Eligibility=0;
 				s[i].Courses.sem2[1].Grade='\0';
+				s[i].Courses.sem2[1].Examination_Block='\0';
+				strcpy(s[i].Courses.sem2[1].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem2[1].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem2[2].Course_Code,"CY101");
 				strcpy(s[i].Courses.sem2[2].Course_Name,"Engineering Chemistry");
 				s[i].Courses.sem2[2].Credits=4;
@@ -121,6 +151,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[2].No_Days_Total=0;
 				s[i].Courses.sem2[2].Eligibility=0;
 				s[i].Courses.sem2[2].Grade='\0';
+				s[i].Courses.sem2[2].Examination_Block='\0';
+				strcpy(s[i].Courses.sem2[2].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem2[2].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem2[3].Course_Code,"CV101");
 				strcpy(s[i].Courses.sem2[3].Course_Name,"Engineering Mechanics - Statics");
 				s[i].Courses.sem2[3].Credits=4;
@@ -128,6 +161,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[3].No_Days_Total=0;
 				s[i].Courses.sem2[3].Eligibility=0;
 				s[i].Courses.sem2[3].Grade='\0';
+				s[i].Courses.sem2[3].Examination_Block='\0';
+				strcpy(s[i].Courses.sem2[3].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem2[3].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem2[4].Course_Code,"EC101");
 				strcpy(s[i].Courses.sem2[4].Course_Name,"Electronic Principles and Devices");
 				s[i].Courses.sem2[4].Credits=4;
@@ -135,6 +171,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[4].No_Days_Total=0;
 				s[i].Courses.sem2[4].Eligibility=0;
 				s[i].Courses.sem2[4].Grade='\0';
+				s[i].Courses.sem2[4].Examination_Block='\0';
+				strcpy(s[i].Courses.sem2[4].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem2[4].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem2[5].Course_Code,"CE101");
 				strcpy(s[i].Courses.sem2[5].Course_Name,"Constitution of India, Cyber Law and Professional Ethics");
 				s[i].Courses.sem2[5].Credits=2;
@@ -142,6 +181,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[5].No_Days_Total=0;
 				s[i].Courses.sem2[5].Eligibility=0;
 				s[i].Courses.sem2[5].Grade='\0';
+				s[i].Courses.sem2[5].Examination_Block='\0';
+				strcpy(s[i].Courses.sem2[5].Examination_Date,"\0");
+				strcpy(s[i].Courses.sem2[5].Examination_Section,"\0");
 				strcpy(s[i].Courses.sem2[6].Course_Code,"CY102");
 				strcpy(s[i].Courses.sem2[6].Course_Name,"Chemistry Laboratory");
 				s[i].Courses.sem2[6].Credits=1;
@@ -149,6 +191,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[6].No_Days_Total=0;
 				s[i].Courses.sem2[6].Eligibility=0;
 				s[i].Courses.sem2[6].Grade='\0';
+				s[i].Courses.sem2[6].Examination_Block='-';
+				strcpy(s[i].Courses.sem2[6].Examination_Date,"-");
+				strcpy(s[i].Courses.sem2[6].Examination_Section,"-");
 				strcpy(s[i].Courses.sem2[7].Course_Code,"CS152");
 				strcpy(s[i].Courses.sem2[7].Course_Name,"Problem Solving with C Laboratory");
 				s[i].Courses.sem2[7].Credits=1;
@@ -156,6 +201,9 @@ void CreateStudentAcc()
 				s[i].Courses.sem2[7].No_Days_Total=0;
 				s[i].Courses.sem2[7].Eligibility=0;
 				s[i].Courses.sem2[7].Grade='\0';
+				s[i].Courses.sem2[7].Examination_Block='-';
+				strcpy(s[i].Courses.sem2[7].Examination_Date,"-");
+				strcpy(s[i].Courses.sem2[7].Examination_Section,"-");
 				InitBranch(&s[i]);
 				fwrite(&s[i],sizeof(student),1,fp);
 			}
@@ -479,6 +527,7 @@ void UpdateStudentAcc()
 							char branch[10];
 							printf("Enter new branch of the student : ");
 							scanf("%s",&branch);
+							InitBranch(&s1);
 							strcpy(s1.Branch,branch);
 						}
 						fwrite(&s1,sizeof(student),1,fp1);
@@ -772,7 +821,6 @@ void StudentLogin()
 	}
 	else
 	{
-		int s;
 		int flag=0;
 		rewind(fp);
 		while(fread(&s1,sizeof(student),1,fp))
@@ -784,7 +832,6 @@ void StudentLogin()
 			}
 			else if(strcmp(s1.SRN,srn)==0&&strcmp(s1.Password,pass)==0)
 			{
-				s=s1.Semester;
 				flag=2;
 				s2=&s1;
 				break;
@@ -828,7 +875,7 @@ void StudentLogin()
 		}
 		else
 		{
-			StudentMainMenu(s2,s);
+			StudentMainMenu(s2);
 		}
 	}
 	fclose(fp);
@@ -1018,13 +1065,13 @@ void CheckDetails(student *s)
 		{
 			printf("Course Code : %s\t\tCourse Name : %s\t\tCourse Credits: %d\n",s->Courses.sem8[i].Course_Code,s->Courses.sem8[i].Course_Name,s->Courses.sem8[i].Credits);
 		}
-	}
+	}   		 	
 }
 void checkattendance(student *s)
 {
 	printf("Your Current Semester is %d\n",s->Semester);
 	int c;
-	printf("Enter the Semester For which You Want to Check attendance for:\n");
+	printf("Enter the Semester For which You Want to Check attendance for : ");
 	fflush(stdin);
 	scanf("%d",&c);
   	if(c<=s->Semester)
@@ -1062,13 +1109,4 @@ void checkattendance(student *s)
 			printf("\nYour Attendance is:%d",(s->Courses.sem8->No_Days_Present/s->Courses.sem8->No_Days_Total)*100);
 		}
 	}
-   
-}	
-/*void checkresults(student *s)
-{
-	printf("Your Branch : %s\n",s->Branch);
-	int c;
-	printf("Enter the Semester You Want to search for:");
-	fflush(stdin);
-	scanf("%d",&c);
-}*/
+}
