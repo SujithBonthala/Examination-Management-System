@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<conio.h>
+#include<stdlib.h>
 #include "Header_File.h"
 void LoginMenu()
 {
@@ -25,6 +26,10 @@ void LoginMenu()
 		else if(choice==3)
 		{
 			GetTeacherCredentials();
+		}
+		else if(choice==4)
+		{
+			exit(0);
 		}
 	}
 }
@@ -187,23 +192,20 @@ void GetStudentCredentials()
 {
 	StudentLogin();
 }
-void GetTeacherCredentials()
+void StudentMainMenu(student *s)
 {
-	TeacherLogin();
-}
-void StudentMainMenu(char srn[],char cc[])
-{
-	printf("Logged in Successfully\n");
-	printf("\nWELCOME, SELECT PROVIDED OPTIONS TO CONTINUE\n");
+	printf("\nLogged in Successfully\n");
+	printf("\nWelcome %s! Please select one of the options given below.\n",s->Name);
 	int choice;
 	do
 	{
-		printf("\nEnter 1 to View Results\n");
-		printf("\nEnter 2 to the Details of the Course\n");
-        printf("\nEnter 3 to the Check Exam seat allotment\n");
-		printf("\nEnter 4 to change password\n");
-		printf("\nEnter 5 to logout\n");
-		printf("\nEnter your Choice\n");
+		printf("\nEnter 1 to view Results\n");
+		printf("Enter 2 to view the Details of the Courses\n");
+        printf("Enter 3 to Check Exam Seat Allotment\n");
+		printf("Enter 4 to Change Password\n");
+		printf("Enter 5 to Logout\n");
+		printf("Enter your choice : ");
+		fflush(stdin);
 		scanf("%d",&choice);
 		switch(choice)
 		{
@@ -214,7 +216,7 @@ void StudentMainMenu(char srn[],char cc[])
 			}
 			case 2:
 			{
-				checkdetails(cc);
+				CheckDetails(s);
 				break;
 			}
 			case 3:
@@ -224,7 +226,7 @@ void StudentMainMenu(char srn[],char cc[])
 			}
 			case 4:
 			{
-				ChangeStudentPassword(srn);
+				ChangeStudentPassword(s);
 				break;
 			}
 			case 5:
@@ -261,6 +263,10 @@ void InitBranch(student *s)
 	{
 		InitBT(s);
 	}
+}
+void GetTeacherCredentials()
+{
+	TeacherLogin();
 }
 int Cipher(char usn[],char psw[])
 {
