@@ -98,11 +98,13 @@ void ChangeStudentPassword(student *);
 
 void StudentLogin();
 
-void StudentMainMenu(student *);
+void StudentMainMenu(student *,int sem);
 
 void InitBranch(student*);
 
 void CheckDetails(student *);
+
+void checkattendance(student *s);
 
 void TeacherMainMenu(char prn);
 
@@ -115,3 +117,5 @@ void givestudentattendance(char section);
 void GiveAttendance();
 
 void GiveGrades();
+
+
