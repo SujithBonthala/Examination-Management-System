@@ -585,40 +585,46 @@ void Giveattendance()
 void displayAllInformation(char section) 
 {		
 	FILE *fp;
+	int i,choice;
 	fp=fopen("Student_Record.txt","r");
-	student s1;
+	student s1[100];
 	if(fp==NULL)
 	{
 		printf("Error...Try again\n");
 	}
 	else
 	{
-		while(fread(&s1,sizeof(student),1,fp))
+		printf("Enter how many student records that has to be displayed\n");
+		scanf("%d",&choice);
+		for(i=0;i<choice;i++)
 		{
-			if(strcmp(s1.Section,section)==0)
+			while(fread(&s1,sizeof(student),1,fp))
 			{
-				printf("\nStudent records found!\n");
-				printf("Student Details:\n");
-				printf("Name : %s\n",s1.Name);
-				printf("SRN : %s\n",s1.SRN);
-				printf("Semester : %d\n",s1.Semester);
-				printf("Branch : %s\n",s1.Branch);
-			}
-			else
-			{
-				printf("INVALID SECTION NAME\n");
+				if(strcmp(s1.Section,section)==0)
+				{
+					printf("\nStudent records found!\n");
+					printf("Student Details:\n");
+					printf("Name : %s\n",s1[i].Name);
+					printf("SRN : %s\n",s1[i].SRN);
+					printf("Semester : %d\n",s1[i].Semester);
+					printf("Branch : %s\n",s1[i].Branch);
+				}
+				else
+				{
+					printf("INVALID SECTION NAME\n");
+				}
 			}
 		}
 	}
-	fclose(fp);
+		fclose(fp);
 }		
 	
 void givestudentattendance(char section) 
 {
 		FILE *fp;
 		fp=fopen("Student_Record.txt","r");
-		student t1;
-		int op, flag = -1,choice;
+		student s1[100];
+		int op,choice;
 		char information[15];
 		printf("Enter 1 to give attendance based on SRN\n");
 		printf("Enter 2 to give attendance based on name\n");
