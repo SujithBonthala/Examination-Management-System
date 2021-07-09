@@ -106,16 +106,14 @@ void CheckDetails(student *);
 
 void checkattendance(student *s);
 
-void TeacherMainMenu(char prn);
+void TeacherMainMenu(char prn[]);
 
 void ChangeTeacherPassword(char prn[]);
-
-void displayAllInformation(char section);
 	
-void givestudentattendance(char section);
+void give_studentattendance(char section);
 
 void GiveAttendance();
 
 void GiveGrades();
 
-
+void give_studentgrades(char section);
