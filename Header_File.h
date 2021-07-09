@@ -98,8 +98,23 @@ void ChangeStudentPassword(char srn[]);
 
 void StudentLogin();
 
+void TeacherLogin()
+
 void StudentMainMenu(char srn[],char cc[]);
 
 void InitBranch(student*);
 
 void checkdetails(char cc[]);
+
+void TeacherMainMenu(char prn);
+
+void ChangeTeacherPassword(char prn[]);
+
+void displayAllInformation(char section);
+	
+void givestudentattendance(char section);
+
+void GiveAttendance();
+
+void GiveGrades();
+
