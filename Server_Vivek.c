@@ -772,6 +772,7 @@ void StudentLogin()
 	}
 	else
 	{
+		int s;
 		int flag=0;
 		rewind(fp);
 		while(fread(&s1,sizeof(student),1,fp))
@@ -783,6 +784,7 @@ void StudentLogin()
 			}
 			else if(strcmp(s1.SRN,srn)==0&&strcmp(s1.Password,pass)==0)
 			{
+				s=s1.Semester;
 				flag=2;
 				s2=&s1;
 				break;
@@ -826,7 +828,7 @@ void StudentLogin()
 		}
 		else
 		{
-			StudentMainMenu(s2);
+			StudentMainMenu(s2,s);
 		}
 	}
 	fclose(fp);
@@ -1018,3 +1020,55 @@ void CheckDetails(student *s)
 		}
 	}
 }
+void checkattendance(student *s)
+{
+	printf("Your Current Semester is %d\n",s->Semester);
+	int c;
+	printf("Enter the Semester For which You Want to Check attendance for:\n");
+	fflush(stdin);
+	scanf("%d",&c);
+  	if(c<=s->Semester)
+	{
+		if(c==1)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem1->No_Days_Present/s->Courses.sem1->No_Days_Total)*100);
+		}
+		else if(c==2)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem2->No_Days_Present/s->Courses.sem2->No_Days_Total)*100);
+		}
+		else if(c==3)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem3->No_Days_Present/s->Courses.sem3->No_Days_Total)*100);
+		}
+		else if(c==4)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem4->No_Days_Present/s->Courses.sem4->No_Days_Total)*100);
+		}
+		else if(c==5)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem5->No_Days_Present/s->Courses.sem5->No_Days_Total)*100);
+		}	
+		else if(c==6)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem6->No_Days_Present/s->Courses.sem6->No_Days_Total)*100);
+		}			
+		else if(c==7)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem7->No_Days_Present/s->Courses.sem7->No_Days_Total)*100);
+		}	
+		else if(c==8)
+		{
+			printf("\nYour Attendance is:%d",(s->Courses.sem8->No_Days_Present/s->Courses.sem8->No_Days_Total)*100);
+		}
+	}
+   
+}	
+/*void checkresults(student *s)
+{
+	printf("Your Branch : %s\n",s->Branch);
+	int c;
+	printf("Enter the Semester You Want to search for:");
+	fflush(stdin);
+	scanf("%d",&c);
+}*/
