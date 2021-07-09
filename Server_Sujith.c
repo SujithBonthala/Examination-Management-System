@@ -187,6 +187,10 @@ void GetStudentCredentials()
 {
 	StudentLogin();
 }
+void GetTeacherCredentials()
+{
+	TeacherLogin();
+}
 void StudentMainMenu(char srn[],char cc[])
 {
 	printf("Logged in Successfully\n");
@@ -257,10 +261,6 @@ void InitBranch(student *s)
 	{
 		InitBT(s);
 	}
-}
-void GetTeacherCredentials()
-{
-	printf("\nYet to do\n");
 }
 int Cipher(char usn[],char psw[])
 {
