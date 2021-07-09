@@ -98,7 +98,7 @@ void ChangeStudentPassword(char srn[]);
 
 void StudentLogin();
 
-void TeacherLogin()
+void TeacherLogin();
 
 void StudentMainMenu(char srn[],char cc[]);
 
