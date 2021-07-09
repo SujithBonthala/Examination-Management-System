@@ -114,86 +114,73 @@ void AdminMainMenu()
 	int choice=0;
 	while(choice!=12)
 	{
-		printf("\nEnter 1 to modify student/teacher accounts");
-		printf("\nEnter 2 to Set Exam Details");
-		printf("\nEnter 3 to Logout\n");
+		printf("\nEnter 1 to create Student Account(s)");
+		printf("\nEnter 2 to create Teacher Account(s)");
+		printf("\nEnter 3 to display number of Student Account(s)");
+		printf("\nEnter 4 to display number of Teacher Account(s)");
+		printf("\nEnter 5 to search a Student Account");
+		printf("\nEnter 6 to search a Teacher Account");
+		printf("\nEnter 7 to update a Student Account");
+		printf("\nEnter 8 to update a Teacher Account");
+		printf("\nEnter 9 to delete a Student Account");
+		printf("\nEnter 10 to delete a Teacher Account");
+		printf("\nEnter 11 to Set Exam Details");
+		printf("\nEnter 12 to Logout\n");
 		printf("Enter your choice : ");
-		fflush(stdin);
 		scanf("%d",&choice);
 		switch(choice)
 		{
 			case 1:
 			{
-				printf("\nEnter 1 to create Student Account(s)");
-				printf("\nEnter 2 to create Teacher Account(s)");
-				printf("\nEnter 3 to display number of Student Account(s)");
-				printf("\nEnter 4 to display number of Teacher Account(s)");
-				printf("\nEnter 5 to search a Student Account");
-				printf("\nEnter 6 to search a Teacher Account");
-				printf("\nEnter 7 to update a Student Account");
-				printf("\nEnter 8 to update a Teacher Account");
-				printf("\nEnter 9 to delete a Student Account");
-				printf("\nEnter 10 to delete a Teacher Account");
-				printf("\nEnter your choice : ");
-				int choice1;
-				fflush(stdin);
-				scanf("%d",&choice1);
-				switch(choice1)
-				{
-					case 1:
-					{
-						CreateStudentAcc();
-						break;
-					}
-					case 2:
-					{
-						CreateTeacherAcc();
-						break;
-					}
-					case 3:
-					{
-						NumberStudentAcc();
-						break;
-					}
-					case 4:
-					{
-						NumberTeacherAcc();
-						break;
-					}
-					case 5:
-					{
-						SearchStudentAcc();
-						break;
-					}
-					case 6:
-					{
-						SearchTeacherAcc();
-						break;
-					}
-					case 7:
-					{
-						UpdateStudentAcc();
-						break;
-					}
-					case 8:
-					{
-						UpdateTeacherAcc();
-						break;
-					}
-					case 9:
-					{
-						DeleteStudentAcc();
-						break;
-					}
-					case 10:
-					{
-						DeleteTeacherAcc();
-						break;
-					}
-				}
+				CreateStudentAcc();
 				break;
 			}
 			case 2:
+			{
+				CreateTeacherAcc();
+				break;
+			}
+			case 3:
+			{
+				NumberStudentAcc();
+				break;
+			}
+			case 4:
+			{
+				NumberTeacherAcc();
+				break;
+			}
+			case 5:
+			{
+				SearchStudentAcc();
+				break;
+			}
+			case 6:
+			{
+				SearchTeacherAcc();
+				break;
+			}
+			case 7:
+			{
+				UpdateStudentAcc();
+				break;
+			}
+			case 8:
+			{
+				UpdateTeacherAcc();
+				break;
+			}
+			case 9:
+			{
+				DeleteStudentAcc();
+				break;
+			}
+			case 10:
+			{
+				DeleteTeacherAcc();
+				break;
+			}
+			case 11:
 			{
 				SetExamDetails();
 				break;
@@ -205,7 +192,7 @@ void GetStudentCredentials()
 {
 	StudentLogin();
 }
-void StudentMainMenu(student *s)
+void StudentMainMenu(student *s,int c)
 {
 	printf("\nLogged in Successfully\n");
 	printf("\nWelcome %s! Please select one of the options given below.\n",s->Name);
@@ -216,7 +203,8 @@ void StudentMainMenu(student *s)
 		printf("Enter 2 to view the Details of the Courses\n");
         printf("Enter 3 to Check Exam Seat Allotment\n");
 		printf("Enter 4 to Change Password\n");
-		printf("Enter 5 to Logout\n");
+		printf("Enter 5 to check your attendance\n");
+		printf("Enter 6 to Logout\n");
 		printf("Enter your choice : ");
 		fflush(stdin);
 		scanf("%d",&choice);
@@ -224,6 +212,7 @@ void StudentMainMenu(student *s)
 		{
 			case 1:
 			{
+				//checkresults(s);
 				printf("yet to do");
 				break;
 			}
@@ -244,11 +233,16 @@ void StudentMainMenu(student *s)
 			}
 			case 5:
 			{
+				checkattendance(s);
+				break;		
+			}
+			case 6:
+			{
 				LoginMenu();
 				break;
 			}
 		}
-	}while(choice!=5);
+	}while(choice!=6);
 }
 void InitBranch(student *s)
 {
