@@ -397,10 +397,6 @@ void DeleteTeacherAcc()
 		}
 	}
 }
-void GetTeacherCredentials()
-{
-	TeacherLogin();
-{
 void TeacherLogin()
 {
 	FILE *fp;
