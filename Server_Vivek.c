@@ -1400,7 +1400,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem1[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}	
 	}	
@@ -1418,7 +1418,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem2[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}	
 	}	
@@ -1436,7 +1436,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem3[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}	
 	}	
@@ -1454,7 +1454,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem4[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}	
 	}	
@@ -1472,7 +1472,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem5[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}	
 	}	
@@ -1490,7 +1490,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem6[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}	
 	}	
@@ -1508,7 +1508,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem7[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}	
 	}	
@@ -1526,7 +1526,7 @@ void seatallotment(student *s)
 			}
 			else if(strcmp(s->Courses.sem8[i].Examination_Date,"\0")==0)
 			{
-				printf("\nExam details have not yet been updated. Please wait.\n")
+				printf("\nExam details have not yet been updated. Please wait.\n");
 			}
 		}
 	}
