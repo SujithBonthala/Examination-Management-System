@@ -512,6 +512,7 @@ void TeacherMainMenu(char prn[])
 		printf("Enter 3 to give grades to students of a particular class\n");
 		printf("Enter 4 to logout\n");
 		printf("Enter your choice\n");
+		fflush(stdin);
 		scanf("%d",&choice);
 		switch(choice)
 		{
@@ -659,12 +660,13 @@ void give_studentattendance(char section)
 	scanf("%d",&sem);
 	printf("Enter the branch of the students : ");
 	fflush(stdin);
-	scanf("%d",&branch);
+	scanf("%s",&branch);
 	FILE *fp,*fp1;
 	fp=fopen("Student_Record.txt","r");	
 	fp1=fopen("Temp_Student_Record.txt","w");
 	while(fread(&s1,sizeof(s1),1,fp))
 	{
+		printf("%c %d %s\n%c %d %s\n",s1.Section,s1.Semester,s1.Branch,section,sem,branch);
 		if(section==s1.Section&&sem==s1.Semester&&strcmp(branch,s1.Branch)==0)
 		{ 	
 			printf("Enter the course code to which attendance has to be given(ex.CS205)\n");
@@ -1082,7 +1084,7 @@ void give_studentgrades(char section)
 	scanf("%d",&sem);
 	printf("Enter the branch of the students : ");
 	fflush(stdin);
-	scanf("%d",&branch);
+	scanf("%s",&branch);
 	FILE *fp,*fp1;
 	fp=fopen("Student_Record.txt","r");
 	fp1=fopen("Temp_Student_Record.txt","w");
