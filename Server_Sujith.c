@@ -229,8 +229,7 @@ void StudentMainMenu(student *s)
 		{
 			case 1:
 			{
-				//checkresults(s);
-				printf("yet to do");
+				checkresults(s);
 				break;
 			}
 			case 2:
@@ -240,7 +239,7 @@ void StudentMainMenu(student *s)
 			}
 			case 3:
 			{
-				printf("yet to do");	
+				seatallotment(s);	
 				break;
 			}
 			case 4:
@@ -290,7 +289,7 @@ void InitBranch(student *s)
 }
 void GetTeacherCredentials()
 {
-	//TeacherLogin();
+	TeacherLogin();
 }
 int Cipher(char usn[],char psw[])
 {
