@@ -656,7 +656,7 @@ void give_studentattendance(char section)
 								{
 									s1[i].Courses.sem2[j].No_Days_Present+=1;
 									s1[i].Courses.sem2[j].No_Days_Total+=1;
-									printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
+									printf("The attendance is given successfully to SRN %s\n ",s1[i].SRN); 
 									if((s1[i].Courses.sem2[j].No_Days_Present/s1[i].Courses.sem2[j].No_Days_Total)>=0.85)
 									{
 										s1[i].Courses.sem2[j].Eligibility=1;
