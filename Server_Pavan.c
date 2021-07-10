@@ -1028,11 +1028,11 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==2)
+					else if(s1[i].Semester==2)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem2;j++)
 						{
-							if(strcmp(coursecode,s[i].Courses.sem2[j].Course_Code)==0)	
+							if(strcmp(coursecode,s1[i].Courses.sem2[j].Course_Code)==0)	
 							{
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
@@ -1050,7 +1050,7 @@ void give_studentgrades(char section)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem3;j++)
 						{
-							if(strcmp(coursecode,s[i].Courses.sem3[j].Course_Code)==0)	
+							if(strcmp(coursecode,s1[i].Courses.sem3[j].Course_Code)==0)	
 							{
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
@@ -1082,11 +1082,11 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==5)
+					else if(s1[i].Semester==5)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem5;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem5;j++)
 						{
-							if(strcmp(coursecode,s[i].Courses.sem5[j].Course_Code)==0)	
+							if(strcmp(coursecode,s1[i].Courses.sem5[j].Course_Code)==0)	
 							{
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
@@ -1104,7 +1104,7 @@ void give_studentgrades(char section)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem6;j++)
 						{
-							if(strcmp(coursecode,s[i].Courses.sem6[j].Course_Code)==0)	
+							if(strcmp(coursecode,s1[i].Courses.sem6[j].Course_Code)==0)	
 							{
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
@@ -1122,7 +1122,7 @@ void give_studentgrades(char section)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem7;j++)
 						{
-							if(strcmp(coursecode,s[i].Courses.sem7[j].Course_Code)==0)	
+							if(strcmp(coursecode,s1[i].Courses.sem7[j].Course_Code)==0)	
 							{
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
@@ -1140,7 +1140,7 @@ void give_studentgrades(char section)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem8;j++)
 						{
-							if(strcmp(coursecode,s[i].Courses.sem8[j].Course_Code)==0)	
+							if(strcmp(coursecode,s1[i].Courses.sem8[j].Course_Code)==0)	
 							{
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
