@@ -962,7 +962,7 @@ void InitCSE(student *s)
 	s->Courses.sem7[0].Eligibility=0;
 	s->Courses.sem7[0].Grade='\0';
 	s->Courses.sem7[0].Examination_Block='\0';
-	strcpy(s->Courses.sem7[0].Examination_Date,"-");
+	strcpy(s->Courses.sem7[0].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[0].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[1].Course_Code,"CS402");
 	strcpy(s->Courses.sem7[1].Course_Name,"Software Engineering");
@@ -972,7 +972,7 @@ void InitCSE(student *s)
 	s->Courses.sem7[1].Eligibility=0;
 	s->Courses.sem7[1].Grade='\0';
 	s->Courses.sem7[1].Examination_Block='\0';
-	strcpy(s->Courses.sem7[1].Examination_Date,"-");
+	strcpy(s->Courses.sem7[1].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[1].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[2].Course_Code,"CS403");
 	strcpy(s->Courses.sem7[2].Course_Name,"Block Chain Technologies");
@@ -982,7 +982,7 @@ void InitCSE(student *s)
 	s->Courses.sem7[2].Eligibility=0;
 	s->Courses.sem7[2].Grade='\0';
 	s->Courses.sem7[2].Examination_Block='\0';
-	strcpy(s->Courses.sem7[2].Examination_Date,"-");
+	strcpy(s->Courses.sem7[2].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[2].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[3].Course_Code,"CS404");
 	strcpy(s->Courses.sem7[3].Course_Name,"Information Security");
@@ -992,7 +992,7 @@ void InitCSE(student *s)
 	s->Courses.sem7[3].Eligibility=0;
 	s->Courses.sem7[3].Grade='\0';
 	s->Courses.sem7[3].Examination_Block='\0';
-	strcpy(s->Courses.sem7[3].Examination_Date,"-");
+	strcpy(s->Courses.sem7[3].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[3].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[4].Course_Code,"CS405");
 	strcpy(s->Courses.sem7[4].Course_Name,"Capstone Project Phase – I");
@@ -1367,7 +1367,7 @@ void InitECE(student *s)
 	s->Courses.sem7[0].Eligibility=0;
 	s->Courses.sem7[0].Grade='\0';
 	s->Courses.sem7[0].Examination_Block='\0';
-	strcpy(s->Courses.sem7[0].Examination_Date,"-");
+	strcpy(s->Courses.sem7[0].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[0].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[1].Course_Code,"EC402");
 	strcpy(s->Courses.sem7[1].Course_Name,"Analog Integrated Circuits");
@@ -1377,7 +1377,7 @@ void InitECE(student *s)
 	s->Courses.sem7[1].Eligibility=0;
 	s->Courses.sem7[1].Grade='\0';
 	s->Courses.sem7[1].Examination_Block='\0';
-	strcpy(s->Courses.sem7[1].Examination_Date,"-");
+	strcpy(s->Courses.sem7[1].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[1].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[2].Course_Code,"EC403");
 	strcpy(s->Courses.sem7[2].Course_Name,"Project Work - I");
@@ -1397,7 +1397,7 @@ void InitECE(student *s)
 	s->Courses.sem7[3].Eligibility=0;
 	s->Courses.sem7[3].Grade='\0';
 	s->Courses.sem7[3].Examination_Block='\0';
-	strcpy(s->Courses.sem7[3].Examination_Date,"-");
+	strcpy(s->Courses.sem7[3].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[3].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[4].Course_Code,"EC405");
 	strcpy(s->Courses.sem7[4].Course_Name,"Wireless Networking Fundamentals");
@@ -1407,7 +1407,7 @@ void InitECE(student *s)
 	s->Courses.sem7[4].Eligibility=0;
 	s->Courses.sem7[4].Grade='\0';
 	s->Courses.sem7[4].Examination_Block='\0';
-	strcpy(s->Courses.sem7[4].Examination_Date,"-");
+	strcpy(s->Courses.sem7[4].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[4].Examination_Section,"\0");
 	//Semester 8
 	s->Courses.no_courses_sem8=6;
@@ -1782,7 +1782,7 @@ void InitME(student *s)
 	s->Courses.sem7[0].Eligibility=0;
 	s->Courses.sem7[0].Grade='\0';
 	s->Courses.sem7[0].Examination_Block='\0';
-	strcpy(s->Courses.sem7[0].Examination_Date,"-");
+	strcpy(s->Courses.sem7[0].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[0].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[1].Course_Code,"ME402");
 	strcpy(s->Courses.sem7[1].Course_Name,"Principles of Aerodynamics");
@@ -1792,7 +1792,7 @@ void InitME(student *s)
 	s->Courses.sem7[1].Eligibility=0;
 	s->Courses.sem7[1].Grade='\0';
 	s->Courses.sem7[1].Examination_Block='\0';
-	strcpy(s->Courses.sem7[1].Examination_Date,"-");
+	strcpy(s->Courses.sem7[1].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[1].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[2].Course_Code,"ME403");
 	strcpy(s->Courses.sem7[2].Course_Name,"Computational Rotor Dynamics");
@@ -1802,7 +1802,7 @@ void InitME(student *s)
 	s->Courses.sem7[2].Eligibility=0;
 	s->Courses.sem7[2].Grade='\0';
 	s->Courses.sem7[2].Examination_Block='\0';
-	strcpy(s->Courses.sem7[2].Examination_Date,"-");
+	strcpy(s->Courses.sem7[2].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[2].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[3].Course_Code,"ME404");
 	strcpy(s->Courses.sem7[3].Course_Name,"Project Work Phase - I");
@@ -2137,7 +2137,7 @@ void InitEEE(student *s)
 	s->Courses.sem7[0].Eligibility=0;
 	s->Courses.sem7[0].Grade='\0';
 	s->Courses.sem7[0].Examination_Block='\0';
-	strcpy(s->Courses.sem7[0].Examination_Date,"-");
+	strcpy(s->Courses.sem7[0].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[0].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[1].Course_Code,"EE402");
 	strcpy(s->Courses.sem7[1].Course_Name,"Testing and Commissioning");
@@ -2147,7 +2147,7 @@ void InitEEE(student *s)
 	s->Courses.sem7[1].Eligibility=0;
 	s->Courses.sem7[1].Grade='\0';
 	s->Courses.sem7[1].Examination_Block='\0';
-	strcpy(s->Courses.sem7[1].Examination_Date,"-");
+	strcpy(s->Courses.sem7[1].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[1].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[2].Course_Code,"EE403");
 	strcpy(s->Courses.sem7[2].Course_Name,"Project Work Phase - I");
@@ -2522,7 +2522,7 @@ void InitCV(student *s)
 	s->Courses.sem7[0].Eligibility=0;
 	s->Courses.sem7[0].Grade='\0';
 	s->Courses.sem7[0].Examination_Block='\0';
-	strcpy(s->Courses.sem7[0].Examination_Date,"-");
+	strcpy(s->Courses.sem7[0].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[0].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[1].Course_Code,"CV402");
 	strcpy(s->Courses.sem7[1].Course_Name,"Design & Detailing of Steel Structural Elements");
@@ -2532,7 +2532,7 @@ void InitCV(student *s)
 	s->Courses.sem7[1].Eligibility=0;
 	s->Courses.sem7[1].Grade='\0';
 	s->Courses.sem7[1].Examination_Block='\0';
-	strcpy(s->Courses.sem7[1].Examination_Date,"-");
+	strcpy(s->Courses.sem7[1].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[1].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[2].Course_Code,"CV403");
 	strcpy(s->Courses.sem7[2].Course_Name,"Mechanization in Construction");
@@ -2542,7 +2542,7 @@ void InitCV(student *s)
 	s->Courses.sem7[2].Eligibility=0;
 	s->Courses.sem7[2].Grade='\0';
 	s->Courses.sem7[2].Examination_Block='\0';
-	strcpy(s->Courses.sem7[2].Examination_Date,"-");
+	strcpy(s->Courses.sem7[2].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[2].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[3].Course_Code,"CV404");
 	strcpy(s->Courses.sem7[3].Course_Name,"Transportation Engineering");
@@ -2552,7 +2552,7 @@ void InitCV(student *s)
 	s->Courses.sem7[3].Eligibility=0;
 	s->Courses.sem7[3].Grade='\0';
 	s->Courses.sem7[3].Examination_Block='\0';
-	strcpy(s->Courses.sem7[3].Examination_Date,"-");
+	strcpy(s->Courses.sem7[3].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[3].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[4].Course_Code,"CV405");
 	strcpy(s->Courses.sem7[4].Course_Name,"Project Work Phase - I");
@@ -2937,7 +2937,7 @@ void InitBT(student *s)
 	s->Courses.sem7[0].Eligibility=0;
 	s->Courses.sem7[0].Grade='\0';
 	s->Courses.sem7[0].Examination_Block='\0';
-	strcpy(s->Courses.sem7[0].Examination_Date,"-");
+	strcpy(s->Courses.sem7[0].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[0].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[1].Course_Code,"BT402");
 	strcpy(s->Courses.sem7[1].Course_Name,"Drug Development and Toxicology");
@@ -2947,7 +2947,7 @@ void InitBT(student *s)
 	s->Courses.sem7[1].Eligibility=0;
 	s->Courses.sem7[1].Grade='\0';
 	s->Courses.sem7[1].Examination_Block='\0';
-	strcpy(s->Courses.sem7[1].Examination_Date,"-");
+	strcpy(s->Courses.sem7[1].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[1].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[2].Course_Code,"BT403");
 	strcpy(s->Courses.sem7[2].Course_Name,"Capstone Project work Phase - I");
@@ -2967,7 +2967,7 @@ void InitBT(student *s)
 	s->Courses.sem7[3].Eligibility=0;
 	s->Courses.sem7[3].Grade='\0';
 	s->Courses.sem7[3].Examination_Block='\0';
-	strcpy(s->Courses.sem7[3].Examination_Date,"-");
+	strcpy(s->Courses.sem7[3].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[3].Examination_Section,"\0");
 	strcpy(s->Courses.sem7[4].Course_Code,"BT405");
 	strcpy(s->Courses.sem7[4].Course_Name,"Tissue Engineering");
@@ -2977,7 +2977,7 @@ void InitBT(student *s)
 	s->Courses.sem7[4].Eligibility=0;
 	s->Courses.sem7[4].Grade='\0';
 	s->Courses.sem7[4].Examination_Block='\0';
-	strcpy(s->Courses.sem7[4].Examination_Date,"-");
+	strcpy(s->Courses.sem7[4].Examination_Date,"\0");
 	strcpy(s->Courses.sem7[4].Examination_Section,"\0");
 	//Semester 8
 	s->Courses.no_courses_sem8=2;
