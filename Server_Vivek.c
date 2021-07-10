@@ -1395,7 +1395,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem1;i++)
 			{
-				if(strcmp(s->Courses.sem1[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem1[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem1[i].Examination_Section,"/0")!=0 && s->Courses.sem1[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem1[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem1[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem1[i].Examination_Section,"/0")!=0 && s->Courses.sem1[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem1[i].Course_Code,s->Courses.sem1[i].Examination_Date,s->Courses.sem1[i].Examination_Block,s->Courses.sem1[i].Examination_Section);
 				}
@@ -1410,7 +1410,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem2;i++)
 			{
-				if(strcmp(s->Courses.sem2[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem2[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem2[i].Examination_Section,"/0")!=0 && s->Courses.sem2[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem2[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem2[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem2[i].Examination_Section,"/0")!=0 && s->Courses.sem2[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem2[i].Course_Code,s->Courses.sem2[i].Examination_Date,s->Courses.sem2[i].Examination_Block,s->Courses.sem2[i].Examination_Section);
 				}
@@ -1425,7 +1425,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem3;i++)
 			{
-				if(strcmp(s->Courses.sem3[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem3[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem3[i].Examination_Section,"/0")!=0 && s->Courses.sem3[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem3[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem3[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem3[i].Examination_Section,"/0")!=0 && s->Courses.sem3[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem3[i].Course_Code,s->Courses.sem3[i].Examination_Date,s->Courses.sem3[i].Examination_Block,s->Courses.sem3[i].Examination_Section);
 				}
@@ -1440,7 +1440,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem4;i++)
 			{
-				if(strcmp(s->Courses.sem4[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem4[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem4[i].Examination_Section,"/0")!=0 && s->Courses.sem4[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem4[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem4[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem4[i].Examination_Section,"/0")!=0 && s->Courses.sem4[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem4[i].Course_Code,s->Courses.sem4[i].Examination_Date,s->Courses.sem4[i].Examination_Block,s->Courses.sem4[i].Examination_Section);
 				}
@@ -1455,7 +1455,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem5;i++)
 			{
-				if(strcmp(s->Courses.sem5[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem5[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem5[i].Examination_Section,"/0")!=0 && s->Courses.sem5[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem5[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem5[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem5[i].Examination_Section,"/0")!=0 && s->Courses.sem5[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem5[i].Course_Code,s->Courses.sem5[i].Examination_Date,s->Courses.sem5[i].Examination_Block,s->Courses.sem5[i].Examination_Section);
 				}
@@ -1470,7 +1470,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem6;i++)
 			{
-				if(strcmp(s->Courses.sem6[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem6[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem6[i].Examination_Section,"/0")!=0 && s->Courses.sem6[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem6[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem6[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem6[i].Examination_Section,"/0")!=0 && s->Courses.sem6[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem6[i].Course_Code,s->Courses.sem6[i].Examination_Date,s->Courses.sem6[i].Examination_Block,s->Courses.sem6[i].Examination_Section);
 				}
@@ -1485,7 +1485,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem7;i++)
 			{
-				if(strcmp(s->Courses.sem7[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem7[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem7[i].Examination_Section,"/0")!=0 && s->Courses.sem7[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem7[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem7[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem7[i].Examination_Section,"/0")!=0 && s->Courses.sem7[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem7[i].Course_Code,s->Courses.sem7[i].Examination_Date,s->Courses.sem7[i].Examination_Block,s->Courses.sem7[i].Examination_Section);
 				}
@@ -1500,7 +1500,7 @@ void seatallotment(student *s)
 		{
 			for(int i=0;i<s->Courses.no_courses_sem8;i++)
 			{
-				if(strcmp(s->Courses.sem8[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem8[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem8[i].Examination_Section,"/0")!=0 && s->Courses.sem8[i].Examination_Block!='\0')
+				if(strcmp(s->Courses.sem8[i].Examination_Date,"Not Eligible")!=0 && strcmp(s->Courses.sem8[i].Examination_Date,"-")!=0 && strcmp(s->Courses.sem8[i].Examination_Section,"/0")!=0 && s->Courses.sem8[i].Examination_Block!='-')
 				{
 					printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem8[i].Course_Code,s->Courses.sem8[i].Examination_Date,s->Courses.sem8[i].Examination_Block,s->Courses.sem8[i].Examination_Section);
 				}
