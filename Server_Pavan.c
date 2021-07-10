@@ -594,9 +594,9 @@ void give_studentattendance(char section)
 					printf("Enter the course code to which attendance has to be given(ex.CS205)\n");
 					fflush(stdin);
 					scanf("%s",coursecode);
-					if(s1.semester==1)
+					if(s1[i].semester==1)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem1;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem1;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem1[j].Course_Code)==0)	
 							{
@@ -606,7 +606,7 @@ void give_studentattendance(char section)
 								scanf("%d",&choice);
 								if(choice==1)
 								{
-							                   	s1[i].Courses.sem1[j].No_Days_Present+=1;
+							                s1[i].Courses.sem1[j].No_Days_Present+=1;
 									s1[i].Courses.sem1[j].No_Days_Total+=1;
 									printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
 									if((s1[i].Courses.sem1[j].No_Days_Present/s1[i].Courses.sem1[j].No_Days_Total)>=0.85)
@@ -642,9 +642,9 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1.semester==2)
+					else if(s1[i].semester==2)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem2;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem2;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem2[j].Course_Code)==0)	
 							{
@@ -690,9 +690,9 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1.semester==3)
+					else if(s1[i].semester==3)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem3;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem3;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem3[j].Course_Code)==0)	
 							{
@@ -702,7 +702,7 @@ void give_studentattendance(char section)
 								scanf("%d",&choice);
 								if(choice==1)
 								{
-							                  	s1[i].Courses.sem3[j].No_Days_Present+=1;
+							                s1[i].Courses.sem3[j].No_Days_Present+=1;
 									s1[i].Courses.sem3[j].No_Days_Total+=1;
 									printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
 									if((s1[i].Courses.sem3[j].No_Days_Present/s1[i].Courses.sem3[j].No_Days_Total)>=0.85)
@@ -730,9 +730,9 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1.semester==4)
+					else if(s1[i].semester==4)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem4;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem4;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem4[j].Course_Code)==0)	
 							{
@@ -742,7 +742,7 @@ void give_studentattendance(char section)
 								scanf("%d",&choice);
 								if(choice==1)
 								{
-							                   	s1[i].Courses.sem4[j].No_Days_Present+=1;
+							                s1[i].Courses.sem4[j].No_Days_Present+=1;
 									s1[i].Courses.sem4[j].No_Days_Total+=1;
 									printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
 									if((s1[i].Courses.sem4[j].No_Days_Present/s1[i].Courses.sem4[j].No_Days_Total)>=0.85)
@@ -778,9 +778,9 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1.semester==5)
+					else if(s1[i].semester==5)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem5;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem5;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem5[j].Course_Code)==0)	
 							{
@@ -826,9 +826,9 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1.semester==6)
+					else if(s1[i].semester==6)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem6;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem6;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem6[j].Course_Code)==0)	
 							{
@@ -875,9 +875,9 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1.semester==7)
+					else if(s1[i].semester==7)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem7;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem7;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem7[j].Course_Code)==0)	
 							{
@@ -923,9 +923,9 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1.semester==8)
+					else if(s1[i].semester==8)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem8;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem8;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem8[j].Course_Code)==0)	
 							{
@@ -1010,9 +1010,9 @@ void give_studentgrades(char section)
 					printf("Enter the course code to which grade has to be given(ex.CS205)\n");
 					fflush(stdin);
 					scanf("%s",coursecode);
-					if(s1.semester==1)
+					if(s1[i].semester==1)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem1;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem1;j++)
 						{
 							if(strcmp(coursecode,s1[i].Courses.sem1[j].Course_Code)==0)	
 							{
@@ -1028,9 +1028,9 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1.semester==2)
+					else if(s1[i].semester==2)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem2;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem2;j++)
 						{
 							if(strcmp(coursecode,s[i].Courses.sem2[j].Course_Code)==0)	
 							{
@@ -1046,9 +1046,9 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1.semester==3)
+					else if(s1[i].semester==3)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem3;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem3;j++)
 						{
 							if(strcmp(coursecode,s[i].Courses.sem3[j].Course_Code)==0)	
 							{
@@ -1064,9 +1064,9 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1.semester==4)
+					else if(s1[i].semester==4)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem4;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem4;j++)
 						{
 							if(strcmp(coursecode,s[i].Courses.sem4[j].Course_Code)==0)	
 							{
@@ -1082,7 +1082,7 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1.semester==5)
+					else if(s1[i].semester==5)
 					{
 						for(int j=0;j<s1[i].Courses.no_of_courses_sem5;j++)
 						{
@@ -1100,9 +1100,9 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1.semester==6)
+					else if(s1[i].semester==6)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem6;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem6;j++)
 						{
 							if(strcmp(coursecode,s[i].Courses.sem6[j].Course_Code)==0)	
 							{
@@ -1118,9 +1118,9 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					if(s1.semester==7)
+					if(s1[i].semester==7)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem7;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem7;j++)
 						{
 							if(strcmp(coursecode,s[i].Courses.sem7[j].Course_Code)==0)	
 							{
@@ -1136,9 +1136,9 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					if(s1.semester==8)
+					if(s1[i].semester==8)
 					{
-						for(int j=0;j<s1[i].Courses.no_of_courses_sem8;j++)
+						for(int j=0;j<s1[i].Courses.no_courses_sem8;j++)
 						{
 							if(strcmp(coursecode,s[i].Courses.sem8[j].Course_Code)==0)	
 							{
