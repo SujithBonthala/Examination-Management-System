@@ -405,7 +405,7 @@ void TeacherLogin()
 	char prn[50],pass[50];
 	printf("Enter Username:");
 	fflush(stdin);
-	scanf("%[^\n]s",srn);
+	scanf("%[^\n]s",prn);
 	printf("\nEnter the password:");
 	fflush(stdin);
 	scanf("%[^\n]s",pass);
@@ -566,8 +566,8 @@ void ChangeTeacherPassword(char prn[])
 
 void GiveAttendance()
 {
-	char section
-	printf("Enter the class to which attendance has to be given");
+	char section;
+	printf("Enter the class to which attendance has to be given\n");
 	fflush(stdin);
 	scanf("%c",&section);
 	give_studentattendance(section);		
@@ -582,12 +582,12 @@ void give_studentattendance(char section)
 		printf ("Please enter the student SRN to which attendance must be given:\n");
 		fflush(stdin);
 		scanf("%s", information);
-		printf("Enter how many students attendance must be given"\n);
+		printf("Enter how many students attendance must be given\n");
 		fflush(stdin);										
 		scanf("%d",&n);
 		for(int i=0;i<n;i++)
 		{	
-			while(fread(&s1,sizeof(s1),1,fp)
+			while(fread(&s1,sizeof(s1),1,fp))
 			{
 				if (strcmp(information,s1[i].SRN) == 0 && strcmp(section,s1[i].Section)==0)
 				{ 	
@@ -982,11 +982,11 @@ void give_studentattendance(char section)
 }
 void GiveGrades()
 {
-	char section
-	printf("Enter the class to which attendance has to be given");
+	char section;
+	printf("Enter the class to which grades has to be given\n");
 	fflush(stdin);
 	scanf("%c",&section);
-	givestudentattendance(section);
+	give_studentgrades(section);
 }
 void give_studentgrades(char section)
 {
@@ -995,15 +995,15 @@ void give_studentgrades(char section)
 		int n;
 		FILE *fp;
 		fp=fopen("Student_Record.txt","r");
-		printf ("Please enter the student SRN to which grade must be given:\n");
+		printf ("Please enter the student SRN to which grade must be given\n");
 		fflush(stdin);
 		scanf("%s", information);
-		printf("Enter for how many students grades must be given"\n);
+		printf("Enter for how many students grades must be given\n");
 		fflush(stdin);										
 		scanf("%d",&n);
 		for(int i=0;i<n;i++)
 		{	
-			while(fread(&s1,sizeof(s1),1,fp)
+			while(fread(&s1,sizeof(s1),1,fp))
 			{
 				if (strcmp(information,s1[i].SRN) == 0 && strcmp(section,s1[i].Section)==0)
 				{ 	
