@@ -1069,44 +1069,404 @@ void CheckDetails(student *s)
 }
 void checkattendance(student *s)
 {
+	
 	printf("Your Current Semester is %d\n",s->Semester);
 	int c;
-	printf("Enter the Semester For which You Want to Check attendance for : ");
+	printf("Enter the Semester For which You Want to Check attendance for:\n");
 	fflush(stdin);
 	scanf("%d",&c);
   	if(c<=s->Semester)
 	{
 		if(c==1)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem1->No_Days_Present/s->Courses.sem1->No_Days_Total)*100);
+			for(int i=0;i<s->Courses.no_courses_sem1;i++)
+			{			
+				if(s->Courses.sem1[i].No_Days_Total==0)
+				{
+					
+					printf("\nYour Attendance for the course %s is:%d",s->Courses.sem1[i].Course_Name,s->Courses.sem1[i].No_Days_Total);	
+				}
+				else
+				{
+					
+					printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem1[i].Course_Name,(s->Courses.sem1[i].No_Days_Present/s->Courses.sem1[i].No_Days_Total)*100);
+					
+				}
+			}
 		}
 		else if(c==2)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem2->No_Days_Present/s->Courses.sem2->No_Days_Total)*100);
-		}
+			for(int i=0;i<s->Courses.no_courses_sem2;i++)
+			{
+				if(s->Courses.sem2[i].No_Days_Total==0)
+				{
+					printf("\nYour Attendance for the course %s is:%d",s->Courses.sem2[i].Course_Name,s->Courses.sem2[i].No_Days_Total);
+						
+				}
+				else
+				{
+					
+					printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem2[i].Course_Name,(s->Courses.sem2[i].No_Days_Present/s->Courses.sem2[i].No_Days_Total)*100);
+					
+				}
+			}
+		}	
 		else if(c==3)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem3->No_Days_Present/s->Courses.sem3->No_Days_Total)*100);
+			for(int i=0;i<s->Courses.no_courses_sem3;i++)
+			{
+				if(s->Courses.sem3[i].No_Days_Total==0)
+				{
+								
+					printf("\nYour Attendance for the course %s is:%d",s->Courses.sem3[i].Course_Name,s->Courses.sem3[i].No_Days_Total);
+						
+				}
+				else
+				{
+					
+					printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem3[i].Course_Name,(s->Courses.sem3[i].No_Days_Present/s->Courses.sem3[i].No_Days_Total)*100);
+					
+				}
+			}	
 		}
 		else if(c==4)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem4->No_Days_Present/s->Courses.sem4->No_Days_Total)*100);
+			for(int i=0;i<s->Courses.no_courses_sem4;i++)
+			{	
+				if(s->Courses.sem4[i].No_Days_Total==0)
+				{
+					for(int i=0;i<s->Courses.no_courses_sem4;i++)
+					{				
+						printf("\nYour Attendance for the course %s is:%d",s->Courses.sem4[i].Course_Name,s->Courses.sem4[i].No_Days_Total);
+					}	
+				}
+				else
+				{
+					for(int i=0;i<s->Courses.no_courses_sem4;i++)
+					{
+						printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem4[i].Course_Name,(s->Courses.sem4[i].No_Days_Present/s->Courses.sem4[i].No_Days_Total)*100);
+					}
+				}
+			}	
 		}
 		else if(c==5)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem5->No_Days_Present/s->Courses.sem5->No_Days_Total)*100);
+			for(int i=0;i<s->Courses.no_courses_sem5;i++)
+			{	
+				if(s->Courses.sem5[i].No_Days_Total==0)
+				{
+							
+					printf("\nYour Attendance for the course %s is:%d",s->Courses.sem5[i].Course_Name,s->Courses.sem5[i].No_Days_Total);
+					
+				}
+				else
+				{
+					
+					printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem5[i].Course_Name,(s->Courses.sem5[i].No_Days_Present/s->Courses.sem5[i].No_Days_Total)*100);
+					
+				}
+			}
 		}	
 		else if(c==6)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem6->No_Days_Present/s->Courses.sem6->No_Days_Total)*100);
+			for(int i=0;i<s->Courses.no_courses_sem6;i++)
+			{	if(s->Courses.sem6[i].No_Days_Total==0)
+				{
+								
+					printf("\nYour Attendance for the course %s is:%d",s->Courses.sem6[i].Course_Name,s->Courses.sem6[i].No_Days_Total);
+					
+				}
+				else
+				{
+					
+					printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem6[i].Course_Name,(s->Courses.sem6[i].No_Days_Present/s->Courses.sem6[i].No_Days_Total)*100);
+					
+				}
+			}	
 		}			
 		else if(c==7)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem7->No_Days_Present/s->Courses.sem7->No_Days_Total)*100);
+		   	for(int i=0;i<s->Courses.no_courses_sem7;i++)
+			{
+				if(s->Courses.sem7[i].No_Days_Total==0)
+				{					
+					printf("\nYour Attendance for the course %s is:%d",s->Courses.sem7[i].Course_Name,s->Courses.sem7[i].No_Days_Total);		
+				}
+				else
+				{
+						
+					printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem7[i].Course_Name,(s->Courses.sem7[i].No_Days_Present/s->Courses.sem7[i].No_Days_Total)*100);
+	
+				}
+			}		
 		}	
 		else if(c==8)
 		{
-			printf("\nYour Attendance is:%d",(s->Courses.sem8->No_Days_Present/s->Courses.sem8->No_Days_Total)*100);
+			for(int i=0;i<s->Courses.no_courses_sem8;i++)
+			{
+				if(s->Courses.sem8[i].No_Days_Total==0)
+				{				
+					printf("\nYour Attendance for the course %s is:%d",s->Courses.sem8[i].Course_Name,s->Courses.sem8[i].No_Days_Total);
+					
+				}
+				else
+				{
+					
+					printf("\nYour Attendance is for the course %s is :%d",s->Courses.sem8[i].Course_Name,(s->Courses.sem8[i].No_Days_Present/s->Courses.sem8[i].No_Days_Total)*100);
+					
+				}
+			}	
 		}
+	}
+	else
+	{
+		printf("Ivalid Semester Entered....Semester Cannot Be Above The Current Semester\tTry again..\n");
+		StudentMainMenu(s);
+	}
+
+}	
+void checkresults(student *s)
+{
+	printf("\nName:%s\t\tSRN:%s\n",s->Name,s->SRN);
+	printf("Branch : %s\t\tCurrent Semester :%d",s->Branch,s->Semester);
+	int c;
+	printf("\nEnter the Semester You Want to search for:");
+	fflush(stdin);
+	scanf("%d",&c);
+	if(c>s->Semester)
+	{
+		printf("\nInvalid Semester");
+		printf("\ntry again..\n");
+		checkresults(s);
+	}
+	else
+	if(c==1)
+	{
+		
+		for(int i=0;i<s->Courses.no_courses_sem1;i++)
+		{
+			if(s->Courses.sem1[i].Grade=='\0')
+			{
+			printf("\nThe Course-%s is yet to be Graded\n",s->Courses.sem1[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s\n",s->Courses.sem1[i].Course_Code,s->Courses.sem1[i].Course_Name,s->Courses.sem1[i].Grade);
+		}
+	}
+	else if(c==2)
+	{
+		
+		for(int i=0;i<s->Courses.no_courses_sem2;i++)
+		{
+			if(s->Courses.sem2[i].Grade=='\0')
+			{
+			printf("The Course-%s yet to be Graded\n",s->Courses.sem2[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s\n",s->Courses.sem2[i].Course_Code,s->Courses.sem2[i].Course_Name,s->Courses.sem2[i].Grade);
+		}
+	}
+	else if(c==3)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem3;i++)
+		{
+			if(s->Courses.sem3[i].Grade=='\0')
+			{
+			printf("The Course-%s is yet to be Graded\n",s->Courses.sem3[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s\n",s->Courses.sem3[i].Course_Code,s->Courses.sem3[i].Course_Name,s->Courses.sem3[i].Grade);
+		}
+	}
+	else if(c==4)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem4;i++)
+		{
+			if(s->Courses.sem4[i].Grade=='\0')
+			{
+			printf("The Course-%s is yet to be Graded\n",s->Courses.sem4[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s\n",s->Courses.sem4[i].Course_Code,s->Courses.sem4[i].Course_Name,s->Courses.sem4[i].Grade);
+		}
+	}
+	else if(c==5)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem5;i++)
+		{
+			if(s->Courses.sem5[i].Grade=='\0')
+			{
+			printf("The Course-%s is yet to be Graded\n",s->Courses.sem5[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s",s->Courses.sem5[i].Course_Code,s->Courses.sem5[i].Course_Name,s->Courses.sem5[i].Grade);
+		}
+	}
+	else if(c==6)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem6;i++)
+		{
+			if(s->Courses.sem6[i].Grade=='\0')
+			{
+			printf("The Course-%s is yet to be Graded\n",s->Courses.sem6[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s",s->Courses.sem6[i].Course_Code,s->Courses.sem6[i].Course_Name,s->Courses.sem6[i].Grade);
+		}
+	}
+	else if(c==7)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem7;i++)
+		{
+			if(s->Courses.sem7[i].Grade=='\0')
+			{
+			printf("The Course-%s is yet to be Graded\n",s->Courses.sem7[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s",s->Courses.sem7[i].Course_Code,s->Courses.sem7[i].Course_Name,s->Courses.sem7[i].Grade);
+		}
+	}
+	else if(c==8)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem8;i++)
+		{
+			if(s->Courses.sem8[i].Grade=='\0')
+			{
+			printf("The Course-%s is yet to be Graded\n",s->Courses.sem8[i].Course_Name);
+			}
+			else
+			printf("%s-%s :%s",s->Courses.sem8[i].Course_Code,s->Courses.sem8[i].Course_Name,s->Courses.sem8[i].Grade);
+		}
+	}
+}
+void seatallotment(student *s)
+{
+	
+	printf("\nCurrrent Semester-%d",s->Semester);
+
+	if(s->Semester==1)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem1;i++)
+		{
+			if(strcmp(s->Courses.sem1[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem1[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem1[i].Course_Code,s->Courses.sem1[i].Examination_Date,s->Courses.sem1[i].Examination_Block,s->Courses.sem1[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else if(s->Semester==2)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem2;i++)
+		{
+			if(strcmp(s->Courses.sem2[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem2[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem2[i].Course_Code,s->Courses.sem2[i].Examination_Date,s->Courses.sem2[i].Examination_Block,s->Courses.sem2[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else if(s->Semester==3)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem3;i++)
+		{
+			if(strcmp(s->Courses.sem3[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem3[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem3[i].Course_Code,s->Courses.sem3[i].Examination_Date,s->Courses.sem3[i].Examination_Block,s->Courses.sem3[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else if(s->Semester==4)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem4;i++)
+		{
+			if(strcmp(s->Courses.sem4[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem4[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem4[i].Course_Code,s->Courses.sem4[i].Examination_Date,s->Courses.sem4[i].Examination_Block,s->Courses.sem4[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else if(s->Semester==5)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem5;i++)
+		{
+			if(strcmp(s->Courses.sem5[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem5[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem5[i].Course_Code,s->Courses.sem5[i].Examination_Date,s->Courses.sem5[i].Examination_Block,s->Courses.sem5[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else if(s->Semester==6)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem6;i++)
+		{
+			if(strcmp(s->Courses.sem6[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem6[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem6[i].Course_Code,s->Courses.sem6[i].Examination_Date,s->Courses.sem6[i].Examination_Block,s->Courses.sem6[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else if(s->Semester==7)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem7;i++)
+		{
+			if(strcmp(s->Courses.sem7[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem7[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem7[i].Course_Code,s->Courses.sem7[i].Examination_Date,s->Courses.sem7[i].Examination_Block,s->Courses.sem7[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else if(s->Semester==8)
+	{
+		for(int i=0;i<s->Courses.no_courses_sem8;i++)
+		{
+			if(strcmp(s->Courses.sem8[i].Examination_Date,"Not Eligible")==0)
+			{
+				printf("\nYou Dont Meet The Minimum Attendance Required For The the course: %s ",s->Courses.sem8[i].Course_Name);
+			}
+			else
+			{
+				printf("\nCourse Code :%s\t Exam Date :%s\n Exam Block:%s\tExam Section:%s",s->Courses.sem8[i].Course_Code,s->Courses.sem8[i].Examination_Date,s->Courses.sem8[i].Examination_Block,s->Courses.sem8[i].Examination_Section);
+			}
+		}	
+
+	}	
+	else
+	{
+		printf("No exam Scheduled\n");
+
 	}
 }
