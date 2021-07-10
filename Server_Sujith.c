@@ -190,6 +190,10 @@ void AdminMainMenu()
 						DeleteTeacherAcc();
 						break;
 					}
+					default:
+					{
+						printf("\nInvalid choice.\n");
+					}
 				}
 				break;
 			}
@@ -3002,9 +3006,18 @@ void InitBT(student *s)
 void SetExamDetails()
 {
 	printf("Enter the semester of students whose examination needs to get conducted : ");
-	int sem;
+	int sem,no_blocks,no_floors,no_rooms,no_students;
 	fflush(stdin);
 	scanf("%d",&sem);
+	printf("Enter the number of blocks in the college where the examination is planned to get conducted : ");
+	scanf("%d",&no_blocks);
+	printf("Enter the average number of floors present in a block : ");
+	scanf("%d",&no_floors);
+	printf("Enter the average number of classrooms present in a floor in a block : ");
+	scanf("%d",&no_rooms);
+	printf("Enter how many students can be accommodated in a classroom : ");
+	scanf("%d",&no_students);
+	int total_students=no_blocks*no_floors*no_rooms*no_students;
 	FILE *fp1,*fp2;
 	student s1;
 	fp1=fopen("Student_Record.txt","r");
@@ -3015,19 +3028,528 @@ void SetExamDetails()
 	}
 	else
 	{
-		while(fread(&s1,sizeof(student),fp,1))
+		int n=0;
+		while(fread(&s1,sizeof(student),1,fp1))
 		{
-			if(sem==s1.Semester&&sem==1)
+			if(sem==s1.Semester)
 			{
-				int d=1;
-				for(int i=0;i<s1.Courses.no_courses_sem1;i++)
+				int m=0;
+				if(s1.Semester==1)
 				{
-					if(s1.Courses.sem1[i].Examination_Section!="-")
+					for(int i=0;i<s1.Courses.no_courses_sem1;i++)
 					{
-						printf("Yet to do");
+						if(s1.Courses.sem1[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
 					}
 				}
+				else if(s1.Semester==2)
+				{
+					for(int i=0;i<s1.Courses.no_courses_sem2;i++)
+					{
+						if(s1.Courses.sem2[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
+					}
+				}
+				else if(s1.Semester==3)
+				{
+					for(int i=0;i<s1.Courses.no_courses_sem3;i++)
+					{
+						if(s1.Courses.sem3[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
+					}
+				}
+				else if(s1.Semester==4)
+				{
+					for(int i=0;i<s1.Courses.no_courses_sem4;i++)
+					{
+						if(s1.Courses.sem4[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
+					}
+				}
+				else if(s1.Semester==5)
+				{
+					for(int i=0;i<s1.Courses.no_courses_sem5;i++)
+					{
+						if(s1.Courses.sem5[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
+					}
+				}
+				else if(s1.Semester==6)
+				{
+					for(int i=0;i<s1.Courses.no_courses_sem6;i++)
+					{
+						if(s1.Courses.sem6[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
+					}
+				}
+				else if(s1.Semester==7)
+				{
+					for(int i=0;i<s1.Courses.no_courses_sem7;i++)
+					{
+						if(s1.Courses.sem7[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
+					}
+				}
+				else if(s1.Semester==8)
+				{
+					for(int i=0;i<s1.Courses.no_courses_sem8;i++)
+					{
+						if(s1.Courses.sem8[i].Eligibility)
+						{
+							m=1;
+							break;
+						}
+					}
+				}
+				if(m)
+				{
+					n++;
+				}
 			}
+		}
+		if(n>total_students)
+		{
+			printf("\nSeat allotment is not possible as the number of students taking up the examination might exceed the number of seats allocated.\n");
+		}
+		else
+		{
+			rewind(fp1);
+			char block='A';
+			int classroom=1001;
+			int number_students_room=0;
+			int number_students_floor=0;
+			int number_students_block=0;
+			int total_number_students_room=no_students;
+			int total_number_students_floor=no_students*no_rooms;
+			int total_number_students_block=no_students*no_rooms*no_floors;
+			while(fread(&s1,sizeof(student),1,fp1))
+			{
+				if(sem==s1.Semester&&sem==1)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem1;i++)
+					{
+						if(s1.Courses.sem1[i].Examination_Section!="-"&&s1.Courses.sem1[i].Eligibility)
+						{
+							found=1;
+							char temp[2];
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem1[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem1[i].Examination_Block=block;
+							strcpy(s1.Courses.sem1[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem1[i].Examination_Section!="-"&&s1.Courses.sem1[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem1[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				else if(sem==s1.Semester&&sem==2)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem2;i++)
+					{
+						if(s1.Courses.sem2[i].Examination_Section!="-"&&s1.Courses.sem2[i].Eligibility)
+						{
+							found=1;
+							char temp[2];
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem2[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem2[i].Examination_Block=block;
+							strcpy(s1.Courses.sem2[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem2[i].Examination_Section!="-"&&s1.Courses.sem2[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem2[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				else if(sem==s1.Semester&&sem==3)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem3;i++)
+					{
+						if(s1.Courses.sem3[i].Examination_Section!="-"&&s1.Courses.sem3[i].Eligibility)
+						{
+							found=1;
+							char temp[2];
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem3[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem3[i].Examination_Block=block;
+							strcpy(s1.Courses.sem3[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem3[i].Examination_Section!="-"&&s1.Courses.sem3[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem3[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				else if(sem==s1.Semester&&sem==4)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem4;i++)
+					{
+						if(s1.Courses.sem4[i].Examination_Section!="-"&&s1.Courses.sem4[i].Eligibility)
+						{
+							found=1;
+							char temp[2];
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem4[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem4[i].Examination_Block=block;
+							strcpy(s1.Courses.sem4[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem4[i].Examination_Section!="-"&&s1.Courses.sem4[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem4[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				else if(sem==s1.Semester&&sem==5)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem5;i++)
+					{
+						if(s1.Courses.sem5[i].Examination_Section!="-"&&s1.Courses.sem5[i].Eligibility)
+						{
+							found=1;
+							char temp[2];
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem5[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem5[i].Examination_Block=block;
+							strcpy(s1.Courses.sem5[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem5[i].Examination_Section!="-"&&s1.Courses.sem5[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem5[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				else if(sem==s1.Semester&&sem==6)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem6;i++)
+					{
+						if(s1.Courses.sem6[i].Examination_Section!="-"&&s1.Courses.sem6[i].Eligibility)
+						{
+							found=1;
+							char temp[2];
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem6[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem6[i].Examination_Block=block;
+							strcpy(s1.Courses.sem6[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem6[i].Examination_Section!="-"&&s1.Courses.sem6[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem6[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				else if(sem==s1.Semester&&sem==7)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem7;i++)
+					{
+						if(s1.Courses.sem7[i].Examination_Section!="-"&&s1.Courses.sem7[i].Eligibility)
+						{
+							found=1;
+							char temp[2];
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem7[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem7[i].Examination_Block=block;
+							strcpy(s1.Courses.sem7[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem7[i].Examination_Section!="-"&&s1.Courses.sem7[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem7[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				else if(sem==s1.Semester&&sem==8)
+				{
+					int d=1;
+					int found=0;
+					for(int i=0;i<s1.Courses.no_courses_sem8;i++)
+					{
+						if(s1.Courses.sem8[i].Examination_Section!="-"&&s1.Courses.sem8[i].Eligibility)
+						{
+							char temp[2];
+							found=1;
+							itoa(d,temp,10);
+							char temp1[10];
+							itoa(classroom,temp1,10);
+							strcpy(s1.Courses.sem8[i].Examination_Date,strcat("Day - ",temp));
+							s1.Courses.sem8[i].Examination_Block=block;
+							strcpy(s1.Courses.sem8[i].Examination_Section,temp1);
+							d++;
+						}
+						else if(s1.Courses.sem8[i].Examination_Section!="-"&&s1.Courses.sem8[i].Eligibility==0)
+						{
+							strcpy(s1.Courses.sem8[i].Examination_Date,"Not Eligible");
+						}
+					}
+					if(found)
+					{
+						number_students_room++;
+						number_students_block++;
+						number_students_floor++;
+						if(number_students_block==total_number_students_block)
+						{
+							number_students_room=0;
+							number_students_floor=0;
+							number_students_block=0;
+							block+=1;
+							classroom=1001;
+						}
+						else if(number_students_floor==total_number_students_floor)
+						{
+							number_students_floor=0;
+							number_students_room=0;
+							classroom=classroom+1000-no_rooms+1;
+						}
+						else if(number_students_room==total_number_students_room)
+						{
+							number_students_room=0;
+							classroom+=1;
+						}
+					}
+				}
+				fwrite(&s1,sizeof(student),1,fp2);
+			}
+			fclose(fp1);
+			fclose(fp2);
+			fp1=fopen("Student_Record.txt","w");
+			fp2=fopen("Temp_Student_Record.txt","r");
+			while(fread(&s1,sizeof(student),1,fp2))
+			{
+				fwrite(&s1,sizeof(student),1,fp1);
+			}
+			printf("\nExamination Seat Allotment is completed successfully!");
+			fclose(fp1);
+			fclose(fp2);
 		}
 	}
 }
