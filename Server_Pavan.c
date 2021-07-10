@@ -669,7 +669,7 @@ void give_studentattendance(char section)
 	fp1=fopen("Temp_Student_Record.txt","w");
 	while(fread(&s1,sizeof(s1),1,fp))
 	{
-		int found1=0
+		int found1=0;
 		if(section==s1.Section&&sem==s1.Semester&&strcmp(branch,s1.Branch)==0)
 		{ 	
 			found1=1;
@@ -972,7 +972,7 @@ void give_studentattendance(char section)
 				{
 					if(strcmp(coursecode,s1.Courses.sem7[j].Course_Code)==0)	
 					{
-						found=1
+						found=1;
 						printf("Enter 1 to mark present for %s\n",s1.SRN);
 						printf("Enter 2 to mark absent for %s\n",s1.SRN);
 						fflush(stdin);
@@ -1064,23 +1064,24 @@ void give_studentattendance(char section)
 				{
 					printf("Enter a valid course code\n");
 				}		
+			}
+			if(found1==0)
+			{
+				printf("Enter a valid SRN and a valid section name\n");
+			}
+			fwrite(&s1,sizeof(student),1,fp1);
 		}
-		if(found1==0)
+		fclose(fp);
+		fclose(fp1);
+		fp=fopen("Student_Record","w");
+		fp1=fopen("Temp_Student_Record","r");
+		while(fread(&s1,sizeof(student),1,fp1))
 		{
-			printf("Enter a valid SRN and a valid section name\n");
+			fwrite(&s1,sizeof(student),1,fp);
 		}
-		fwrite(&s1,sizeof(student),1,fp1);
+		fclose(fp);
+		fclose(fp1);
 	}
-	fclose(fp);
-	fclose(fp1);
-	fp=fopen("Student_Record","w");
-	fp1=fopen("Temp_Student_Record","r");
-	while(fread(&s1,sizeof(student),1,fp1))
-	{
-		fwrite(&s1,sizeof(student),1,fp);
-	}
-	fclose(fp);
-	fclose(fp1);
 }
 void GiveGrades()
 {
