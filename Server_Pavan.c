@@ -1068,7 +1068,7 @@ void give_studentgrades(char section)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem4;j++)
 						{
-							if(strcmp(coursecode,s[i].Courses.sem4[j].Course_Code)==0)	
+							if(strcmp(coursecode,s1[i].Courses.sem4[j].Course_Code)==0)	
 							{
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
