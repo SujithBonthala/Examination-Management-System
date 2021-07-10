@@ -107,7 +107,11 @@ void InitBranch(student*);
 
 void CheckDetails(student *);
 
+void checkresults(student *s);
+
 void checkattendance(student *s);
+
+void seatallotment(student *s);
 
 void TeacherMainMenu(char prn[]);
 
@@ -120,3 +124,5 @@ void GiveAttendance();
 void GiveGrades();
 
 void give_studentgrades(char section);
+
+void TeacherLogin();
