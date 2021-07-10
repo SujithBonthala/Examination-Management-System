@@ -589,12 +589,12 @@ void give_studentattendance(char section)
 		{	
 			while(fread(&s1,sizeof(s1),1,fp))
 			{
-				if (strcmp(information,s1[i].SRN) == 0 && strcmp(section,s1[i].Section)==0)
+				if (strcmp(information,s1[i].SRN) == 0 && section==s1[i].Section)
 				{ 	
 					printf("Enter the course code to which attendance has to be given(ex.CS205)\n");
 					fflush(stdin);
 					scanf("%s",coursecode);
-					if(s1[i].semester==1)
+					if(s1[i].Semester==1)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem1;j++)
 						{
@@ -642,7 +642,7 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==2)
+					else if(s1[i].Semester==2)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem2;j++)
 						{
@@ -690,7 +690,7 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==3)
+					else if(s1[i].Semester==3)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem3;j++)
 						{
@@ -730,7 +730,7 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==4)
+					else if(s1[i].Semester==4)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem4;j++)
 						{
@@ -778,7 +778,7 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==5)
+					else if(s1[i].Semester==5)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem5;j++)
 						{
@@ -826,7 +826,7 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==6)
+					else if(s1[i].Semester==6)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem6;j++)
 						{
@@ -875,7 +875,7 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==7)
+					else if(s1[i].Semester==7)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem7;j++)
 						{
@@ -923,7 +923,7 @@ void give_studentattendance(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==8)
+					else if(s1[i].Semester==8)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem8;j++)
 						{
@@ -1005,12 +1005,12 @@ void give_studentgrades(char section)
 		{	
 			while(fread(&s1,sizeof(s1),1,fp))
 			{
-				if (strcmp(information,s1[i].SRN) == 0 && strcmp(section,s1[i].Section)==0)
+				if (strcmp(information,s1[i].SRN) == 0 && section==s1[i].Section)
 				{ 	
 					printf("Enter the course code to which grade has to be given(ex.CS205)\n");
 					fflush(stdin);
 					scanf("%s",coursecode);
-					if(s1[i].semester==1)
+					if(s1[i].Semester==1)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem1;j++)
 						{
@@ -1019,7 +1019,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for SRN %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                  strcpy(s1[i].Courses.sem1[j].Grade,grade);
+							        s1[i].Courses.sem1[j].Grade=grade;
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 		
 							}
 							else
@@ -1037,7 +1037,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                  strcpy(s1[i].Courses.sem2[j].Grade,grade);	
+							       	s1[i].Courses.sem2[j].Grade=grade;	
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 	
 							}
 							else
@@ -1046,7 +1046,7 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==3)
+					else if(s1[i].Semester==3)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem3;j++)
 						{
@@ -1055,7 +1055,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                 	strcpy(s1[i].Courses.sem3[j].Grade,grade);
+							        s1[i].Courses.sem3[j].Grade=grade;
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 		
 							}
 							else
@@ -1064,7 +1064,7 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==4)
+					else if(s1[i].Semester==4)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem4;j++)
 						{
@@ -1073,7 +1073,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                 	strcpy(s1[i].Courses.sem4[j].Grade,grade);
+							        s1[i].Courses.sem4[j].Grade=grade;
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 			
 							}
 							else
@@ -1091,7 +1091,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                 	strcpy(s1[i].Courses.sem5[j].Grade,grade);
+							       	s1[i].Courses.sem5[j].Grade=grade;
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 			
 							}
 							else
@@ -1100,7 +1100,7 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					else if(s1[i].semester==6)
+					else if(s1[i].Semester==6)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem6;j++)
 						{
@@ -1109,7 +1109,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                 	strcpy(s1[i].Courses.sem6[j].Grade,grade);
+							        s1[i].Courses.sem6[j].Grade=grade;
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 			
 							}
 							else
@@ -1118,7 +1118,7 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					if(s1[i].semester==7)
+					if(s1[i].Semester==7)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem7;j++)
 						{
@@ -1127,7 +1127,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                 	strcpy(s1[i].Courses.sem7[j].Grade,grade);	
+							        s1[i].Courses.sem7[j].Grade=grade;	
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 		
 							}
 							else
@@ -1136,7 +1136,7 @@ void give_studentgrades(char section)
 							}
 						}		
 					}
-					if(s1[i].semester==8)
+					if(s1[i].Semester==8)
 					{
 						for(int j=0;j<s1[i].Courses.no_courses_sem8;j++)
 						{
@@ -1145,7 +1145,7 @@ void give_studentgrades(char section)
 								printf("Enter grade for %s\n",s1[i].SRN);
 								fflush(stdin);
 								scanf("%c",&grade);
-							                	strcpy(s1[i].Courses.sem8[j].Grade,grade);
+							        s1[i].Courses.sem8[j].Grade=grade;
 								printf("The grade is allocated successfully to SRN %s\n",s1[i].SRN); 			
 							}
 							else
