@@ -651,431 +651,442 @@ void GiveAttendance()
 	fflush(stdin);
 	scanf("%c",&section);
 	give_studentattendance(section);		
-}	
-void give_studentattendance(char section) 
+}
+void give_studentattendance(char section)
 {
 	char coursecode[10],branch[5];
-	student *s1;
+	student s1;
 	int sem;
 	printf("Enter the semester of the students : ");
 	fflush(stdin);
 	scanf("%d",&sem);
 	printf("Enter the branch of the students : ");
 	fflush(stdin);
-	scanf("%s",&branch);
-	printf("Enter the course code to which attendance has to be given(ex.CS205) : ");
+	scanf("%s",branch);
+	printf("Enter the course code to which grade has to be given(ex.CS205) : ");
 	fflush(stdin);
 	scanf("%s",coursecode);
 	FILE *fp,*fp1;
-	fp=fopen("Student_Record.txt","r");	
+	fp=fopen("Student_Record.txt","r");
 	fp1=fopen("Temp_Student_Record.txt","w");
-	fseek(fp,0,SEEK_END);
-	int n=ftell(fp)/sizeof(student);
-	rewind(fp);
-	s1=(student*)calloc(n,sizeof(student));
 	int found1=0;
-	for(int i=0;i<n;i++)
+	int found=0;
+	while(fread(&s1,sizeof(student),1,fp))
 	{
-		fread(&s1[i],sizeof(student),1,fp);
-		if(section==s1[i].Section&&sem==s1[i].Semester&&strcmp(branch,s1[i].Branch)==0)
-		{ 	
+		if(section==s1.Section&&sem==s1.Semester&&strcmp(branch,s1.Branch)==0)
+		{
 			found1=1;
-			int found=0;
-			if(s1[i].Semester==1)
+			if(s1.Semester==1)
 			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem1;j++)
+				for(int j=0;j<s1.Courses.no_courses_sem1;j++)
 				{
-					if(strcmp(coursecode,s1[i].Courses.sem1[j].Course_Code)==0)	
+					if(strcmp(coursecode,s1.Courses.sem1[j].Course_Code)==0)	
 					{
 						found=1;
 						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
 						printf("Enter your choice : ");
 						fflush(stdin);
 						scanf("%d",&choice);
 						if(choice==1)
 						{
-					        s1[i].Courses.sem1[j].No_Days_Present+=1;
-							s1[i].Courses.sem1[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem1[j].No_Days_Present/s1[i].Courses.sem1[j].No_Days_Total)>=0.85)
+					        s1.Courses.sem1[j].No_Days_Present+=1;
+							s1.Courses.sem1[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem1[j].No_Days_Present/s1.Courses.sem1[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem1[j].Eligibility=1;
+								s1.Courses.sem1[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem1[j].Eligibility=0;
+								s1.Courses.sem1[j].Eligibility=0;
 							}	
 						}	
 						else if(choice==2)
 						{
-							s1[i].Courses.sem1[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem1[j].No_Days_Present/s1[i].Courses.sem1[j].No_Days_Total)>=0.85)
+							s1.Courses.sem1[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem1[j].No_Days_Present/s1.Courses.sem1[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem1[j].Eligibility=1;
+								s1.Courses.sem1[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem1[j].Eligibility=0;
+								s1.Courses.sem1[j].Eligibility=0;
 							}	
 						}
 						else
 						{
-							printf("Enter 1 or 2... invalid input\n");
-						}
+							printf("Invalid input\n");
+						}		
 					}
-				}		
+				}	
 			}
-			else if(s1[i].Semester==2)
+			else if(s1.Semester==2)
 			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem2;j++)
+				for(int j=0;j<s1.Courses.no_courses_sem2;j++)
 				{
-					if(strcmp(coursecode,s1[i].Courses.sem2[j].Course_Code)==0)	
+					if(strcmp(coursecode,s1.Courses.sem2[j].Course_Code)==0)	
 					{
 						found=1;
 						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
 						printf("Enter your choice : ");
 						fflush(stdin);
 						scanf("%d",&choice);
 						if(choice==1)
 						{
-							s1[i].Courses.sem2[j].No_Days_Present+=1;
-							s1[i].Courses.sem2[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem2[j].No_Days_Present/s1[i].Courses.sem2[j].No_Days_Total)>=0.85)
+					        s1.Courses.sem2[j].No_Days_Present+=1;
+							s1.Courses.sem2[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem2[j].No_Days_Present/s1.Courses.sem2[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem2[j].Eligibility=1;
+								s1.Courses.sem2[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem2[j].Eligibility=0;
+								s1.Courses.sem2[j].Eligibility=0;
 							}	
-						}
+						}	
 						else if(choice==2)
 						{
-							s1[i].Courses.sem2[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN);  
-							if((s1[i].Courses.sem2[j].No_Days_Present/s1[i].Courses.sem2[j].No_Days_Total)>=0.85)
+							s1.Courses.sem2[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem2[j].No_Days_Present/s1.Courses.sem2[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem2[j].Eligibility=1;
+								s1.Courses.sem2[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem2[j].Eligibility=0;
+								s1.Courses.sem2[j].Eligibility=0;
 							}	
 						}
 						else
 						{
-							printf("Enter 1 or 2... invalid input\n");
-						}
+							printf("Invalid input\n");
+						} 	
 					}
-				}		
+				}	
 			}
-			else if(s1[i].Semester==3)
+			else if(s1.Semester==3)
 			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem3;j++)
+				for(int j=0;j<s1.Courses.no_courses_sem3;j++)
 				{
-					if(strcmp(coursecode,s1[i].Courses.sem3[j].Course_Code)==0)	
+					if(strcmp(coursecode,s1.Courses.sem3[j].Course_Code)==0)	
 					{
 						found=1;
 						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
 						printf("Enter your choice : ");
 						fflush(stdin);
 						scanf("%d",&choice);
 						if(choice==1)
 						{
-					        s1[i].Courses.sem3[j].No_Days_Present+=1;
-							s1[i].Courses.sem3[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem3[j].No_Days_Present/s1[i].Courses.sem3[j].No_Days_Total)>=0.85)
+					        s1.Courses.sem3[j].No_Days_Present+=1;
+							s1.Courses.sem3[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem3[j].No_Days_Present/s1.Courses.sem3[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem3[j].Eligibility=1;
+								s1.Courses.sem3[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem3[j].Eligibility=0;
+								s1.Courses.sem3[j].Eligibility=0;
 							}	
-						}
+						}	
 						else if(choice==2)
 						{
-							s1[i].Courses.sem3[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
+							s1.Courses.sem3[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem3[j].No_Days_Present/s1.Courses.sem3[j].No_Days_Total)>=0.85)
+							{
+								s1.Courses.sem3[j].Eligibility=1;
+							}
+							else
+							{
+								s1.Courses.sem3[j].Eligibility=0;
+							}	
 						}
 						else
 						{
-							printf("Enter 1 or 2... invalid input\n");
-						}
+							printf("Invalid input\n");
+						} 		
 					}
 				}		
 			}
-			else if(s1[i].Semester==4)
+			else if(s1.Semester==4)
 			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem4;j++)
+				for(int j=0;j<s1.Courses.no_courses_sem4;j++)
 				{
-					if(strcmp(coursecode,s1[i].Courses.sem4[j].Course_Code)==0)	
+					if(strcmp(coursecode,s1.Courses.sem4[j].Course_Code)==0)	
 					{
 						found=1;
 						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
 						printf("Enter your choice : ");
 						fflush(stdin);
 						scanf("%d",&choice);
 						if(choice==1)
 						{
-					        s1[i].Courses.sem4[j].No_Days_Present+=1;
-							s1[i].Courses.sem4[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem4[j].No_Days_Present/s1[i].Courses.sem4[j].No_Days_Total)>=0.85)
+					        s1.Courses.sem4[j].No_Days_Present+=1;
+							s1.Courses.sem4[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem4[j].No_Days_Present/s1.Courses.sem4[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem4[j].Eligibility=1;
+								s1.Courses.sem4[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem4[j].Eligibility=0;
+								s1.Courses.sem4[j].Eligibility=0;
 							}	
-						}
+						}	
 						else if(choice==2)
 						{
-							s1[i].Courses.sem4[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem4[j].No_Days_Present/s1[i].Courses.sem4[j].No_Days_Total)>=0.85)
+							s1.Courses.sem4[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem4[j].No_Days_Present/s1.Courses.sem4[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem4[j].Eligibility=1;
+								s1.Courses.sem4[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem4[j].Eligibility=0;
+								s1.Courses.sem4[j].Eligibility=0;
 							}	
 						}
 						else
 						{
-							printf("Enter 1 or 2... invalid input\n");
-						}
+							printf("Invalid input\n");
+						}			
 					}
 				}		
 			}
-			else if(s1[i].Semester==5)
+			else if(s1.Semester==5)
 			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem5;j++)
+				for(int j=0;j<s1.Courses.no_courses_sem5;j++)
 				{
-					if(strcmp(coursecode,s1[i].Courses.sem5[j].Course_Code)==0)	
+					if(strcmp(coursecode,s1.Courses.sem5[j].Course_Code)==0)	
 					{
 						found=1;
 						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
 						printf("Enter your choice : ");
 						fflush(stdin);
 						scanf("%d",&choice);
 						if(choice==1)
 						{
-					        s1[i].Courses.sem5[j].No_Days_Present+=1;
-							s1[i].Courses.sem5[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem5[j].No_Days_Present/s1[i].Courses.sem5[j].No_Days_Total)>=0.85)
+					        s1.Courses.sem5[j].No_Days_Present+=1;
+							s1.Courses.sem5[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem5[j].No_Days_Present/s1.Courses.sem5[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem5[j].Eligibility=1;
+								s1.Courses.sem5[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem5[j].Eligibility=0;
+								s1.Courses.sem5[j].Eligibility=0;
 							}	
-						}
+						}	
 						else if(choice==2)
 						{
-							s1[i].Courses.sem5[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem5[j].No_Days_Present/s1[i].Courses.sem5[j].No_Days_Total)>=0.85)
+							s1.Courses.sem5[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem5[j].No_Days_Present/s1.Courses.sem5[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem5[j].Eligibility=1;
+								s1.Courses.sem5[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem5[j].Eligibility=0;
+								s1.Courses.sem5[j].Eligibility=0;
 							}	
 						}
 						else
 						{
-							printf("Enter 1 or 2... invalid input\n");
-						}
+							printf("Invalid input\n");
+						} 			
 					}
 				}		
 			}
-			else if(s1[i].Semester==6)
+			else if(s1.Semester==6)
 			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem6;j++)
+				for(int j=0;j<s1.Courses.no_courses_sem6;j++)
 				{
-					if(strcmp(coursecode,s1[i].Courses.sem6[j].Course_Code)==0)	
+					if(strcmp(coursecode,s1.Courses.sem6[j].Course_Code)==0)	
 					{
 						found=1;
 						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
 						printf("Enter your choice : ");
 						fflush(stdin);
 						scanf("%d",&choice);
 						if(choice==1)
 						{
-			               	s1[i].Courses.sem6[j].No_Days_Present+=1;
-							s1[i].Courses.sem6[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem6[j].No_Days_Present/s1[i].Courses.sem6[j].No_Days_Total)>=0.85)
+					        s1.Courses.sem6[j].No_Days_Present+=1;
+							s1.Courses.sem6[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem6[j].No_Days_Present/s1.Courses.sem6[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem6[j].Eligibility=1;
+								s1.Courses.sem6[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem6[j].Eligibility=0;
+								s1.Courses.sem6[j].Eligibility=0;
 							}	
-						}
+						}	
 						else if(choice==2)
 						{
-							s1[i].Courses.sem6[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem6[j].No_Days_Present/s1[i].Courses.sem6[j].No_Days_Total)>=0.85)
+							s1.Courses.sem6[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem6[j].No_Days_Present/s1.Courses.sem6[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem6[j].Eligibility=1;
+								s1.Courses.sem6[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem6[j].Eligibility=0;
+								s1.Courses.sem6[j].Eligibility=0;
 							}	
 						}
 						else
 						{
-							printf("Enter 1 or 2... invalid input\n");
-						}
+							printf("Invalid input\n");
+						} 			
 					}
 				}		
 			}
-			else if(s1[i].Semester==7)
+			if(s1.Semester==7)
 			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem7;j++)
+				for(int j=0;j<s1.Courses.no_courses_sem7;j++)
 				{
-					if(strcmp(coursecode,s1[i].Courses.sem7[j].Course_Code)==0)	
+					if(strcmp(coursecode,s1.Courses.sem7[j].Course_Code)==0)	
 					{
 						found=1;
 						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
 						printf("Enter your choice : ");
 						fflush(stdin);
 						scanf("%d",&choice);
 						if(choice==1)
 						{
-			               	s1[i].Courses.sem7[j].No_Days_Present+=1;
-							s1[i].Courses.sem7[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem7[j].No_Days_Present/s1[i].Courses.sem7[j].No_Days_Total)>=0.85)
+					        s1.Courses.sem7[j].No_Days_Present+=1;
+							s1.Courses.sem7[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem7[j].No_Days_Present/s1.Courses.sem7[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem7[j].Eligibility=1;
+								s1.Courses.sem7[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem7[j].Eligibility=0;
+								s1.Courses.sem7[j].Eligibility=0;
 							}	
-						}
+						}	
 						else if(choice==2)
 						{
-							s1[i].Courses.sem7[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem7[j].No_Days_Present/s1[i].Courses.sem7[j].No_Days_Total)>=0.85)
+							s1.Courses.sem7[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem7[j].No_Days_Present/s1.Courses.sem7[j].No_Days_Total)>=0.85)
 							{
-								s1[i].Courses.sem7[j].Eligibility=1;
+								s1.Courses.sem7[j].Eligibility=1;
 							}
 							else
 							{
-								s1[i].Courses.sem7[j].Eligibility=0;
+								s1.Courses.sem7[j].Eligibility=0;
 							}	
 						}
 						else
 						{
-							printf("Enter 1 or 2... invalid input\n");
+							printf("Invalid input\n");
+						} 		
+					}
+				}		
+			}
+			if(s1.Semester==8)
+			{
+				for(int j=0;j<s1.Courses.no_courses_sem8;j++)
+				{
+					if(strcmp(coursecode,s1.Courses.sem8[j].Course_Code)==0)	
+					{
+						found=1;
+						int choice;
+						printf("\nName - %s\tSRN - %s\n",s1.Name,s1.SRN);
+						printf("Enter 1 to mark present\n");
+						printf("Enter 2 to mark absent\n");
+						printf("Enter your choice : ");
+						fflush(stdin);
+						scanf("%d",&choice);
+						if(choice==1)
+						{
+					        s1.Courses.sem8[j].No_Days_Present+=1;
+							s1.Courses.sem8[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem8[j].No_Days_Present/s1.Courses.sem8[j].No_Days_Total)>=0.85)
+							{
+								s1.Courses.sem8[j].Eligibility=1;
+							}
+							else
+							{
+								s1.Courses.sem8[j].Eligibility=0;
+							}	
+						}	
+						else if(choice==2)
+						{
+							s1.Courses.sem8[j].No_Days_Total+=1;
+							printf("The attendance is given successfully to SRN %s\n",s1.SRN); 
+							if((1.0*s1.Courses.sem8[j].No_Days_Present/s1.Courses.sem8[j].No_Days_Total)>=0.85)
+							{
+								s1.Courses.sem8[j].Eligibility=1;
+							}
+							else
+							{
+								s1.Courses.sem8[j].Eligibility=0;
+							}	
 						}
+						else
+						{
+							printf("Invalid input\n");
+						}			
 					}
 				}
 			}
-			else if(s1[i].Semester==8)
-			{
-				for(int j=0;j<s1[i].Courses.no_courses_sem8;j++)
-				{
-					if(strcmp(coursecode,s1[i].Courses.sem8[j].Course_Code)==0)	
-					{
-						found=1;
-						int choice;
-						printf("\nEnter 1 to mark present for %s\n",s1[i].SRN);
-						printf("Enter 2 to mark absent for %s\n",s1[i].SRN);
-						printf("Enter your choice : ");
-						fflush(stdin);
-						scanf("%d",&choice);
-						if(choice==1)
-						{
-					        s1[i].Courses.sem8[j].No_Days_Present+=1;
-							s1[i].Courses.sem8[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN); 
-							if((s1[i].Courses.sem8[j].No_Days_Present/s1[i].Courses.sem8[j].No_Days_Total)>=0.85)
-							{
-								s1[i].Courses.sem8[j].Eligibility=1;
-							}
-							else
-							{
-								s1[i].Courses.sem8[j].Eligibility=0;
-							}	
-						}
-						else if(choice==2)
-						{
-							s1[i].Courses.sem8[j].No_Days_Total+=1;
-							printf("The attendance is given successfully to SRN %s\n",s1[i].SRN);
-							if((s1[i].Courses.sem8[j].No_Days_Present/s1[i].Courses.sem8[j].No_Days_Total)>=0.85)
-							{
-								s1[i].Courses.sem8[j].Eligibility=1;
-							}
-							else
-							{
-								s1[i].Courses.sem8[j].Eligibility=0;
-							}	
-						}
-						else
-						{
-							printf("Enter 1 or 2... invalid input\n");
-						}
-					}
-				}		
-			}
-			if(found==0)
-			{
-				printf("\nCourse code is not matching with any of the course codes of student having SRN - %s\n",s1[i].SRN);
-			}
 		}
-		if(found1==0)
-		{
-			printf("\nInvalid section or branch or semester!\n");
-		}
-		fwrite(&s1[i],sizeof(student),1,fp1);
+		fwrite(&s1,sizeof(student),1,fp1);
 	}
-	fclose(fp);
-	fclose(fp1);
-	fp=fopen("Student_Record","w");
-	fp1=fopen("Temp_Student_Record","r");
-	student s;
-	while(fread(&s,sizeof(student),1,fp1))
+	if(found==0&&found1==1)
 	{
-		fwrite(&s,sizeof(student),1,fp);
+		printf("\nCourse code is not matching with any of the course codes of students in branch %s and semester %d\n",branch,sem);
+	}
+	else if(found1==0)
+	{
+		printf("\nInvalid section or branch or semester!\n");
 	}
 	fclose(fp);
 	fclose(fp1);
-}
+	fp=fopen("Student_Record.txt","w");
+	fp1=fopen("Temp_Student_Record.txt","r");
+	while(fread(&s1,sizeof(student),1,fp1))
+	{
+		fwrite(&s1,sizeof(student),1,fp);
+	}
+	fclose(fp);
+	fclose(fp1);
+}	
+
 void GiveGrades()
 {
 	char section;
-	printf("Enter the section to which attendance has to be given : ");
+	printf("Enter the section to which grades have to be given : ");
 	fflush(stdin);
 	scanf("%c",&section);
 	give_studentgrades(section);
@@ -1090,20 +1101,20 @@ void give_studentgrades(char section)
 	scanf("%d",&sem);
 	printf("Enter the branch of the students : ");
 	fflush(stdin);
-	scanf("%s",&branch);
+	scanf("%s",branch);
 	printf("Enter the course code to which grade has to be given(ex.CS205) : ");
 	fflush(stdin);
 	scanf("%s",coursecode);
 	FILE *fp,*fp1;
 	fp=fopen("Student_Record.txt","r");
 	fp1=fopen("Temp_Student_Record.txt","w");
+	int found1=0;
+	int found=0;
 	while(fread(&s1,sizeof(student),1,fp))
 	{
-		int found1=0;
 		if(section==s1.Section&&sem==s1.Semester&&strcmp(branch,s1.Branch)==0)
 		{
 			found1=1;
-			int found=0;
 			if(s1.Semester==1)
 			{
 				for(int j=0;j<s1.Courses.no_courses_sem1;j++)
@@ -1230,18 +1241,18 @@ void give_studentgrades(char section)
 					    s1.Courses.sem8[j].Grade=grade;
 						printf("The grade is allocated successfully to SRN %s\n",s1.SRN); 			
 					}
-				}		
+				}
 			}
-			if(found==0)
-			{
-				printf("\nCourse code is not matching with any of the course codes of student having SRN - %s\n",s1.SRN);
-			}
-		}
-		if(found1==0)
-		{
-			printf("\nInvalid section or branch or semester!\n");
 		}
 		fwrite(&s1,sizeof(student),1,fp1);
+	}
+	if(found==0&&found1==1)
+	{
+		printf("\nCourse code is not matching with any of the course codes of students in branch %s and semester %d\n",branch,sem);
+	}
+	else if(found1==0)
+	{
+		printf("\nInvalid section or branch or semester!\n");
 	}
 	fclose(fp);
 	fclose(fp1);
