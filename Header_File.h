@@ -97,21 +97,21 @@ void InitCV(student*);
 
 void InitBT(student*);
 
-void ChangeStudentPassword(student *);
+void ChangeStudentPassword(student);
 
 void StudentLogin();
 
-void StudentMainMenu(student *);
+void StudentMainMenu(student);
 
 void InitBranch(student*);
 
-void CheckDetails(student *);
+void CheckDetails(student);
 
-void checkresults(student *s);
+void checkresults(student);
 
-void checkattendance(student *s);
+void checkattendance(student);
 
-void seatallotment(student *s);
+void seatallotment(student);
 
 void TeacherMainMenu(char prn[]);
 
