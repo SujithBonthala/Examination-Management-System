@@ -5,7 +5,7 @@
 #include "Header_File.h"
 void LoginMenu()
 {
-	printf("Welcome to Examination Management System\n");
+	printf("\nWelcome to Examination Management System\n");
 	int choice=0;
 	while(choice!=4)
 	{
@@ -209,10 +209,10 @@ void GetStudentCredentials()
 {
 	StudentLogin();
 }
-void StudentMainMenu(student *s)
+void StudentMainMenu(student s)
 {
 	printf("\n\nLogged in Successfully\n");
-	printf("Welcome %s! Please select one of the options given below.\n",s->Name);
+	printf("Welcome %s! Please select one of the options given below.\n",s.Name);
 	int choice;
 	do
 	{
@@ -295,11 +295,11 @@ int Cipher(char usn[],char psw[])
 {
 	int a[26][3];
 	for(int k=0;k<26;k++)
-    	{
-        	a[k][0]=0;
-    	}
-    	char c[5][5];
-    	int i=0,j=0;
+    {
+       	a[k][0]=0;
+    }
+    char c[5][5];
+    int i=0,j=0;
 	char un[strlen(usn)],pw[strlen(psw)];
 	int un_ref=0,pw_ref=0;
 	for(int k=0;usn[k]!='\0';k++)
@@ -323,304 +323,304 @@ int Cipher(char usn[],char psw[])
 	for(int k=0;un[k]!='\0';k++)
 	{
 		if(un[k]>=97&&un[k]<=122)
-        	{
-            		un[k]=un[k]-32;
-        	}
-        	if(un[k]>=65&&un[k]<=90&&a[(int)un[k]-65][0]==0)
-        	{
-            		if((int)un[k]==73||(int)un[k]==74)
-            		{
-                		a[8][0]++;
-                		a[9][0]++;
-                		un[k]='I';
-                		a[8][1]=i;
-                		a[8][2]=j;
-                		a[9][1]=i;
-                		a[9][2]=j;
-            		}
-            		else
-           		{
-                		a[(int)un[k]-65][0]++;
-                		a[(int)un[k]-65][1]=i;
-                		a[(int)un[k]-65][2]=j;
-            		}
-            		if(j<4)
-            		{
-                		c[i][j]=un[k];
-                		j++;
-            		}
-            		else
-            		{
-                		c[i][j]=un[k];
-                		i++;
-                		j=0;
-            		}
-        	}
-    	}
-    	for(int k=65;k<=90;k++)
-    	{
-        	if(a[k-65][0]==0)
-        	{
-            		if(k==73)
-            		{
-                		a[9][0]=1;
-                		a[8][1]=i;
-                		a[8][2]=j;
-                		a[9][1]=i;
-                		a[9][2]=j;
-            		}
-            		else
-            		{
-                		a[k-65][1]=i;
-                		a[k-65][2]=j;
-            		}
-            		if(j<4)
-            		{
-                		c[i][j]=(char)k;
-                		j++;
-            		}
-            		else
-            		{
-                		c[i][j]=(char)k;
-                		i++;
-                		j=0;
-            		}
-        	}
-    	}
+       	{
+           		un[k]=un[k]-32;
+       	}
+       	if(un[k]>=65&&un[k]<=90&&a[(int)un[k]-65][0]==0)
+       	{
+       		if((int)un[k]==73||(int)un[k]==74)
+       		{
+           		a[8][0]++;
+           		a[9][0]++;
+           		un[k]='I';
+           		a[8][1]=i;
+           		a[8][2]=j;
+           		a[9][1]=i;
+           		a[9][2]=j;
+       		}
+       		else
+      		{
+           		a[(int)un[k]-65][0]++;
+           		a[(int)un[k]-65][1]=i;
+          		a[(int)un[k]-65][2]=j;
+       		}
+            if(j<4)
+            {
+            	c[i][j]=un[k];
+            	j++;
+			}
+            else
+            {
+            	c[i][j]=un[k];
+            	i++;
+            	j=0;
+            }
+       	}
+    }
+    for(int k=65;k<=90;k++)
+    {
+       	if(a[k-65][0]==0)
+       	{
+       		if(k==73)
+       		{
+          		a[9][0]=1;
+           		a[8][1]=i;
+           		a[8][2]=j;
+           		a[9][1]=i;
+           		a[9][2]=j;
+       		}
+       		else
+       		{
+           		a[k-65][1]=i;
+           		a[k-65][2]=j;
+       		}
+       		if(j<4)
+       		{
+           		c[i][j]=(char)k;
+           		j++;
+       		}
+       		else
+       		{
+           		c[i][j]=(char)k;
+           		i++;
+           		j=0;
+       		}
+     	}
+    }
 	int count=0;
 	for(int k=0;pw[k]!='\0';k++)
 	{
 		count++;
 		if(pw[k]>=97&&pw[k]<=122)
-        	{
-            		pw[k]=pw[k]-32;
-        	}
+       	{
+       		pw[k]=pw[k]-32;
+       	}
 	}
 	if(count%2!=0)
-    	{
-        	pw[count]='-';
+    {
+       	pw[count]='-';
 		pw[count+1]='\0';
-        	count+=1;
-    	}
-    	char encr[count+1];
+       	count+=1;
+    }
+    char encr[count+1];
 	if(pw[count-1]!='-')
-    	{
-        	for(int x=0;x<count;x+=2)
-        	{
-            		if(pw[x]!='J'&&pw[x+1]!='J')
-            		{
-                		int rowx=a[(int)pw[x]-65][1];
-                		int colx=a[(int)pw[x]-65][2];
-                		int rowx1=a[(int)pw[x+1]-65][1];
-                		int colx1=a[(int)pw[x+1]-65][2];
-                		if(rowx!=rowx1&&colx!=colx1)
-                		{
-                    			encr[x]=c[rowx][colx1];
-                    			encr[x+1]=c[rowx1][colx];
-                		}
-                		else if(rowx==rowx1&&colx!=colx1)
-                		{
-                    			if(colx==4)
-                    			{
-                        			encr[x]=c[rowx][0];
-                        			encr[x+1]=c[rowx1][colx1+1];
-                    			}
-                    			else if(colx1==4)
-                    			{
-                        			encr[x]=c[rowx][colx+1];
-                        			encr[x+1]=c[rowx1][0];
-                    			}
-                    			else
-                    			{
-                        			encr[x]=c[rowx][colx+1];
-                        			encr[x+1]=c[rowx1][colx1+1];
-                    			}
-                		}
-                		else if(rowx!=rowx1&&colx==colx1)
-                		{
-                    			if(rowx==4)
-                    			{
-                        			encr[x]=c[0][colx];
-                        			encr[x+1]=c[rowx1+1][colx1];
-                    			}
-                    			else if(rowx1==4)
-                    			{
-                        			encr[x]=c[rowx+1][colx];
-                        			encr[x+1]=c[0][colx1];
-                    			}
-                    			else
-                    			{
-                        			encr[x]=c[rowx+1][colx];
-                        			encr[x+1]=c[rowx1+1][colx1];
-                    			}
-                		}
-                		else
-                		{
-                    			if(rowx==4&&colx==4)
-                    			{
-                        			encr[x]=c[0][0];
-                        			encr[x+1]=c[0][0];
-                    			}
-                    			else if(rowx==4)
-                    			{
-                        			encr[x]=c[0][colx+1];
-                        			encr[x+1]=c[0][colx+1];
-                    			}
-                    			else if(colx==4)
-                    			{
-                        			encr[x]=c[rowx+1][0];
-                        			encr[x+1]=c[rowx+1][0];
-                    			}
-                    			else
-                    			{
-                        			encr[x]=c[rowx+1][colx+1];
-                        			encr[x+1]=c[rowx+1][colx+1];
-                    			}
-                		}
-            		}
-            		else if(pw[x]=='J'&&pw[x+1]!='J')
-            		{
-                		int rowx1=a[(int)pw[x+1]-65][1];
-                		int colx=a[((int)'J')-65][2];
-                		encr[x]='+';
-                		encr[x+1]=c[rowx1][colx];
-            		}
-            		else if(pw[x]!='J'&&pw[x+1]=='J')
-            		{
-                		int rowx=a[(int)pw[x]-65][1];
-                		int colx1=a[((int)'J')-65][2];
-                		encr[x+1]='+';
-                		encr[x]=c[rowx][colx1];
-            		}
-            		else
-            		{
-                		encr[x]='+';
-                		encr[x+1]='+';
-            		}
+    {
+       	for(int x=0;x<count;x+=2)
+       	{
+       		if(pw[x]!='J'&&pw[x+1]!='J')
+       		{
+           		int rowx=a[(int)pw[x]-65][1];
+           		int colx=a[(int)pw[x]-65][2];
+           		int rowx1=a[(int)pw[x+1]-65][1];
+           		int colx1=a[(int)pw[x+1]-65][2];
+           		if(rowx!=rowx1&&colx!=colx1)
+           		{
+          			encr[x]=c[rowx][colx1];
+          			encr[x+1]=c[rowx1][colx];
+           		}
+           		else if(rowx==rowx1&&colx!=colx1)
+          		{
+           			if(colx==4)
+           			{
+                        encr[x]=c[rowx][0];
+                        encr[x+1]=c[rowx1][colx1+1];
+                    }
+                    else if(colx1==4)
+                    {
+                        encr[x]=c[rowx][colx+1];
+                        encr[x+1]=c[rowx1][0];
+                    }
+                    else
+                    {
+                        encr[x]=c[rowx][colx+1];
+                        encr[x+1]=c[rowx1][colx1+1];
+                    }
+            	}
+                else if(rowx!=rowx1&&colx==colx1)
+                {
+                    if(rowx==4)
+                    {
+                        encr[x]=c[0][colx];
+                        encr[x+1]=c[rowx1+1][colx1];
+                    }
+                    else if(rowx1==4)
+                    {
+                        encr[x]=c[rowx+1][colx];
+                        encr[x+1]=c[0][colx1];
+                    }
+                    else
+                    {
+                        encr[x]=c[rowx+1][colx];
+                        encr[x+1]=c[rowx1+1][colx1];
+                    }
+                }
+                else
+                {
+                    if(rowx==4&&colx==4)
+                    {
+                        encr[x]=c[0][0];
+                        encr[x+1]=c[0][0];
+                    }
+                    else if(rowx==4)
+                    {
+                        encr[x]=c[0][colx+1];
+                        encr[x+1]=c[0][colx+1];
+                    }
+                    else if(colx==4)
+                    {
+                        encr[x]=c[rowx+1][0];
+                        encr[x+1]=c[rowx+1][0];
+                    }
+                    else
+                    {
+                        encr[x]=c[rowx+1][colx+1];
+                        encr[x+1]=c[rowx+1][colx+1];
+                    }
+                }
+            }
+        	else if(pw[x]=='J'&&pw[x+1]!='J')
+            {
+                int rowx1=a[(int)pw[x+1]-65][1];
+                int colx=a[((int)'J')-65][2];
+                encr[x]='+';
+                encr[x+1]=c[rowx1][colx];
+            }
+            else if(pw[x]!='J'&&pw[x+1]=='J')
+            {
+                int rowx=a[(int)pw[x]-65][1];
+                int colx1=a[((int)'J')-65][2];
+                encr[x+1]='+';
+                encr[x]=c[rowx][colx1];
+            }
+            else
+            {
+                encr[x]='+';
+                encr[x+1]='+';
+            }
 		}
 	}
     else
 	{
-        	for(int x=0;x<count-2;x+=2)
-        	{
-            		if(pw[x]!='J'&&pw[x+1]!='J')
-            		{
-                		int rowx=a[(int)pw[x]-65][1];
-                		int colx=a[(int)pw[x]-65][2];
-                		int rowx1=a[(int)pw[x+1]-65][1];
-                		int colx1=a[(int)pw[x+1]-65][2];
-                		if(rowx!=rowx1&&colx!=colx1)
-                		{
-                    			encr[x]=c[rowx][colx1];
-                    			encr[x+1]=c[rowx1][colx];
-                		}
-                		else if(rowx==rowx1&&colx!=colx1)
-                		{
-                    			if(colx==4)
-                    			{
-                        			encr[x]=c[rowx][0];
-                        			encr[x+1]=c[rowx1][colx1+1];
-                    			}
-                    			else if(colx1==4)
-                    			{
-                        			encr[x]=c[rowx][colx+1];
-                        			encr[x+1]=c[rowx1][0];
-                    			}
-                    			else
-                    			{
-                        			encr[x]=c[rowx][colx+1];
-                        			encr[x+1]=c[rowx1][colx1+1];
-                    			}
-                		}
-                		else if(rowx!=rowx1&&colx==colx1)
-                		{
-                    			if(rowx==4)
-                    			{
-                        			encr[x]=c[0][colx];
-                        			encr[x+1]=c[rowx1+1][colx1];
-                    			}
-                    			else if(rowx1==4)
-                    			{
-                        			encr[x]=c[rowx+1][colx];
-                        			encr[x+1]=c[0][colx1];
-                    			}
-                    			else
-                    			{
-                        			encr[x]=c[rowx+1][colx];
-                        			encr[x+1]=c[rowx1+1][colx1];
-                    			}
-                		}
-                		else
-                		{
-                    			if(rowx==4&&colx==4)
-                    			{
-                        			encr[x]=c[0][0];
-                        			encr[x+1]=c[0][0];
-                    			}
-                    			else if(rowx==4)
-                    			{
-                        			encr[x]=c[0][colx+1];
-                        			encr[x+1]=c[0][colx+1];
-                    			}
-                    			else if(colx==4)
-                    			{
-                        			encr[x]=c[rowx+1][0];
-                        			encr[x+1]=c[rowx+1][0];
-                    			}
-                    			else
-                    			{
-                        			encr[x]=c[rowx+1][colx+1];
-                        			encr[x+1]=c[rowx+1][colx+1];
-                    			}
-                		}
-            		}
-            		else if(pw[x]=='J'&&pw[x+1]!='J')
-            		{
-                		int rowx1=a[(int)pw[x+1]-65][1];
-                		int colx=a[((int)'J')-65][2];
-                		encr[x]='+';
-                		encr[x+1]=c[rowx1][colx];
-            		}
-            		else if(pw[x]!='J'&&pw[x+1]=='J')
-            		{
-                		int rowx=a[(int)pw[x]-65][1];
-                		int colx1=a[((int)'J')-65][2];
-                		encr[x+1]='+';
-                		encr[x]=c[rowx][colx1];
-            		}
-            		else
-            		{
-                		encr[x]='+';
-                		encr[x+1]='+';
-            		}
-        	}
-        	if(pw[count-2]=='J')
-        	{
-            		encr[count-2]='+';
-        	}
-        	else
-        	{
-            		int row=a[(int)pw[count-2]-65][1];
-            		int col=a[(int)pw[count-2]-65][2];
-            		if(row==4&&col==4)
-            		{
-                		encr[count-2]=c[0][0];
-            		}
-            		else if(row==4)
-            		{
-                		encr[count-2]=c[0][col+1];
-            		}
-            		else if(col==4)
-            		{
-                		encr[count-2]=c[row+1][0];
-            		}
-            		else
-            		{
-                		encr[count-2]=c[row+1][col+1];
-            		}
-        	}
-        	encr[count-1]='-';
-    	}
+        for(int x=0;x<count-2;x+=2)
+        {
+            if(pw[x]!='J'&&pw[x+1]!='J')
+            {
+                int rowx=a[(int)pw[x]-65][1];
+                int colx=a[(int)pw[x]-65][2];
+                int rowx1=a[(int)pw[x+1]-65][1];
+                int colx1=a[(int)pw[x+1]-65][2];
+                if(rowx!=rowx1&&colx!=colx1)
+                {
+                    	encr[x]=c[rowx][colx1];
+                    	encr[x+1]=c[rowx1][colx];
+                }
+                else if(rowx==rowx1&&colx!=colx1)
+                {
+                    if(colx==4)
+                    {
+                        encr[x]=c[rowx][0];
+                        encr[x+1]=c[rowx1][colx1+1];
+                    }
+                    else if(colx1==4)
+                    {
+                        encr[x]=c[rowx][colx+1];
+                        encr[x+1]=c[rowx1][0];
+                    }
+                    else
+                    {
+                        encr[x]=c[rowx][colx+1];
+                        encr[x+1]=c[rowx1][colx1+1];
+                    }
+                }
+                else if(rowx!=rowx1&&colx==colx1)
+                {
+                    if(rowx==4)
+                    {
+                        encr[x]=c[0][colx];
+                        encr[x+1]=c[rowx1+1][colx1];
+                    }
+                    else if(rowx1==4)
+                    {
+                        encr[x]=c[rowx+1][colx];
+                        encr[x+1]=c[0][colx1];
+                    }
+                    else
+                    {
+                        encr[x]=c[rowx+1][colx];
+                        encr[x+1]=c[rowx1+1][colx1];
+                    }
+                }
+                else
+                {
+                    if(rowx==4&&colx==4)
+                    {
+                    	encr[x]=c[0][0];
+                        encr[x+1]=c[0][0];
+                    }
+                    else if(rowx==4)
+                    {
+                        encr[x]=c[0][colx+1];
+                        encr[x+1]=c[0][colx+1];
+                    }
+                    else if(colx==4)
+                    {
+                        encr[x]=c[rowx+1][0];
+                        encr[x+1]=c[rowx+1][0];
+                    }
+                    else
+                    {
+                        encr[x]=c[rowx+1][colx+1];
+                        encr[x+1]=c[rowx+1][colx+1];
+                    }
+                }
+            }
+        	else if(pw[x]=='J'&&pw[x+1]!='J')
+            {
+            	int rowx1=a[(int)pw[x+1]-65][1];
+            	int colx=a[((int)'J')-65][2];
+            	encr[x]='+';
+            	encr[x+1]=c[rowx1][colx];
+            }
+            else if(pw[x]!='J'&&pw[x+1]=='J')
+            {
+            	int rowx=a[(int)pw[x]-65][1];
+            	int colx1=a[((int)'J')-65][2];
+            	encr[x+1]='+';
+            	encr[x]=c[rowx][colx1];
+            }
+            else
+            {
+                encr[x]='+';
+                encr[x+1]='+';
+            }
+        }
+        if(pw[count-2]=='J')
+        {
+            encr[count-2]='+';
+        }
+        else
+        {
+            int row=a[(int)pw[count-2]-65][1];
+            int col=a[(int)pw[count-2]-65][2];
+            if(row==4&&col==4)
+            {
+                encr[count-2]=c[0][0];
+            }
+            else if(row==4)
+            {
+                encr[count-2]=c[0][col+1];
+            }
+            else if(col==4)
+            {
+                encr[count-2]=c[row+1][0];
+            }
+            else
+            {
+                encr[count-2]=c[row+1][col+1];
+            }
+        }
+        encr[count-1]='-';
+    }
 	encr[count]='\0';
 	char s[]={'C','P','W','M','E','I','F','T','G','C','M','-','\0'};
 	if(strcmp(encr,s)==0)
@@ -796,7 +796,7 @@ void InitCSE(student *s)
 	s->Courses.sem4[7].Eligibility=0;
 	s->Courses.sem4[7].Grade='\0';
 	s->Courses.sem4[7].Examination_Block='\0';
-	strcpy(s->Courses.sem4[6].Examination_Date,"\0");
+	strcpy(s->Courses.sem4[7].Examination_Date,"\0");
 	strcpy(s->Courses.sem4[7].Examination_Section,"\0");
 	//Semester 5
 	s->Courses.no_courses_sem5=8;
@@ -3157,7 +3157,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem1[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem1[i].Examination_Date,temp2);
 							s1.Courses.sem1[i].Examination_Block=block;
 							strcpy(s1.Courses.sem1[i].Examination_Section,temp1);
 							d++;
@@ -3206,7 +3208,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem2[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem2[i].Examination_Date,temp2);
 							s1.Courses.sem2[i].Examination_Block=block;
 							strcpy(s1.Courses.sem2[i].Examination_Section,temp1);
 							d++;
@@ -3255,7 +3259,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem3[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem3[i].Examination_Date,temp2);
 							s1.Courses.sem3[i].Examination_Block=block;
 							strcpy(s1.Courses.sem3[i].Examination_Section,temp1);
 							d++;
@@ -3304,7 +3310,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem4[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem4[i].Examination_Date,temp2);
 							s1.Courses.sem4[i].Examination_Block=block;
 							strcpy(s1.Courses.sem4[i].Examination_Section,temp1);
 							d++;
@@ -3353,7 +3361,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem5[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem5[i].Examination_Date,temp2);
 							s1.Courses.sem5[i].Examination_Block=block;
 							strcpy(s1.Courses.sem5[i].Examination_Section,temp1);
 							d++;
@@ -3402,7 +3412,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem6[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem6[i].Examination_Date,temp2);
 							s1.Courses.sem6[i].Examination_Block=block;
 							strcpy(s1.Courses.sem6[i].Examination_Section,temp1);
 							d++;
@@ -3451,7 +3463,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem7[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem7[i].Examination_Date,temp2);
 							s1.Courses.sem7[i].Examination_Block=block;
 							strcpy(s1.Courses.sem7[i].Examination_Section,temp1);
 							d++;
@@ -3500,7 +3514,9 @@ void SetExamDetails()
 							itoa(d,temp,10);
 							char temp1[10];
 							itoa(classroom,temp1,10);
-							strcpy(s1.Courses.sem8[i].Examination_Date,strcat("Day - ",temp));
+							char temp2[10]="Day - ";
+							strcat(temp2,temp);
+							strcpy(s1.Courses.sem8[i].Examination_Date,temp2);
 							s1.Courses.sem8[i].Examination_Block=block;
 							strcpy(s1.Courses.sem8[i].Examination_Section,temp1);
 							d++;
@@ -3546,7 +3562,7 @@ void SetExamDetails()
 			{
 				fwrite(&s1,sizeof(student),1,fp1);
 			}
-			printf("\nExamination Seat Allotment is completed successfully!");
+			printf("\nExamination Seat Allotment is completed successfully!\n");
 			fclose(fp1);
 			fclose(fp2);
 		}
