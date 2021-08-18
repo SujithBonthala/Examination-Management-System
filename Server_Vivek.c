@@ -3,6 +3,7 @@
 #include<string.h>
 #include<conio.h>
 #include "Header_File.h"
+
 void CreateStudentAcc()
 {
 	FILE *fp;
@@ -1301,13 +1302,85 @@ void checkresults(student s)
 	{
 		if(c==1)
 		{
+			float total=0;
+			int total_credit=0;
 			for(int i=0;i<s.Courses.no_courses_sem1;i++)
 			{
+				if(s.Courses.sem1[i].Grade=='A')
+				{
+					total+=(s.Courses.sem1[i].Grade-56)*s.Courses.sem1[i].Credits;
+				}
+				else if(s.Courses.sem1[i].Grade=='B')
+				{
+					total+=(s.Courses.sem1[i].Grade-58)*s.Courses.sem1[i].Credits;
+				}	
+				else if(s.Courses.sem8[i].Grade=='C')
+				{
+					total+=(s.Courses.sem1[i].Grade-60)*s.Courses.sem1[i].Credits;
+				}	
+				else if(s.Courses.sem1[i].Grade=='D')
+				{
+					total+=(s.Courses.sem1[i].Grade-62)*s.Courses.sem1[i].Credits;
+				}	
+				else if(s.Courses.sem1[i].Grade=='E')
+				{
+					total+=(s.Courses.sem1[i].Grade-64)*s.Courses.sem1[i].Credits;
+				}	
+				else if(s.Courses.sem1[i].Grade=='F')
+				{
+					total+=(s.Courses.sem1[i].Grade-66)*s.Courses.sem1[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem1[i].Grade-73)*s.Courses.sem1[i].Credits;
+				}
+				total_credit+=s.Courses.sem1[i].Credits;
+			}	
+			printf("\nSGPA:%.2f\n",total/total_credit);
+			for(int i=0;i<s.Courses.no_courses_sem1;i++)
+			{
+				
 				printf("%s - %s : %c\n",s.Courses.sem1[i].Course_Code,s.Courses.sem1[i].Course_Name,s.Courses.sem1[i].Grade);
 			}
 		}
 		else if(c==2)
 		{
+			float total=0;
+			int total_credit=0;
+			for(int i=0;i<s.Courses.no_courses_sem2;i++)
+			{
+				if(s.Courses.sem2[i].Grade=='A')
+				{
+					total+=(s.Courses.sem2[i].Grade-56)*s.Courses.sem2[i].Credits;
+				}
+				else if(s.Courses.sem2[i].Grade=='B')
+				{
+					total+=(s.Courses.sem2[i].Grade-58)*s.Courses.sem2[i].Credits;
+				}	
+				else if(s.Courses.sem2[i].Grade=='C')
+				{
+					total+=(s.Courses.sem2[i].Grade-60)*s.Courses.sem2[i].Credits;
+				}	
+				else if(s.Courses.sem2[i].Grade=='D')
+				{
+					total+=(s.Courses.sem2[i].Grade-62)*s.Courses.sem2[i].Credits;
+				}	
+				else if(s.Courses.sem2[i].Grade=='E')
+				{
+					total+=(s.Courses.sem2[i].Grade-64)*s.Courses.sem2[i].Credits;
+				}	
+				else if(s.Courses.sem2[i].Grade=='F')
+				{
+					total+=(s.Courses.sem2[i].Grade-66)*s.Courses.sem2[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem2[i].Grade-73)*s.Courses.sem2[i].Credits;
+				}
+				total_credit+=s.Courses.sem2[i].Credits;
+			
+			}
+			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem2;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem2[i].Course_Code,s.Courses.sem2[i].Course_Name,s.Courses.sem2[i].Grade);
@@ -1315,6 +1388,42 @@ void checkresults(student s)
 		}
 		else if(c==3)
 		{
+			float total=0;
+			int total_credit=0;
+			for(int i=0;i<s.Courses.no_courses_sem3;i++)
+			{
+				if(s.Courses.sem3[i].Grade=='A')
+				{
+					total+=(s.Courses.sem3[i].Grade-56)*s.Courses.sem3[i].Credits;
+				}
+				else if(s.Courses.sem3[i].Grade=='B')
+				{
+					total+=(s.Courses.sem3[i].Grade-58)*s.Courses.sem3[i].Credits;
+				}	
+				else if(s.Courses.sem3[i].Grade=='C')
+				{
+					total+=(s.Courses.sem3[i].Grade-60)*s.Courses.sem3[i].Credits;
+				}	
+				else if(s.Courses.sem3[i].Grade=='D')
+				{
+					total+=(s.Courses.sem3[i].Grade-62)*s.Courses.sem3[i].Credits;
+				}	
+				else if(s.Courses.sem3[i].Grade=='E')
+				{
+					total+=(s.Courses.sem3[i].Grade-64)*s.Courses.sem3[i].Credits;
+				}	
+				else if(s.Courses.sem3[i].Grade=='F')
+				{
+					total+=(s.Courses.sem3[i].Grade-66)*s.Courses.sem3[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem3[i].Grade-73)*s.Courses.sem3[i].Credits;
+				}
+				total_credit+=s.Courses.sem3[i].Credits;
+				
+			}	
+			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem3;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem3[i].Course_Code,s.Courses.sem3[i].Course_Name,s.Courses.sem3[i].Grade);
@@ -1322,13 +1431,84 @@ void checkresults(student s)
 		}
 		else if(c==4)
 		{
+			float total=0;
+			int total_credit=0;
+			for(int i=0;i<s.Courses.no_courses_sem4;i++)
+			{
+				if(s.Courses.sem4[i].Grade=='A')
+				{
+					total+=(s.Courses.sem4[i].Grade-56)*s.Courses.sem4[i].Credits;
+				}
+				else if(s.Courses.sem4[i].Grade=='B')
+				{
+					total+=(s.Courses.sem4[i].Grade-58)*s.Courses.sem4[i].Credits;
+				}	
+				else if(s.Courses.sem4[i].Grade=='C')
+				{
+					total+=(s.Courses.sem4[i].Grade-60)*s.Courses.sem4[i].Credits;
+				}	
+				else if(s.Courses.sem4[i].Grade=='D')
+				{
+					total+=(s.Courses.sem4[i].Grade-62)*s.Courses.sem4[i].Credits;
+				}	
+				else if(s.Courses.sem4[i].Grade=='E')
+				{
+					total+=(s.Courses.sem4[i].Grade-64)*s.Courses.sem4[i].Credits;
+				}	
+				else if(s.Courses.sem4[i].Grade=='F')
+				{
+					total+=(s.Courses.sem4[i].Grade-66)*s.Courses.sem4[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem4[i].Grade-73)*s.Courses.sem4[i].Credits;
+				}
+				total_credit+=s.Courses.sem4[i].Credits;
+				
+			}	
+			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem4;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem4[i].Course_Code,s.Courses.sem4[i].Course_Name,s.Courses.sem4[i].Grade);
 			}
 		}
 		else if(c==5)
-		{
+		{float total=0;
+			int total_credit=0;
+			for(int i=0;i<s.Courses.no_courses_sem5;i++)
+			{
+				if(s.Courses.sem5[i].Grade=='A')
+				{
+					total+=(s.Courses.sem5[i].Grade-56)*s.Courses.sem5[i].Credits;
+				}
+				else if(s.Courses.sem5[i].Grade=='B')
+				{
+					total+=(s.Courses.sem5[i].Grade-58)*s.Courses.sem5[i].Credits;
+				}	
+				else if(s.Courses.sem5[i].Grade=='C')
+				{
+					total+=(s.Courses.sem5[i].Grade-60)*s.Courses.sem5[i].Credits;
+				}	
+				else if(s.Courses.sem5[i].Grade=='D')
+				{
+					total+=(s.Courses.sem5[i].Grade-62)*s.Courses.sem5[i].Credits;
+				}	
+				else if(s.Courses.sem5[i].Grade=='E')
+				{
+					total+=(s.Courses.sem5[i].Grade-64)*s.Courses.sem5[i].Credits;
+				}	
+				else if(s.Courses.sem5[i].Grade=='F')
+				{
+					total+=(s.Courses.sem5[i].Grade-66)*s.Courses.sem5[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem5[i].Grade-73)*s.Courses.sem5[i].Credits;
+				}
+				total_credit+=s.Courses.sem5[i].Credits;
+				
+			}	
+			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem5;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem5[i].Course_Code,s.Courses.sem5[i].Course_Name,s.Courses.sem5[i].Grade);
@@ -1336,6 +1516,44 @@ void checkresults(student s)
 		}
 		else if(c==6)
 		{
+			
+			float total=0;
+			int total_credit=0;
+			for(int i=0;i<s.Courses.no_courses_sem6;i++)
+			{
+				if(s.Courses.sem6[i].Grade=='A')
+				{
+					total+=(s.Courses.sem6[i].Grade-56)*s.Courses.sem6[i].Credits;
+				}
+				else if(s.Courses.sem6[i].Grade=='B')
+				{
+					total+=(s.Courses.sem6[i].Grade-58)*s.Courses.sem6[i].Credits;
+				}	
+				else if(s.Courses.sem6[i].Grade=='C')
+				{
+					total+=(s.Courses.sem6[i].Grade-60)*s.Courses.sem6[i].Credits;
+				}	
+				else if(s.Courses.sem6[i].Grade=='D')
+				{
+					total+=(s.Courses.sem6[i].Grade-62)*s.Courses.sem6[i].Credits;
+				}	
+				else if(s.Courses.sem6[i].Grade=='E')
+				{
+					total+=(s.Courses.sem6[i].Grade-64)*s.Courses.sem6[i].Credits;
+				}	
+				else if(s.Courses.sem6[i].Grade=='F')
+				{
+					total+=(s.Courses.sem6[i].Grade-66)*s.Courses.sem6[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem6[i].Grade-73)*s.Courses.sem6[i].Credits;
+				}
+				total_credit+=s.Courses.sem6[i].Credits;
+				
+			}	
+			printf("\nSGPA:%.2f\n",total/total_credit);
+		
 			for(int i=0;i<s.Courses.no_courses_sem6;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem6[i].Course_Code,s.Courses.sem6[i].Course_Name,s.Courses.sem6[i].Grade);
@@ -1343,6 +1561,42 @@ void checkresults(student s)
 		}
 		else if(c==7)
 		{
+			float total=0;
+			int total_credit=0;
+			for(int i=0;i<s.Courses.no_courses_sem7;i++)
+			{
+				if(s.Courses.sem7[i].Grade=='A')
+				{
+					total+=(s.Courses.sem7[i].Grade-56)*s.Courses.sem7[i].Credits;
+				}
+				else if(s.Courses.sem7[i].Grade=='B')
+				{
+					total+=(s.Courses.sem7[i].Grade-58)*s.Courses.sem7[i].Credits;
+				}	
+				else if(s.Courses.sem7[i].Grade=='C')
+				{
+					total+=(s.Courses.sem7[i].Grade-60)*s.Courses.sem7[i].Credits;
+				}	
+				else if(s.Courses.sem7[i].Grade=='D')
+				{
+					total+=(s.Courses.sem7[i].Grade-62)*s.Courses.sem7[i].Credits;
+				}	
+				else if(s.Courses.sem7[i].Grade=='E')
+				{
+					total+=(s.Courses.sem7[i].Grade-64)*s.Courses.sem7[i].Credits;
+				}	
+				else if(s.Courses.sem7[i].Grade=='F')
+				{
+					total+=(s.Courses.sem7[i].Grade-66)*s.Courses.sem7[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem7[i].Grade-73)*s.Courses.sem7[i].Credits;
+				}
+				total_credit+=s.Courses.sem7[i].Credits;
+				
+			}	
+			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem7;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem7[i].Course_Code,s.Courses.sem7[i].Course_Name,s.Courses.sem7[i].Grade);
@@ -1350,6 +1604,41 @@ void checkresults(student s)
 		}
 		else if(c==8)
 		{
+			float total=0;
+			int total_credit=0;
+			for(int i=0;i<s.Courses.no_courses_sem8;i++)
+			{
+				if(s.Courses.sem8[i].Grade=='A')
+				{
+					total+=(s.Courses.sem8[i].Grade-56)*s.Courses.sem8[i].Credits;
+				}
+				else if(s.Courses.sem8[i].Grade=='B')
+				{
+					total+=(s.Courses.sem8[i].Grade-58)*s.Courses.sem8[i].Credits;
+				}	
+				else if(s.Courses.sem8[i].Grade=='C')
+				{
+					total+=(s.Courses.sem8[i].Grade-60)*s.Courses.sem8[i].Credits;
+				}	
+				else if(s.Courses.sem8[i].Grade=='D')
+				{
+					total+=(s.Courses.sem8[i].Grade-62)*s.Courses.sem8[i].Credits;
+				}	
+				else if(s.Courses.sem8[i].Grade=='E')
+				{
+					total+=(s.Courses.sem8[i].Grade-64)*s.Courses.sem8[i].Credits;
+				}	
+				else if(s.Courses.sem8[i].Grade=='F')
+				{
+					total+=(s.Courses.sem8[i].Grade-66)*s.Courses.sem8[i].Credits;
+				}	
+				else
+				{
+					total+=(s.Courses.sem8[i].Grade-73)*s.Courses.sem8[i].Credits;
+				}
+				total_credit+=s.Courses.sem8[i].Credits;
+			}
+			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem8;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem8[i].Course_Code,s.Courses.sem8[i].Course_Name,s.Courses.sem8[i].Grade);
