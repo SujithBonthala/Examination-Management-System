@@ -887,7 +887,7 @@ void ChangeStudentPassword(student s)
 	char t[50];
 	do
 	{
-		printf("Enter New Password: ");
+		printf("\nEnter New Password: ");
 		fflush(stdin);
 		char ch;
 		int charpos=0;
@@ -981,7 +981,7 @@ void ChangeStudentPassword(student s)
 		else
 		{
 			int choice;
-			printf("Password and confirmation password do not match. Try again...\n");
+			printf("\nPassword and confirmation password do not match. Try again...\n");
 			printf("Enter 1 to exit.\nEnter any number other than 1 to try again.\nEnter your choice : ");
 			fflush(stdin);
 			scanf("%d",&choice);
