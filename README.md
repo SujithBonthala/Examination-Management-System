@@ -16,4 +16,4 @@ The teacher account once created by the admin will have the username and the pas
 
 Branches used in the examination system - Computer Science and Engineering, Electronics and Communication Engineering, Mechanical Engineering, Electrical and Electronics Engineering, Civil Engineering, Biotechnology Engineering.
 
-Course Details taken from PES University Course Info.
+Course Details taken from PES University(Bangalore, India) Course Info.
