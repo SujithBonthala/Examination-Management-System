@@ -576,7 +576,7 @@ void ChangeTeacherPassword(char prn[])
 	}
 	fflush(stdin);
 	p[charpos]='\0';
-	printf("Confirm New password: ");
+	printf("\nConfirm New password: ");
 	fflush(stdin);
 	charpos=0;
 	while(1)
@@ -610,7 +610,7 @@ void ChangeTeacherPassword(char prn[])
 		fp1=fopen("Temp_Teacher_Record.txt","w");
 		if(fp==NULL||fp1==NULL)
 		{
-			printf("Error...Try again\n");
+			printf("\nError...Try again\n");
 			fclose(fp);
 			fclose(fp1);
 		}
@@ -633,14 +633,14 @@ void ChangeTeacherPassword(char prn[])
 			{
 				fwrite(&t1,sizeof(teacher),1,fp);
 			}
-			printf("Password is updated successfully!\n");
+			printf("\nPassword is updated successfully!\n");
 			fclose(fp);
 			fclose(fp1);
 	 	}
 	}
 	else
 	{
-		printf("Password and confirmation password do not match. Try again...\n");
+		printf("\nPassword and confirmation password do not match. Try again...\n");
 		ChangeTeacherPassword(prn);
 	}	
 }
