@@ -3,7 +3,6 @@
 #include<string.h>
 #include<conio.h>
 #include "Header_File.h"
-
 void CreateStudentAcc()
 {
 	FILE *fp;
@@ -1339,7 +1338,6 @@ void checkresults(student s)
 			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem1;i++)
 			{
-				
 				printf("%s - %s : %c\n",s.Courses.sem1[i].Course_Code,s.Courses.sem1[i].Course_Name,s.Courses.sem1[i].Grade);
 			}
 		}
@@ -1378,7 +1376,6 @@ void checkresults(student s)
 					total+=(s.Courses.sem2[i].Grade-73)*s.Courses.sem2[i].Credits;
 				}
 				total_credit+=s.Courses.sem2[i].Credits;
-			
 			}
 			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem2;i++)
@@ -1421,7 +1418,6 @@ void checkresults(student s)
 					total+=(s.Courses.sem3[i].Grade-73)*s.Courses.sem3[i].Credits;
 				}
 				total_credit+=s.Courses.sem3[i].Credits;
-				
 			}	
 			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem3;i++)
@@ -1464,7 +1460,6 @@ void checkresults(student s)
 					total+=(s.Courses.sem4[i].Grade-73)*s.Courses.sem4[i].Credits;
 				}
 				total_credit+=s.Courses.sem4[i].Credits;
-				
 			}	
 			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem4;i++)
@@ -1473,7 +1468,8 @@ void checkresults(student s)
 			}
 		}
 		else if(c==5)
-		{float total=0;
+		{
+			float total=0;
 			int total_credit=0;
 			for(int i=0;i<s.Courses.no_courses_sem5;i++)
 			{
@@ -1506,7 +1502,6 @@ void checkresults(student s)
 					total+=(s.Courses.sem5[i].Grade-73)*s.Courses.sem5[i].Credits;
 				}
 				total_credit+=s.Courses.sem5[i].Credits;
-				
 			}	
 			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem5;i++)
@@ -1550,10 +1545,8 @@ void checkresults(student s)
 					total+=(s.Courses.sem6[i].Grade-73)*s.Courses.sem6[i].Credits;
 				}
 				total_credit+=s.Courses.sem6[i].Credits;
-				
 			}	
 			printf("\nSGPA:%.2f\n",total/total_credit);
-		
 			for(int i=0;i<s.Courses.no_courses_sem6;i++)
 			{
 				printf("%s - %s : %c\n",s.Courses.sem6[i].Course_Code,s.Courses.sem6[i].Course_Name,s.Courses.sem6[i].Grade);
@@ -1594,7 +1587,6 @@ void checkresults(student s)
 					total+=(s.Courses.sem7[i].Grade-73)*s.Courses.sem7[i].Credits;
 				}
 				total_credit+=s.Courses.sem7[i].Credits;
-				
 			}	
 			printf("\nSGPA:%.2f\n",total/total_credit);
 			for(int i=0;i<s.Courses.no_courses_sem7;i++)
