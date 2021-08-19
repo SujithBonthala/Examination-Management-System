@@ -322,7 +322,7 @@ void DeleteTeacherAcc()
 						}
 						else
 						{
-							fwrite(&t,sizeof(teacher),1,fp);
+							fwrite(&t,sizeof(teacher),1,fp1);
 						}
 					}
 					fclose(fp);
@@ -331,7 +331,7 @@ void DeleteTeacherAcc()
 					{
 						fp=fopen("Teacher_Record.txt","w");
                 				fp1=fopen("Temp_Teacher_Record.txt","r");
-						while(fread(&t,sizeof(teacher),1,fp))
+						while(fread(&t,sizeof(teacher),1,fp1))
 						{
 							fwrite(&t,sizeof(teacher),1,fp);
 						}
